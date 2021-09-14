@@ -17,10 +17,9 @@ namespace MyDot
             InitializeComponent();
         }
 
-        private const double ZOOM_FACTOR = 1.1;
-        private const int MIN_MAX = 5;
-
-        public Button[,] BtnButtons;
+        public PictureBox[,] PbxButtons;
+        private bool bolMouseDown;
+        private bool bolBorder;
 
         private void BitMapMain_Load(object sender, EventArgs e)
         {
@@ -40,41 +39,93 @@ namespace MyDot
             {
                 for (int y = 0; y < DataSaver.intHeigth; y++)
                 {
-                    BtnButtons[x, y].BackColor = DataSaver.btmRGBA[x, y].ColorReturn();
+                    PbxButtons[x, y].BackColor = DataSaver.btmRGBA[x, y].ColorReturn();
                 }
+            }
+        }
+
+        public void PbxBorder()
+        {
+            if (!bolBorder)
+            {
+                for (int y = 0; y < PbxButtons.GetLength(1); y++)
+                {
+                    for (int x = 0; x < PbxButtons.GetLength(0); x++)
+                    {
+                        PbxButtons[x, y].BorderStyle = BorderStyle.FixedSingle;
+                    }
+                }
+                bolBorder = true;
+            }
+            else
+            {
+                for (int y = 0; y < PbxButtons.GetLength(1); y++)
+                {
+                    for (int x = 0; x < PbxButtons.GetLength(0); x++)
+                    {
+                        PbxButtons[x, y].BorderStyle = BorderStyle.None;
+                    }
+                }
+                bolBorder = false;
             }
         }
 
         private void ButtonMake(int intWidth, int intHeight)
         {
-            BtnButtons = new Button[intHeight, intWidth];
-            int intControlWidth = 800 / BtnButtons.GetLength(0);
-            int intControlHeight = 800 / BtnButtons.GetLength(1);
-            for (int y = 0; y < BtnButtons.GetLength(1); y++)
+            PbxButtons = new PictureBox[intHeight, intWidth];
+            int intControlWidth = 800 / PbxButtons.GetLength(0);
+            int intControlHeight = 800 / PbxButtons.GetLength(1);
+            for (int y = 0; y < PbxButtons.GetLength(1); y++)
             {
-                for (int x = 0; x < BtnButtons.GetLength(0); x++)
+                for (int x = 0; x < PbxButtons.GetLength(0); x++)
                 {
-                    BtnButtons[x, y] = new Button
+                    PbxButtons[x, y] = new PictureBox
                     {
-                        Name = $"Btn{x.ToString("D5")}{y.ToString("D5")}",
+                        Name = $"Pbx{x.ToString("D5")}{y.ToString("D5")}",
                         Size = new Size(intControlWidth, intControlHeight),
                         Parent = this,
                         Location = new Point(x * intControlWidth, y * intControlHeight),
                         Text = "",
                     };
-                    BtnButtons[x, y].Click += new EventHandler(BtnClick);
-                    this.Controls.Add(BtnButtons[x, y]);
+                    PbxButtons[x, y].Click += new EventHandler(BtnClick);
+                    PbxButtons[x, y].MouseDown += new MouseEventHandler(BitMapMain_MouseDown);
+                    PbxButtons[x, y].MouseEnter += new EventHandler(MouseInside);
+                    PbxButtons[x, y].MouseUp += new MouseEventHandler(BitMapMain_MouseUp);
+                    this.Controls.Add(PbxButtons[x, y]);
                 }
+            }
+        }
+
+        private void MouseInside(object sender, EventArgs e)
+        {
+            if (bolMouseDown)
+            {
+                BtnClick(sender,e);
             }
         }
 
         private void BtnClick(object sender, EventArgs e)
         {
-            string strName = ((Button)sender).Name;
+            string strName = ((PictureBox)sender).Name;
             int intWidthCode = int.Parse($"{strName[3]}{strName[4]}{strName[5]}{strName[6]}{strName[7]}");
             int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
-            ((Button)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
+            ((PictureBox)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
             DataSaver.btmRGBA[intWidthCode, intHeightCode] = DataSaver.nowRGBA;
+        }
+
+        private void BitMapMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            bolMouseDown = true;
+        }
+
+        private void BitMapMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            bolMouseDown = false;
+        }
+
+        private void BitMapMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DataSaver.bmmNow = null;
         }
     }
 }

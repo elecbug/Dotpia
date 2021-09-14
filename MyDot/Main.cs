@@ -21,12 +21,16 @@ namespace MyDot
         {
             try
             {
-                DataSaver.intWidth = int.Parse(RtbWidth.Text);
-                DataSaver.intHeigth = int.Parse(RtbHeight.Text);
-                BitMapMain BmmForm = new BitMapMain();
-                BmmForm.Show();
-                Pencil pclForm = new Pencil();
-                pclForm.Show();
+                if (DataSaver.bmmNow == null)
+                {
+                    DataSaver.intWidth = int.Parse(RtbWidth.Text);
+                    DataSaver.intHeigth = int.Parse(RtbHeight.Text);
+                    BitMapMain BmmForm = new BitMapMain();
+                    DataSaver.bmmNow = BmmForm;
+                    BmmForm.Show();
+                    Pencil pclForm = new Pencil();
+                    pclForm.Show();
+                }
             }
             catch
             {
@@ -36,9 +40,12 @@ namespace MyDot
 
         private void BtnLoad_Click(object sender, EventArgs e)
         {
-            if (OfdOpen.ShowDialog() == DialogResult.OK)
+            if (DataSaver.bmmNow == null)
             {
-                LoadFile(OfdOpen.FileName.ToString());
+                if (OfdOpen.ShowDialog() == DialogResult.OK)
+                {
+                    LoadFile(OfdOpen.FileName.ToString());
+                }
             }
         }
 
@@ -64,6 +71,7 @@ namespace MyDot
                 }
             }
             BitMapMain BmmForm = new BitMapMain();
+            DataSaver.bmmNow = BmmForm;
             BmmForm.Show();
             Pencil pclForm = new Pencil();
             pclForm.Show();

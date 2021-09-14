@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace MyDot
         {
             try
             {
-                DataSaver.nowRGBA = new RGBA(int.Parse(RtbR.Text), int.Parse(RtbG.Text), int.Parse(RtbB.Text), int.Parse(RtbA.Text));
+                DataSaver.nowRGBA = new RGBA(int.Parse(PbxR.Text), int.Parse(PbxG.Text), int.Parse(PbxB.Text), int.Parse(PbxA.Text));
                 PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
             }
             catch
@@ -62,8 +63,31 @@ namespace MyDot
                     bitmap.SetPixel(x, y, color);
                 }
             }
+            if (File.Exists(strPath))
+            {
+                File.Delete(strPath);
+            }
             bitmap.Save(strPath);
             bitmap.Dispose();
+        }
+
+        private void BtnSmart_Click(object sender, EventArgs e)
+        {
+
+            if (CldColor.ShowDialog() == DialogResult.OK)
+            {
+                DataSaver.nowRGBA = new RGBA(CldColor.Color);
+                PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
+                PbxR.Text = DataSaver.nowRGBA.R.ToString();
+                PbxG.Text = DataSaver.nowRGBA.G.ToString();
+                PbxB.Text = DataSaver.nowRGBA.B.ToString();
+                PbxA.Text = DataSaver.nowRGBA.A.ToString();
+            }
+        }
+
+        private void BtnBorder_Click(object sender, EventArgs e)
+        {
+            DataSaver.bmmNow.PbxBorder();
         }
     }
 }

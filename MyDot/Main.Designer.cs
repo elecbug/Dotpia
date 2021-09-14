@@ -131,6 +131,7 @@ namespace MyDot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(384, 561);
             this.Controls.Add(this.BtnPencil);
             this.Controls.Add(this.groupBox1);
@@ -138,6 +139,7 @@ namespace MyDot
             this.Controls.Add(this.BtnNew);
             this.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "Main";
             this.Text = "My Dot";
             this.groupBox1.ResumeLayout(false);

@@ -13,6 +13,7 @@ namespace MyDot
         public static int intHeigth = 0;
         public static RGBA nowRGBA = new RGBA();
         public static RGBA[,] btmRGBA;
+        public static BitMapMain bmmNow = null;
     }
 
     public class RGBA
