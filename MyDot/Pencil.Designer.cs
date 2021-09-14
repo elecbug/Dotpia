@@ -106,7 +106,7 @@ namespace MyDot
             this.BtnChoice.Location = new System.Drawing.Point(299, 183);
             this.BtnChoice.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.BtnChoice.Name = "BtnChoice";
-            this.BtnChoice.Size = new System.Drawing.Size(65, 43);
+            this.BtnChoice.Size = new System.Drawing.Size(117, 43);
             this.BtnChoice.TabIndex = 2;
             this.BtnChoice.Text = "Set";
             this.BtnChoice.UseVisualStyleBackColor = true;
@@ -129,10 +129,10 @@ namespace MyDot
             // BtnSmart
             // 
             this.BtnSmart.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnSmart.Location = new System.Drawing.Point(370, 183);
+            this.BtnSmart.Location = new System.Drawing.Point(422, 183);
             this.BtnSmart.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.BtnSmart.Name = "BtnSmart";
-            this.BtnSmart.Size = new System.Drawing.Size(101, 43);
+            this.BtnSmart.Size = new System.Drawing.Size(190, 43);
             this.BtnSmart.TabIndex = 2;
             this.BtnSmart.Text = "Smart Set";
             this.BtnSmart.UseVisualStyleBackColor = true;
@@ -140,9 +140,9 @@ namespace MyDot
             // 
             // BtnBorder
             // 
-            this.BtnBorder.Location = new System.Drawing.Point(12, 12);
+            this.BtnBorder.Location = new System.Drawing.Point(12, 19);
             this.BtnBorder.Name = "BtnBorder";
-            this.BtnBorder.Size = new System.Drawing.Size(120, 42);
+            this.BtnBorder.Size = new System.Drawing.Size(70, 42);
             this.BtnBorder.TabIndex = 3;
             this.BtnBorder.Text = "Border";
             this.BtnBorder.UseVisualStyleBackColor = true;
@@ -160,16 +160,16 @@ namespace MyDot
             // 
             // RtbExport
             // 
-            this.RtbExport.Location = new System.Drawing.Point(392, 313);
+            this.RtbExport.Location = new System.Drawing.Point(400, 313);
             this.RtbExport.Name = "RtbExport";
-            this.RtbExport.Size = new System.Drawing.Size(100, 41);
+            this.RtbExport.Size = new System.Drawing.Size(86, 41);
             this.RtbExport.TabIndex = 4;
             this.RtbExport.Text = "";
             this.RtbExport.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
             // 
             // BtnCombine
             // 
-            this.BtnCombine.Location = new System.Drawing.Point(12, 60);
+            this.BtnCombine.Location = new System.Drawing.Point(492, 265);
             this.BtnCombine.Name = "BtnCombine";
             this.BtnCombine.Size = new System.Drawing.Size(120, 42);
             this.BtnCombine.TabIndex = 3;
@@ -179,18 +179,18 @@ namespace MyDot
             // 
             // RtbCWidth
             // 
-            this.RtbCWidth.Location = new System.Drawing.Point(138, 61);
+            this.RtbCWidth.Location = new System.Drawing.Point(400, 265);
             this.RtbCWidth.Name = "RtbCWidth";
-            this.RtbCWidth.Size = new System.Drawing.Size(39, 41);
+            this.RtbCWidth.Size = new System.Drawing.Size(40, 41);
             this.RtbCWidth.TabIndex = 4;
             this.RtbCWidth.Text = "";
             this.RtbCWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
             // 
             // RtbCHeight
             // 
-            this.RtbCHeight.Location = new System.Drawing.Point(183, 60);
+            this.RtbCHeight.Location = new System.Drawing.Point(446, 265);
             this.RtbCHeight.Name = "RtbCHeight";
-            this.RtbCHeight.Size = new System.Drawing.Size(39, 41);
+            this.RtbCHeight.Size = new System.Drawing.Size(40, 41);
             this.RtbCHeight.TabIndex = 4;
             this.RtbCHeight.Text = "";
             this.RtbCHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
@@ -202,10 +202,10 @@ namespace MyDot
             // BtnExtraction
             // 
             this.BtnExtraction.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnExtraction.Location = new System.Drawing.Point(477, 183);
+            this.BtnExtraction.Location = new System.Drawing.Point(88, 19);
             this.BtnExtraction.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.BtnExtraction.Name = "BtnExtraction";
-            this.BtnExtraction.Size = new System.Drawing.Size(101, 43);
+            this.BtnExtraction.Size = new System.Drawing.Size(87, 42);
             this.BtnExtraction.TabIndex = 2;
             this.BtnExtraction.Text = "Extraction";
             this.BtnExtraction.UseVisualStyleBackColor = true;

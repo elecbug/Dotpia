@@ -92,5 +92,10 @@ namespace MyDot
                 pclForm.Show();
             }
         }
+
+        private void Main_HelpButtonClicked(object sender, EventArgs e)
+        {
+            new Helper().Show();
+        }
     }
 }

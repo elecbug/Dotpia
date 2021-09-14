@@ -38,6 +38,7 @@ namespace MyDot
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.OfdOpen = new System.Windows.Forms.OpenFileDialog();
             this.BtnPencil = new System.Windows.Forms.Button();
+            this.BtnHelp = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,12 +128,23 @@ namespace MyDot
             this.BtnPencil.UseVisualStyleBackColor = true;
             this.BtnPencil.Click += new System.EventHandler(this.BtnPencil_Click);
             // 
+            // BtnHelp
+            // 
+            this.BtnHelp.Location = new System.Drawing.Point(12, 12);
+            this.BtnHelp.Name = "BtnHelp";
+            this.BtnHelp.Size = new System.Drawing.Size(44, 43);
+            this.BtnHelp.TabIndex = 6;
+            this.BtnHelp.Text = "?";
+            this.BtnHelp.UseVisualStyleBackColor = true;
+            this.BtnHelp.Click += new System.EventHandler(this.Main_HelpButtonClicked);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(384, 561);
+            this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.BtnPencil);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BtnLoad);
@@ -159,6 +171,7 @@ namespace MyDot
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.OpenFileDialog OfdOpen;
         private System.Windows.Forms.Button BtnPencil;
+        private System.Windows.Forms.Button BtnHelp;
     }
 }
 
