@@ -123,5 +123,10 @@ namespace MyDot
             ((PictureBox)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
             DataSaver.btmRGBA[intWidthCode, intHeightCode] = DataSaver.nowRGBA;
         }
+
+        private void BitMapMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DataSaver.bmmNow = null;
+        }
     }
 }

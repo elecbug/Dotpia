@@ -123,7 +123,7 @@ namespace MyDot
             this.BtnPencil.Name = "BtnPencil";
             this.BtnPencil.Size = new System.Drawing.Size(145, 43);
             this.BtnPencil.TabIndex = 5;
-            this.BtnPencil.Text = "Pencil";
+            this.BtnPencil.Text = "Pencil Case";
             this.BtnPencil.UseVisualStyleBackColor = true;
             this.BtnPencil.Click += new System.EventHandler(this.BtnPencil_Click);
             // 

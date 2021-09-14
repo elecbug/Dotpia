@@ -40,6 +40,8 @@ namespace MyDot
             this.CldColor = new System.Windows.Forms.ColorDialog();
             this.BtnSmart = new System.Windows.Forms.Button();
             this.BtnBorder = new System.Windows.Forms.Button();
+            this.BtnExport = new System.Windows.Forms.Button();
+            this.RtbExport = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,13 +143,34 @@ namespace MyDot
             this.BtnBorder.UseVisualStyleBackColor = true;
             this.BtnBorder.Click += new System.EventHandler(this.BtnBorder_Click);
             // 
+            // BtnExport
+            // 
+            this.BtnExport.Location = new System.Drawing.Point(492, 313);
+            this.BtnExport.Name = "BtnExport";
+            this.BtnExport.Size = new System.Drawing.Size(120, 42);
+            this.BtnExport.TabIndex = 3;
+            this.BtnExport.Text = "Export";
+            this.BtnExport.UseVisualStyleBackColor = true;
+            this.BtnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            // 
+            // RtbExport
+            // 
+            this.RtbExport.Location = new System.Drawing.Point(392, 313);
+            this.RtbExport.Name = "RtbExport";
+            this.RtbExport.Size = new System.Drawing.Size(100, 41);
+            this.RtbExport.TabIndex = 4;
+            this.RtbExport.Text = "";
+            this.RtbExport.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
+            // 
             // Pencil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(627, 412);
+            this.Controls.Add(this.RtbExport);
             this.Controls.Add(this.BtnBorder);
+            this.Controls.Add(this.BtnExport);
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.BtnSmart);
             this.Controls.Add(this.BtnChoice);
@@ -160,7 +183,7 @@ namespace MyDot
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MaximizeBox = false;
             this.Name = "Pencil";
-            this.Text = "Pencil";
+            this.Text = "Pencil Case";
             this.Load += new System.EventHandler(this.Pencil_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).EndInit();
             this.ResumeLayout(false);
@@ -180,5 +203,7 @@ namespace MyDot
         private System.Windows.Forms.ColorDialog CldColor;
         private System.Windows.Forms.Button BtnSmart;
         private System.Windows.Forms.Button BtnBorder;
+        private System.Windows.Forms.Button BtnExport;
+        private System.Windows.Forms.RichTextBox RtbExport;
     }
 }

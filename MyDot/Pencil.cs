@@ -46,7 +46,7 @@ namespace MyDot
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (SfdSave.ShowDialog()==DialogResult.OK)
+            if (SfdSave.ShowDialog() == DialogResult.OK)
             {
                 BitSave(SfdSave.FileName.ToString());
             }
@@ -88,6 +88,43 @@ namespace MyDot
         private void BtnBorder_Click(object sender, EventArgs e)
         {
             DataSaver.bmmNow.PbxBorder();
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int intExport = int.Parse(RtbExport.Text);
+                if (SfdSave.ShowDialog() == DialogResult.OK)
+                {
+                    string strPath = SfdSave.FileName.ToString();
+                    Bitmap bitmap = new Bitmap(DataSaver.intWidth * intExport, DataSaver.intHeigth * intExport);
+                    for (int x = 0; x < bitmap.Width; x += intExport)
+                    {
+                        for (int y = 0; y < bitmap.Height; y += intExport)
+                        {
+                            for (int xx = 0; xx < intExport; xx++)
+                            {
+                                for (int yy = 0; yy < intExport; yy++)
+                                {
+                                    Color color = DataSaver.btmRGBA[x / intExport, y / intExport].ColorReturn();
+                                    bitmap.SetPixel(x + xx, y + yy, color);
+                                }
+                            }
+                        }
+                    }
+                    if (File.Exists(strPath))
+                    {
+                        File.Delete(strPath);
+                    }
+                    bitmap.Save(strPath);
+                    bitmap.Dispose();
+                }
+            }
+            catch
+            {
+
+            }
         }
     }
 }
