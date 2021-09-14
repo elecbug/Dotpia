@@ -40,10 +40,7 @@ namespace MyDot
             this.MaximizeBox = false;
             this.Name = "BitMapMain";
             this.Text = "My Dot";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BitMapMain_FormClosed);
             this.Load += new System.EventHandler(this.BitMapMain_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BitMapMain_MouseDown);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BitMapMain_MouseUp);
             this.ResumeLayout(false);
 
         }

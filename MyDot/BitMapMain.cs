@@ -88,11 +88,22 @@ namespace MyDot
                         Text = "",
                     };
                     PbxButtons[x, y].Click += new EventHandler(BtnClick);
-                    PbxButtons[x, y].MouseDown += new MouseEventHandler(BitMapMain_MouseDown);
                     PbxButtons[x, y].MouseEnter += new EventHandler(MouseInside);
-                    PbxButtons[x, y].MouseUp += new MouseEventHandler(BitMapMain_MouseUp);
+                    PbxButtons[x, y].DoubleClick += new EventHandler(MouseDClick);
                     this.Controls.Add(PbxButtons[x, y]);
                 }
+            }
+        }
+
+        private void MouseDClick(object sender, EventArgs e)
+        {
+            if (!bolMouseDown)
+            {
+                bolMouseDown = true;
+            }
+            else
+            {
+                bolMouseDown = false;
             }
         }
 
@@ -100,7 +111,7 @@ namespace MyDot
         {
             if (bolMouseDown)
             {
-                BtnClick(sender,e);
+                BtnClick(sender, e);
             }
         }
 
@@ -111,21 +122,6 @@ namespace MyDot
             int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
             ((PictureBox)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
             DataSaver.btmRGBA[intWidthCode, intHeightCode] = DataSaver.nowRGBA;
-        }
-
-        private void BitMapMain_MouseDown(object sender, MouseEventArgs e)
-        {
-            bolMouseDown = true;
-        }
-
-        private void BitMapMain_MouseUp(object sender, MouseEventArgs e)
-        {
-            bolMouseDown = false;
-        }
-
-        private void BitMapMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            DataSaver.bmmNow = null;
         }
     }
 }
