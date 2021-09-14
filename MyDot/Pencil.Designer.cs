@@ -42,6 +42,10 @@ namespace MyDot
             this.BtnBorder = new System.Windows.Forms.Button();
             this.BtnExport = new System.Windows.Forms.Button();
             this.RtbExport = new System.Windows.Forms.RichTextBox();
+            this.BtnCombine = new System.Windows.Forms.Button();
+            this.RtbCWidth = new System.Windows.Forms.RichTextBox();
+            this.RtbCHeight = new System.Windows.Forms.RichTextBox();
+            this.OfdOpen = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,13 +166,48 @@ namespace MyDot
             this.RtbExport.Text = "";
             this.RtbExport.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
             // 
+            // BtnCombine
+            // 
+            this.BtnCombine.Location = new System.Drawing.Point(12, 60);
+            this.BtnCombine.Name = "BtnCombine";
+            this.BtnCombine.Size = new System.Drawing.Size(120, 42);
+            this.BtnCombine.TabIndex = 3;
+            this.BtnCombine.Text = "Combine";
+            this.BtnCombine.UseVisualStyleBackColor = true;
+            this.BtnCombine.Click += new System.EventHandler(this.BtnCombine_Click);
+            // 
+            // RtbCWidth
+            // 
+            this.RtbCWidth.Location = new System.Drawing.Point(138, 61);
+            this.RtbCWidth.Name = "RtbCWidth";
+            this.RtbCWidth.Size = new System.Drawing.Size(39, 41);
+            this.RtbCWidth.TabIndex = 4;
+            this.RtbCWidth.Text = "";
+            this.RtbCWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
+            // 
+            // RtbCHeight
+            // 
+            this.RtbCHeight.Location = new System.Drawing.Point(183, 60);
+            this.RtbCHeight.Name = "RtbCHeight";
+            this.RtbCHeight.Size = new System.Drawing.Size(39, 41);
+            this.RtbCHeight.TabIndex = 4;
+            this.RtbCHeight.Text = "";
+            this.RtbCHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
+            // 
+            // OfdOpen
+            // 
+            this.OfdOpen.Filter = "|*.png";
+            // 
             // Pencil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(627, 412);
+            this.Controls.Add(this.RtbCHeight);
+            this.Controls.Add(this.RtbCWidth);
             this.Controls.Add(this.RtbExport);
+            this.Controls.Add(this.BtnCombine);
             this.Controls.Add(this.BtnBorder);
             this.Controls.Add(this.BtnExport);
             this.Controls.Add(this.BtnSave);
@@ -205,5 +244,9 @@ namespace MyDot
         private System.Windows.Forms.Button BtnBorder;
         private System.Windows.Forms.Button BtnExport;
         private System.Windows.Forms.RichTextBox RtbExport;
+        private System.Windows.Forms.Button BtnCombine;
+        private System.Windows.Forms.RichTextBox RtbCWidth;
+        private System.Windows.Forms.RichTextBox RtbCHeight;
+        private System.Windows.Forms.OpenFileDialog OfdOpen;
     }
 }

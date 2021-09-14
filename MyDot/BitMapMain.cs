@@ -72,9 +72,10 @@ namespace MyDot
 
         private void ButtonMake(int intWidth, int intHeight)
         {
-            PbxButtons = new PictureBox[intHeight, intWidth];
+            PbxButtons = new PictureBox[intWidth, intHeight];
             int intControlWidth = 800 / PbxButtons.GetLength(0);
             int intControlHeight = 800 / PbxButtons.GetLength(1);
+            int intSize = Math.Min(intControlWidth, intControlHeight);
             for (int y = 0; y < PbxButtons.GetLength(1); y++)
             {
                 for (int x = 0; x < PbxButtons.GetLength(0); x++)
@@ -82,9 +83,9 @@ namespace MyDot
                     PbxButtons[x, y] = new PictureBox
                     {
                         Name = $"Pbx{x.ToString("D5")}{y.ToString("D5")}",
-                        Size = new Size(intControlWidth, intControlHeight),
+                        Size = new Size(intSize, intSize),
                         Parent = this,
-                        Location = new Point(x * intControlWidth, y * intControlHeight),
+                        Location = new Point(x * intSize, y * intSize),
                         Text = "",
                     };
                     PbxButtons[x, y].Click += new EventHandler(BtnClick);

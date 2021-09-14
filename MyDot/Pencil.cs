@@ -126,5 +126,46 @@ namespace MyDot
 
             }
         }
+
+        private void BtnCombine_Click(object sender, EventArgs e)
+        {
+            bool bolBitSaveCheak = false;
+            Bitmap[,] bitmaps = new Bitmap[int.Parse(RtbCWidth.Text), int.Parse(RtbCHeight.Text)];
+            Bitmap btmBitSave = new Bitmap(1, 1);
+            string strPath = "";
+            for (int y = 0; y < int.Parse(RtbCHeight.Text); y++)
+            {
+                for (int x = 0; x < int.Parse(RtbCWidth.Text); x++)
+                {
+                    OfdOpen.FileName = $"File {x + 1}, {y + 1}";
+                    if (OfdOpen.ShowDialog() == DialogResult.OK)
+                    {
+                        bitmaps[x, y] = new Bitmap(OfdOpen.FileName.ToString());
+                        if (!bolBitSaveCheak)
+                        {
+                            btmBitSave = new Bitmap(int.Parse(RtbCWidth.Text) * bitmaps[x, y].Width, int.Parse(RtbCHeight.Text) * bitmaps[x, y].Height);
+                            bolBitSaveCheak = true;
+                        }
+                    }
+                    for (int xx = 0; xx < bitmaps[x, y].Width; xx++)
+                    {
+                        for (int yy = 0; yy < bitmaps[x, y].Height; yy++)
+                        {
+                            btmBitSave.SetPixel(x * bitmaps[x, y].Width + xx, y * bitmaps[x, y].Height + yy, (bitmaps[x, y]).GetPixel(xx, yy));
+                        }
+                    }
+                }
+            }
+            if (SfdSave.ShowDialog() == DialogResult.OK)
+            {
+                strPath = SfdSave.FileName.ToString();
+            }
+            if (File.Exists(strPath))
+            {
+                File.Delete(strPath);
+            }
+            btmBitSave.Save(strPath);
+            btmBitSave.Dispose();
+        }
     }
 }
