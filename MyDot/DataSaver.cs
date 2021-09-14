@@ -14,6 +14,9 @@ namespace MyDot
         public static RGBA nowRGBA = new RGBA();
         public static RGBA[,] btmRGBA;
         public static BitMapMain bmmNow = null;
+        public static Pencil pclNow = null;
+        public static RGBA clickRGBA = new RGBA();
+        public static bool bolExtractionMod;
     }
 
     public class RGBA

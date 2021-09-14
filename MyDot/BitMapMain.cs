@@ -118,11 +118,24 @@ namespace MyDot
 
         private void BtnClick(object sender, EventArgs e)
         {
-            string strName = ((PictureBox)sender).Name;
-            int intWidthCode = int.Parse($"{strName[3]}{strName[4]}{strName[5]}{strName[6]}{strName[7]}");
-            int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
-            ((PictureBox)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
-            DataSaver.btmRGBA[intWidthCode, intHeightCode] = DataSaver.nowRGBA;
+            if (DataSaver.bolExtractionMod)
+            {
+                DataSaver.bolExtractionMod = false;
+                DataSaver.nowRGBA = new RGBA(((PictureBox)sender).BackColor);
+                DataSaver.pclNow.PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
+                DataSaver.pclNow.RtbR.Text = DataSaver.nowRGBA.R.ToString();
+                DataSaver.pclNow.RtbG.Text = DataSaver.nowRGBA.G.ToString(); 
+                DataSaver.pclNow.RtbB.Text = DataSaver.nowRGBA.B.ToString();
+                DataSaver.pclNow.RtbA.Text = DataSaver.nowRGBA.A.ToString();
+            }
+            else
+            {
+                string strName = ((PictureBox)sender).Name;
+                int intWidthCode = int.Parse($"{strName[3]}{strName[4]}{strName[5]}{strName[6]}{strName[7]}");
+                int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
+                ((PictureBox)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
+                DataSaver.btmRGBA[intWidthCode, intHeightCode] = DataSaver.nowRGBA;
+            }
         }
 
         private void BitMapMain_FormClosed(object sender, FormClosedEventArgs e)

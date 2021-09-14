@@ -20,7 +20,7 @@ namespace MyDot
 
         private void Pencil_Load(object sender, EventArgs e)
         {
-
+            DataSaver.pclNow = this;
         }
 
         private void RtbKeyPress(object sender, KeyPressEventArgs e)
@@ -35,7 +35,7 @@ namespace MyDot
         {
             try
             {
-                DataSaver.nowRGBA = new RGBA(int.Parse(PbxR.Text), int.Parse(PbxG.Text), int.Parse(PbxB.Text), int.Parse(PbxA.Text));
+                DataSaver.nowRGBA = new RGBA(int.Parse(RtbR.Text), int.Parse(RtbG.Text), int.Parse(RtbB.Text), int.Parse(RtbA.Text));
                 PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
             }
             catch
@@ -78,10 +78,10 @@ namespace MyDot
             {
                 DataSaver.nowRGBA = new RGBA(CldColor.Color);
                 PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
-                PbxR.Text = DataSaver.nowRGBA.R.ToString();
-                PbxG.Text = DataSaver.nowRGBA.G.ToString();
-                PbxB.Text = DataSaver.nowRGBA.B.ToString();
-                PbxA.Text = DataSaver.nowRGBA.A.ToString();
+                RtbR.Text = DataSaver.nowRGBA.R.ToString();
+                RtbG.Text = DataSaver.nowRGBA.G.ToString();
+                RtbB.Text = DataSaver.nowRGBA.B.ToString();
+                RtbA.Text = DataSaver.nowRGBA.A.ToString();
             }
         }
 
@@ -166,6 +166,16 @@ namespace MyDot
             }
             btmBitSave.Save(strPath);
             btmBitSave.Dispose();
+        }
+
+        private void BtnExtraction_Click(object sender, EventArgs e)
+        {
+            DataSaver.bolExtractionMod = true;
+        }
+
+        private void Pencil_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DataSaver.pclNow = null;
         }
     }
 }
