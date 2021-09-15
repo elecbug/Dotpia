@@ -17,32 +17,25 @@ namespace MyDot
             InitializeComponent();
         }
 
-        public PictureBox[,] PbxButtons;
+        private Point pntMouse;
+        private Graphics[,] grpBitMap;
+        private Graphics[] grpGrid;
         private bool bolMouseDown;
         private bool bolBorder;
 
         private void BitMapMain_Load(object sender, EventArgs e)
         {
-            ButtonMake(DataSaver.intWidth, DataSaver.intHeigth);
+            Timer.Start();
+            grpGrid = new Graphics[DataSaver.intWidth + 1 + DataSaver.intHeight + 1 + 1];
+            ButtonMake(DataSaver.intWidth, DataSaver.intHeight);
             if (DataSaver.btmRGBA == null)
             {
-                DataSaver.btmRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeigth];
+                DataSaver.btmRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight];
                 for (int x = 0; x < DataSaver.intWidth; x++)
                 {
-                    for (int y = 0; y < DataSaver.intHeigth; y++)
+                    for (int y = 0; y < DataSaver.intHeight; y++)
                     {
                         DataSaver.btmRGBA[x, y] = new RGBA();
-                    }
-                }
-            }
-            for (int x = 0; x < DataSaver.intWidth; x++)
-            {
-                for (int y = 0; y < DataSaver.intHeigth; y++)
-                {
-                    if (DataSaver.btmRGBA[x, y].A != 0)
-                    {
-                        PbxButtons[x, y].BackColor = DataSaver.btmRGBA[x, y].ColorReturn();
-                        PbxButtons[x, y].Image = null;
                     }
                 }
             }
@@ -52,53 +45,56 @@ namespace MyDot
         {
             if (!bolBorder)
             {
-                for (int y = 0; y < PbxButtons.GetLength(1); y++)
+                Pen pen = new Pen(Color.Green, 5);
+                for (int i = 0, j = 0; i < grpGrid.Length; i++)
                 {
-                    for (int x = 0; x < PbxButtons.GetLength(0); x++)
+                    grpGrid[i] = Pnl.CreateGraphics();
+                    if (i <= DataSaver.intHeight + 1)
                     {
-                        PbxButtons[x, y].BorderStyle = BorderStyle.FixedSingle;
+                        grpGrid[i].DrawLine(pen, new Point(0, i * DataSaver.intSize), new Point(DataSaver.intSize * grpBitMap.GetLength(1), i * DataSaver.intSize));
+                    }
+                    else
+                    {
+                        grpGrid[i].DrawLine(pen, new Point(j * DataSaver.intSize, 0), new Point(j * DataSaver.intSize, DataSaver.intSize * grpBitMap.GetLength(0)));
+                        j++;
                     }
                 }
                 bolBorder = true;
             }
             else
             {
-                for (int y = 0; y < PbxButtons.GetLength(1); y++)
+                for (int i = 0; i < grpGrid.Length; i++)
                 {
-                    for (int x = 0; x < PbxButtons.GetLength(0); x++)
-                    {
-                        PbxButtons[x, y].BorderStyle = BorderStyle.None;
-                    }
+                    grpGrid[i].Clear(Pnl.BackColor);
                 }
                 bolBorder = false;
+                for (int y = 0; y < grpBitMap.GetLength(1); y++)
+                {
+                    for (int x = 0; x < grpBitMap.GetLength(0); x++)
+                    {
+                        Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
+                        Brush pen = new SolidBrush(DataSaver.btmRGBA[x, y].ColorReturn());
+                        grpBitMap[x, y].FillRectangle(pen, rect);
+                    }
+                }
             }
         }
 
         private void ButtonMake(int intWidth, int intHeight)
         {
-            PbxButtons = new PictureBox[intWidth, intHeight];
-            int intControlWidth = Pnl.Width / PbxButtons.GetLength(0);
-            int intControlHeight = Pnl.Height / PbxButtons.GetLength(1);
+            grpBitMap = new Graphics[intWidth, intHeight];
+            int intControlWidth = Pnl.Width / grpBitMap.GetLength(0);
+            int intControlHeight = Pnl.Height / grpBitMap.GetLength(1);
             int intSize = Math.Min(intControlWidth, intControlHeight);
             DataSaver.intSize = intSize;
-            for (int y = 0; y < PbxButtons.GetLength(1); y++)
+            for (int y = 0; y < grpBitMap.GetLength(1); y++)
             {
-                for (int x = 0; x < PbxButtons.GetLength(0); x++)
+                for (int x = 0; x < grpBitMap.GetLength(0); x++)
                 {
-                    PbxButtons[x, y] = new PictureBox
-                    {
-                        Name = $"Pbx{x.ToString("D5")}{y.ToString("D5")}",
-                        Size = new Size(intSize, intSize),
-                        Parent = Pnl,
-                        Location = new Point(x * intSize, y * intSize),
-                        Text = "",
-                        BackColor = new RGBA(0, 0, 0, 0).ColorReturn(),
-                        Image = Properties.Resources.Empty
-                    };
-                    PbxButtons[x, y].Click += new EventHandler(BtnClick);
-                    PbxButtons[x, y].MouseEnter += new EventHandler(MouseInside);
-                    PbxButtons[x, y].DoubleClick += new EventHandler(MouseDClick);
-                    Pnl.Controls.Add(PbxButtons[x, y]);
+                    grpBitMap[x, y] = Pnl.CreateGraphics();
+                    Rectangle rect = new Rectangle(x * intSize, y * intSize, intSize, intSize);
+                    Brush pen = new SolidBrush(Color.White);
+                    grpBitMap[x, y].FillRectangle(pen, rect);
                 }
             }
         }
@@ -115,51 +111,41 @@ namespace MyDot
             }
         }
 
-        private void MouseInside(object sender, EventArgs e)
+        private void PaintTool(int x, int y, RGBA nowRGBA)
         {
-            if (bolMouseDown)
-            {
-                BtnClick(sender, e);
-            }
-        }
-
-        private void PbxSave(ref PictureBox[] buttons,ref int i,int x, int y, RGBA nowRGBA)
-        {
-            DataSaver.btmRGBA[x, y] = DataSaver.nowRGBA;
-            PbxButtons[x, y].BackColor = DataSaver.nowRGBA.ColorReturn();
-            Emptyer(PbxButtons[x, y]);
+            DataSaver.btmRGBA[x, y] = new RGBA(DataSaver.nowRGBA);
+            DataSaver.btmRGBA[x, y] = new RGBA(DataSaver.nowRGBA);
+            Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
+            Brush pen = new SolidBrush(DataSaver.btmRGBA[x, y].ColorReturn());
+            grpBitMap[x, y].FillRectangle(pen, rect);
             for (int j = 0; j < 4; j++)
             {
                 if (y < DataSaver.btmRGBA.GetLength(1) - 1)
                 {
-                    if (DataSaver.btmRGBA[x, y + 1] == nowRGBA)
+                    if (DataSaver.btmRGBA[x, y + 1] == nowRGBA || (DataSaver.btmRGBA[x, y + 1].A == 0 && nowRGBA.A == 0))
                     {
-                        buttons[i++] = PbxButtons[x, y + 1];
-                        PbxSave(ref buttons, ref i, x, y + 1, nowRGBA);
+                        PaintTool(x, y + 1, nowRGBA);
                     }
                 }
                 if (y >= 1)
                 {
-                    if (DataSaver.btmRGBA[x, y - 1] == nowRGBA)
+                    if (DataSaver.btmRGBA[x, y - 1] == nowRGBA || (DataSaver.btmRGBA[x, y - 1].A == 0 && nowRGBA.A == 0))
                     {
-                        buttons[i++] = PbxButtons[x, y - 1];
-                        PbxSave(ref buttons, ref i, x, y - 1, nowRGBA);
+                        PaintTool(x, y - 1, nowRGBA);
                     }
                 }
                 if (x < DataSaver.btmRGBA.GetLength(0) - 1)
                 {
-                    if (DataSaver.btmRGBA[x + 1, y] == nowRGBA)
+                    if (DataSaver.btmRGBA[x + 1, y] == nowRGBA || (DataSaver.btmRGBA[x + 1, y].A == 0 && nowRGBA.A == 0))
                     {
-                        buttons[i++] = PbxButtons[x + 1, y];
-                        PbxSave(ref buttons, ref i, x + 1, y, nowRGBA);
+                        PaintTool(x + 1, y, nowRGBA);
                     }
                 }
                 if (x >= 1)
                 {
-                    if (DataSaver.btmRGBA[x - 1, y] == nowRGBA)
+                    if (DataSaver.btmRGBA[x - 1, y] == nowRGBA || (DataSaver.btmRGBA[x - 1, y].A == 0 && nowRGBA.A == 0))
                     {
-                        buttons[i++] = PbxButtons[x - 1, y];
-                        PbxSave(ref buttons, ref i, x - 1, y, nowRGBA);
+                        PaintTool(x - 1, y, nowRGBA);
                     }
                 }
             }
@@ -167,81 +153,86 @@ namespace MyDot
 
         private void BtnClick(object sender, EventArgs e)
         {
-            if (DataSaver.bolExtraction)
+            try
             {
-                DataSaver.nowRGBA = new RGBA(((PictureBox)sender).BackColor);
-                DataSaver.pclNow.PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
-                DataSaver.pclNow.RtbR.Text = DataSaver.nowRGBA.R.ToString();
-                DataSaver.pclNow.RtbG.Text = DataSaver.nowRGBA.G.ToString();
-                DataSaver.pclNow.RtbB.Text = DataSaver.nowRGBA.B.ToString();
-                DataSaver.pclNow.RtbA.Text = DataSaver.nowRGBA.A.ToString();
-            }
-            else if (DataSaver.bolPaint)
-            {
-                if (((PictureBox)sender).BackColor != DataSaver.nowRGBA.ColorReturn())
+                int intPointX = pntMouse.X / DataSaver.intSize, intPointY = pntMouse.Y / DataSaver.intSize;
+                if (DataSaver.bolExtraction)
                 {
-                    string strName = ((PictureBox)sender).Name;
-                    int intWidthCode = int.Parse($"{strName[3]}{strName[4]}{strName[5]}{strName[6]}{strName[7]}");
-                    int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
-                    PictureBox[] buttons = new PictureBox[DataSaver.intWidth * DataSaver.intHeigth];
-                    RGBA nowRGBA = new RGBA(((PictureBox)sender).BackColor);
-                    int i = 0;
-                    PbxSave(ref buttons, ref i, intWidthCode, intHeightCode, nowRGBA);
+                    DataSaver.nowRGBA = new RGBA(DataSaver.btmRGBA[intPointX, intPointY]);
+                    DataSaver.pclNow.PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
+                    DataSaver.pclNow.RtbR.Text = DataSaver.nowRGBA.R.ToString();
+                    DataSaver.pclNow.RtbG.Text = DataSaver.nowRGBA.G.ToString();
+                    DataSaver.pclNow.RtbB.Text = DataSaver.nowRGBA.B.ToString();
+                    DataSaver.pclNow.RtbA.Text = DataSaver.nowRGBA.A.ToString();
                 }
-            }
-            else if (DataSaver.intMirror == 1)
-            {
-                string strName = ((PictureBox)sender).Name;
-                int intWidthCode = int.Parse($"{strName[3]}{strName[4]}{strName[5]}{strName[6]}{strName[7]}");
-                int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
-                ((PictureBox)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
-                DataSaver.btmRGBA[intWidthCode, intHeightCode] = DataSaver.nowRGBA;
-                Emptyer(sender);
-                int intNewY = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intHeightCode;
-                if (intNewY >= 0 && intNewY < DataSaver.intHeigth)
+                else if (DataSaver.bolPaint)
                 {
-                    PbxButtons[intWidthCode, intNewY].BackColor = DataSaver.nowRGBA.ColorReturn();
-                    DataSaver.btmRGBA[intWidthCode, intNewY] = DataSaver.nowRGBA;
-                    Emptyer(PbxButtons[intWidthCode, intNewY]);
+                    if (DataSaver.btmRGBA[intPointX, intPointY] != DataSaver.nowRGBA)
+                    {
+                        RGBA nowRGBA = DataSaver.btmRGBA[intPointX, intPointY];
+                        PaintTool(intPointX, intPointY, nowRGBA);
+                    }
                 }
-                
-            }
-            else if (DataSaver.intMirror == 2)
-            {
-                string strName = ((PictureBox)sender).Name;
-                int intWidthCode = int.Parse($"{strName[3]}{strName[4]}{strName[5]}{strName[6]}{strName[7]}");
-                int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
-                ((PictureBox)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
-                DataSaver.btmRGBA[intWidthCode, intHeightCode] = DataSaver.nowRGBA;
-                Emptyer(sender);
-                int intNewX = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intWidthCode;
-                if (intNewX >= 0 && intNewX < DataSaver.intWidth)
+                else if (DataSaver.intMirror == 1)
                 {
-                    PbxButtons[intNewX, intHeightCode].BackColor = DataSaver.nowRGBA.ColorReturn();
-                    DataSaver.btmRGBA[intNewX, intHeightCode] = DataSaver.nowRGBA;
-                    Emptyer(PbxButtons[intNewX, intHeightCode]);
-                }
-            }
-            else
-            {
-                string strName = ((PictureBox)sender).Name;
-                int intWidthCode = int.Parse($"{strName[3]}{strName[4]}{strName[5]}{strName[6]}{strName[7]}");
-                int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
-                ((PictureBox)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
-                DataSaver.btmRGBA[intWidthCode, intHeightCode] = DataSaver.nowRGBA;
-                Emptyer(sender);
-            }
-        }
+                    DataSaver.btmRGBA[intPointX, intPointY] = new RGBA(DataSaver.nowRGBA);
+                    Rectangle rect = new Rectangle(intPointX * DataSaver.intSize, intPointY * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
+                    Brush pen = new SolidBrush(DataSaver.btmRGBA[intPointX, intPointY].ColorReturn());
+                    grpBitMap[intPointX, intPointY].FillRectangle(pen, rect);
+                    int intNewY = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intPointY;
+                    if (intNewY >= 0 && intNewY < DataSaver.intHeight)
+                    {
+                        DataSaver.btmRGBA[intPointX, intNewY] = new RGBA(DataSaver.nowRGBA);
+                        Rectangle rectM = new Rectangle(intPointX * DataSaver.intSize, intNewY * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
+                        Brush penM = new SolidBrush(DataSaver.btmRGBA[intPointX, intNewY].ColorReturn());
+                        grpBitMap[intPointX, intNewY].FillRectangle(penM, rectM);
+                    }
 
-        private void Emptyer(object sender)
-        {
-            if (((PictureBox)sender).BackColor.A == new RGBA(0, 0, 0, 0).ColorReturn().A)
-            {
-                ((PictureBox)sender).Image = Properties.Resources.Empty;
+                }
+                else if (DataSaver.intMirror == 2)
+                {
+                    DataSaver.btmRGBA[intPointX, intPointY] = new RGBA(DataSaver.nowRGBA);
+                    Rectangle rect = new Rectangle(intPointX * DataSaver.intSize, intPointY * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
+                    Brush pen = new SolidBrush(DataSaver.btmRGBA[intPointX, intPointY].ColorReturn());
+                    grpBitMap[intPointX, intPointY].FillRectangle(pen, rect);
+                    int intNewX = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intPointX;
+                    if (intNewX >= 0 && intNewX < DataSaver.intWidth)
+                    {
+                        DataSaver.btmRGBA[intNewX, intPointY] = new RGBA(DataSaver.nowRGBA);
+                        Rectangle rectM = new Rectangle(intNewX * DataSaver.intSize, intPointY * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
+                        Brush penM = new SolidBrush(DataSaver.btmRGBA[intNewX, intPointY].ColorReturn());
+                        grpBitMap[intNewX, intPointY].FillRectangle(penM, rectM);
+                    }
+                }
+                else
+                {
+                    DataSaver.btmRGBA[intPointX, intPointY] = new RGBA(DataSaver.nowRGBA);
+                    Rectangle rect = new Rectangle(intPointX * DataSaver.intSize, intPointY * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
+                    Brush pen = new SolidBrush(DataSaver.btmRGBA[intPointX, intPointY].ColorReturn());
+                    grpBitMap[intPointX, intPointY].FillRectangle(pen, rect);
+                }
+                if (bolBorder)
+                {
+                    Pen pen = new Pen(Color.Green, 5);
+                    for (int i = 0, j = 0; i < grpGrid.Length; i++)
+                    {
+                        grpGrid[i] = Pnl.CreateGraphics();
+                        if (i <= DataSaver.intHeight + 1)
+                        {
+                            grpGrid[i].DrawLine(pen, new Point(0, i * DataSaver.intSize), new Point(DataSaver.intSize * grpBitMap.GetLength(1), i * DataSaver.intSize));
+                        }
+                        else
+                        {
+                            grpGrid[i].DrawLine(pen, new Point(j * DataSaver.intSize, 0), new Point(j * DataSaver.intSize, DataSaver.intSize * grpBitMap.GetLength(0)));
+                            j++;
+                        }
+                    }
+                    bolBorder = true;
+                }
             }
-            else
+            catch
             {
-                ((PictureBox)sender).Image = null;
+
             }
         }
 
@@ -259,6 +250,19 @@ namespace MyDot
             else
             {
                 e.Cancel = true;
+            }
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            pntMouse = Pnl.PointToClient(new Point(MousePosition.X, MousePosition.Y));
+        }
+
+        private void Pnl_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (bolMouseDown)
+            {
+                BtnClick(sender, e);
             }
         }
     }

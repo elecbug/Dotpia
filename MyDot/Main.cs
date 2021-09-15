@@ -22,7 +22,7 @@ namespace MyDot
             try
             {
                 DataSaver.intWidth = int.Parse(RtbWidth.Text);
-                DataSaver.intHeigth = int.Parse(RtbHeight.Text);
+                DataSaver.intHeight = int.Parse(RtbHeight.Text);
                 if (DataSaver.bmmNow == null)
                 {
                     BitMapMain BmmForm = new BitMapMain();
@@ -50,7 +50,7 @@ namespace MyDot
                 string strPath = OfdOpen.FileName.ToString();
                 Bitmap btmDrag = new Bitmap(strPath);
                 DataSaver.intWidth = btmDrag.Width;
-                DataSaver.intHeigth = btmDrag.Height;
+                DataSaver.intHeight = btmDrag.Height;
                 DataSaver.btmRGBA = new RGBA[btmDrag.Width, btmDrag.Height];
                 for (int x = 0; x < DataSaver.btmRGBA.GetLength(0); x++)
                 {

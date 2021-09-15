@@ -10,7 +10,7 @@ namespace MyDot
     public static class DataSaver
     {
         public static int intWidth = 0;
-        public static int intHeigth = 0;
+        public static int intHeight = 0;
         public static RGBA nowRGBA = new RGBA();
         public static RGBA[,] btmRGBA;
         public static BitMapMain bmmNow = null;
@@ -67,6 +67,14 @@ namespace MyDot
         {
             Color color = Color.FromArgb(A, R, G, B);
             return color;
+        }
+
+        public RGBA(RGBA color)
+        {
+            R = color.R;
+            G = color.G;
+            B = color.B;
+            A = color.A;
         }
 
         public static bool operator ==(RGBA a, RGBA b)

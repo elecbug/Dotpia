@@ -29,7 +29,9 @@ namespace MyDot
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Pnl = new System.Windows.Forms.Panel();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // Pnl
@@ -39,6 +41,14 @@ namespace MyDot
             this.Pnl.Name = "Pnl";
             this.Pnl.Size = new System.Drawing.Size(800, 600);
             this.Pnl.TabIndex = 0;
+            this.Pnl.Click += new System.EventHandler(this.BtnClick);
+            this.Pnl.DoubleClick += new System.EventHandler(this.MouseDClick);
+            this.Pnl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Pnl_MouseMove);
+            // 
+            // Timer
+            // 
+            this.Timer.Interval = 10;
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // BitMapMain
             // 
@@ -61,5 +71,6 @@ namespace MyDot
         #endregion
 
         public System.Windows.Forms.Panel Pnl;
+        private System.Windows.Forms.Timer Timer;
     }
 }

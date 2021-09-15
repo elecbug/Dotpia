@@ -56,10 +56,10 @@ namespace MyDot
 
         private void BitSave(string strPath)
         {
-            Bitmap bitmap = new Bitmap(DataSaver.intWidth, DataSaver.intHeigth);
+            Bitmap bitmap = new Bitmap(DataSaver.intWidth, DataSaver.intHeight);
             for (int x = 0; x < DataSaver.intWidth; x++)
             {
-                for (int y = 0; y < DataSaver.intHeigth; y++)
+                for (int y = 0; y < DataSaver.intHeight; y++)
                 {
                     Color color = DataSaver.btmRGBA[x, y].ColorReturn();
                     bitmap.SetPixel(x, y, color);
@@ -101,7 +101,7 @@ namespace MyDot
                 if (SfdSave.ShowDialog() == DialogResult.OK)
                 {
                     string strPath = SfdSave.FileName.ToString();
-                    Bitmap bitmap = new Bitmap(DataSaver.intWidth * intExport, DataSaver.intHeigth * intExport);
+                    Bitmap bitmap = new Bitmap(DataSaver.intWidth * intExport, DataSaver.intHeight * intExport);
                     for (int x = 0; x < bitmap.Width; x += intExport)
                     {
                         for (int y = 0; y < bitmap.Height; y += intExport)
@@ -266,7 +266,7 @@ namespace MyDot
 
         private void RtbColor_TextChanged(object sender, EventArgs e)
         {
-            if (!bolColorDialog)
+            if (!bolColorDialog && !DataSaver.bolExtraction)
             {
                 BtnChoice_Click(sender, e);
             }
