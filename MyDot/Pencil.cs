@@ -259,8 +259,8 @@ namespace MyDot
                 else if (DataSaver.intMirror == 2)
                 {
                     DataSaver.g.DrawLine(new Pen(Color.White),
-                                          new Point(DataSaver.intSize * int.Parse(RtbMirror.Text) + 12, 0),
-                                          new Point(DataSaver.intSize * int.Parse(RtbMirror.Text) + 12, DataSaver.bmmNow.Height));
+                                         new Point(DataSaver.intSize * int.Parse(RtbMirror.Text) + 12, 0),
+                                         new Point(DataSaver.intSize * int.Parse(RtbMirror.Text) + 12, DataSaver.bmmNow.Height));
                 }
             }
             catch
