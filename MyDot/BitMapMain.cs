@@ -88,6 +88,8 @@ namespace MyDot
             int intControlWidth = Pnl.Width / grpBitMap.GetLength(0);
             int intControlHeight = Pnl.Height / grpBitMap.GetLength(1);
             int intSize = Math.Min(intControlWidth, intControlHeight);
+            Pnl.Width = intSize * intWidth;
+            Pnl.Height = intSize * intHeight;
             DataSaver.intSize = intSize;
             for (int y = 0; y < grpBitMap.GetLength(1); y++)
             {
