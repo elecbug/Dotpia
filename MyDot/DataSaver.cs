@@ -22,6 +22,7 @@ namespace MyDot
         public static int intStrMirror;
         public static Graphics g;
         public static int intSize;
+        public static RGBA[] saveRGBA = new RGBA[7]; 
     }
 
     public class RGBA

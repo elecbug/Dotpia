@@ -19,10 +19,15 @@ namespace MyDot
         }
 
         private bool bolColorDialog = false;
+        private bool bolSaveColorClick = false;
 
         private void Pencil_Load(object sender, EventArgs e)
         {
             DataSaver.pclNow = this;
+            for (int i = 0; i < 7; i++)
+            {
+                DataSaver.saveRGBA[i] = new RGBA();
+            }
         }
 
         private void RtbKeyPress(object sender, KeyPressEventArgs e)
@@ -266,9 +271,36 @@ namespace MyDot
 
         private void RtbColor_TextChanged(object sender, EventArgs e)
         {
-            if (!bolColorDialog && !DataSaver.bolExtraction)
+            if (!bolColorDialog && !DataSaver.bolExtraction && !bolSaveColorClick)
             {
                 BtnChoice_Click(sender, e);
+            }
+        }
+
+        private void Pbx_Click(object sender, EventArgs e)
+        {
+            bolSaveColorClick = true;
+            DataSaver.nowRGBA = new RGBA(DataSaver.saveRGBA[((PictureBox)sender).Name[3] - 48 - 1]);
+            RtbR.Text = DataSaver.nowRGBA.R.ToString();
+            RtbG.Text = DataSaver.nowRGBA.G.ToString();
+            RtbB.Text = DataSaver.nowRGBA.B.ToString();
+            RtbA.Text = DataSaver.nowRGBA.A.ToString();
+            PbxColor.BackColor = DataSaver.saveRGBA[((PictureBox)sender).Name[3] - 48 - 1].ColorReturn();
+            bolSaveColorClick = false;
+        }
+
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            DataSaver.saveRGBA[((Button)sender).Name[3] - 48 - 1] = new RGBA(DataSaver.nowRGBA);
+            switch(((Button)sender).Name[3] - 48 - 1)
+            {
+                case 0: Pbx1.BackColor = DataSaver.nowRGBA.ColorReturn(); break;
+                case 1: Pbx2.BackColor = DataSaver.nowRGBA.ColorReturn(); break;
+                case 2: Pbx3.BackColor = DataSaver.nowRGBA.ColorReturn(); break;
+                case 3: Pbx4.BackColor = DataSaver.nowRGBA.ColorReturn(); break;
+                case 4: Pbx5.BackColor = DataSaver.nowRGBA.ColorReturn(); break;
+                case 5: Pbx6.BackColor = DataSaver.nowRGBA.ColorReturn(); break;
+                case 6: Pbx7.BackColor = DataSaver.nowRGBA.ColorReturn(); break;
             }
         }
     }

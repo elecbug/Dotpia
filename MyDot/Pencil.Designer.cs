@@ -49,12 +49,33 @@ namespace MyDot
             this.BtnPaint = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Btn7 = new System.Windows.Forms.Button();
+            this.Btn6 = new System.Windows.Forms.Button();
+            this.Btn5 = new System.Windows.Forms.Button();
+            this.Btn4 = new System.Windows.Forms.Button();
+            this.Btn3 = new System.Windows.Forms.Button();
+            this.Btn2 = new System.Windows.Forms.Button();
+            this.Btn1 = new System.Windows.Forms.Button();
+            this.Pbx7 = new System.Windows.Forms.PictureBox();
+            this.Pbx6 = new System.Windows.Forms.PictureBox();
+            this.Pbx5 = new System.Windows.Forms.PictureBox();
+            this.Pbx4 = new System.Windows.Forms.PictureBox();
+            this.Pbx3 = new System.Windows.Forms.PictureBox();
+            this.Pbx2 = new System.Windows.Forms.PictureBox();
+            this.Pbx1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.BtnMIrror = new System.Windows.Forms.Button();
             this.RtbMirror = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,10 +150,10 @@ namespace MyDot
             // BtnSmart
             // 
             this.BtnSmart.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnSmart.Location = new System.Drawing.Point(6, 191);
+            this.BtnSmart.Location = new System.Drawing.Point(6, 249);
             this.BtnSmart.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.BtnSmart.Name = "BtnSmart";
-            this.BtnSmart.Size = new System.Drawing.Size(313, 43);
+            this.BtnSmart.Size = new System.Drawing.Size(314, 43);
             this.BtnSmart.TabIndex = 2;
             this.BtnSmart.Text = "Smart Set";
             this.BtnSmart.UseVisualStyleBackColor = true;
@@ -243,6 +264,20 @@ namespace MyDot
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.Btn7);
+            this.groupBox2.Controls.Add(this.Btn6);
+            this.groupBox2.Controls.Add(this.Btn5);
+            this.groupBox2.Controls.Add(this.Btn4);
+            this.groupBox2.Controls.Add(this.Btn3);
+            this.groupBox2.Controls.Add(this.Btn2);
+            this.groupBox2.Controls.Add(this.Btn1);
+            this.groupBox2.Controls.Add(this.Pbx7);
+            this.groupBox2.Controls.Add(this.Pbx6);
+            this.groupBox2.Controls.Add(this.Pbx5);
+            this.groupBox2.Controls.Add(this.Pbx4);
+            this.groupBox2.Controls.Add(this.Pbx3);
+            this.groupBox2.Controls.Add(this.Pbx2);
+            this.groupBox2.Controls.Add(this.Pbx1);
             this.groupBox2.Controls.Add(this.PbxColor);
             this.groupBox2.Controls.Add(this.RtbR);
             this.groupBox2.Controls.Add(this.RtbG);
@@ -251,10 +286,150 @@ namespace MyDot
             this.groupBox2.Controls.Add(this.BtnSmart);
             this.groupBox2.Location = new System.Drawing.Point(289, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(326, 242);
+            this.groupBox2.Size = new System.Drawing.Size(326, 300);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Color";
+            // 
+            // Btn7
+            // 
+            this.Btn7.Location = new System.Drawing.Point(284, 232);
+            this.Btn7.Name = "Btn7";
+            this.Btn7.Size = new System.Drawing.Size(36, 10);
+            this.Btn7.TabIndex = 4;
+            this.Btn7.UseVisualStyleBackColor = true;
+            this.Btn7.Click += new System.EventHandler(this.Btn_Click);
+            // 
+            // Btn6
+            // 
+            this.Btn6.Location = new System.Drawing.Point(242, 232);
+            this.Btn6.Name = "Btn6";
+            this.Btn6.Size = new System.Drawing.Size(36, 10);
+            this.Btn6.TabIndex = 4;
+            this.Btn6.UseVisualStyleBackColor = true;
+            this.Btn6.Click += new System.EventHandler(this.Btn_Click);
+            // 
+            // Btn5
+            // 
+            this.Btn5.Location = new System.Drawing.Point(188, 232);
+            this.Btn5.Name = "Btn5";
+            this.Btn5.Size = new System.Drawing.Size(36, 10);
+            this.Btn5.TabIndex = 4;
+            this.Btn5.UseVisualStyleBackColor = true;
+            this.Btn5.Click += new System.EventHandler(this.Btn_Click);
+            // 
+            // Btn4
+            // 
+            this.Btn4.Location = new System.Drawing.Point(146, 232);
+            this.Btn4.Name = "Btn4";
+            this.Btn4.Size = new System.Drawing.Size(36, 10);
+            this.Btn4.TabIndex = 4;
+            this.Btn4.UseVisualStyleBackColor = true;
+            this.Btn4.Click += new System.EventHandler(this.Btn_Click);
+            // 
+            // Btn3
+            // 
+            this.Btn3.Location = new System.Drawing.Point(104, 232);
+            this.Btn3.Name = "Btn3";
+            this.Btn3.Size = new System.Drawing.Size(36, 10);
+            this.Btn3.TabIndex = 4;
+            this.Btn3.UseVisualStyleBackColor = true;
+            this.Btn3.Click += new System.EventHandler(this.Btn_Click);
+            // 
+            // Btn2
+            // 
+            this.Btn2.Location = new System.Drawing.Point(48, 232);
+            this.Btn2.Name = "Btn2";
+            this.Btn2.Size = new System.Drawing.Size(36, 10);
+            this.Btn2.TabIndex = 4;
+            this.Btn2.UseVisualStyleBackColor = true;
+            this.Btn2.Click += new System.EventHandler(this.Btn_Click);
+            // 
+            // Btn1
+            // 
+            this.Btn1.Location = new System.Drawing.Point(6, 232);
+            this.Btn1.Name = "Btn1";
+            this.Btn1.Size = new System.Drawing.Size(36, 10);
+            this.Btn1.TabIndex = 4;
+            this.Btn1.UseVisualStyleBackColor = true;
+            this.Btn1.Click += new System.EventHandler(this.Btn_Click);
+            // 
+            // Pbx7
+            // 
+            this.Pbx7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Pbx7.Location = new System.Drawing.Point(284, 191);
+            this.Pbx7.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Pbx7.Name = "Pbx7";
+            this.Pbx7.Size = new System.Drawing.Size(36, 36);
+            this.Pbx7.TabIndex = 3;
+            this.Pbx7.TabStop = false;
+            this.Pbx7.Click += new System.EventHandler(this.Pbx_Click);
+            // 
+            // Pbx6
+            // 
+            this.Pbx6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Pbx6.Location = new System.Drawing.Point(242, 191);
+            this.Pbx6.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Pbx6.Name = "Pbx6";
+            this.Pbx6.Size = new System.Drawing.Size(36, 36);
+            this.Pbx6.TabIndex = 3;
+            this.Pbx6.TabStop = false;
+            this.Pbx6.Click += new System.EventHandler(this.Pbx_Click);
+            // 
+            // Pbx5
+            // 
+            this.Pbx5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Pbx5.Location = new System.Drawing.Point(188, 191);
+            this.Pbx5.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Pbx5.Name = "Pbx5";
+            this.Pbx5.Size = new System.Drawing.Size(36, 36);
+            this.Pbx5.TabIndex = 3;
+            this.Pbx5.TabStop = false;
+            this.Pbx5.Click += new System.EventHandler(this.Pbx_Click);
+            // 
+            // Pbx4
+            // 
+            this.Pbx4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Pbx4.Location = new System.Drawing.Point(146, 191);
+            this.Pbx4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Pbx4.Name = "Pbx4";
+            this.Pbx4.Size = new System.Drawing.Size(36, 36);
+            this.Pbx4.TabIndex = 3;
+            this.Pbx4.TabStop = false;
+            this.Pbx4.Click += new System.EventHandler(this.Pbx_Click);
+            // 
+            // Pbx3
+            // 
+            this.Pbx3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Pbx3.Location = new System.Drawing.Point(104, 191);
+            this.Pbx3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Pbx3.Name = "Pbx3";
+            this.Pbx3.Size = new System.Drawing.Size(36, 36);
+            this.Pbx3.TabIndex = 3;
+            this.Pbx3.TabStop = false;
+            this.Pbx3.Click += new System.EventHandler(this.Pbx_Click);
+            // 
+            // Pbx2
+            // 
+            this.Pbx2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Pbx2.Location = new System.Drawing.Point(48, 191);
+            this.Pbx2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Pbx2.Name = "Pbx2";
+            this.Pbx2.Size = new System.Drawing.Size(36, 36);
+            this.Pbx2.TabIndex = 3;
+            this.Pbx2.TabStop = false;
+            this.Pbx2.Click += new System.EventHandler(this.Pbx_Click);
+            // 
+            // Pbx1
+            // 
+            this.Pbx1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Pbx1.Location = new System.Drawing.Point(6, 191);
+            this.Pbx1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Pbx1.Name = "Pbx1";
+            this.Pbx1.Size = new System.Drawing.Size(36, 36);
+            this.Pbx1.TabIndex = 3;
+            this.Pbx1.TabStop = false;
+            this.Pbx1.Click += new System.EventHandler(this.Pbx_Click);
             // 
             // groupBox3
             // 
@@ -310,6 +485,13 @@ namespace MyDot
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -339,5 +521,19 @@ namespace MyDot
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button BtnMIrror;
         private System.Windows.Forms.RichTextBox RtbMirror;
+        public System.Windows.Forms.PictureBox Pbx7;
+        public System.Windows.Forms.PictureBox Pbx6;
+        public System.Windows.Forms.PictureBox Pbx5;
+        public System.Windows.Forms.PictureBox Pbx4;
+        public System.Windows.Forms.PictureBox Pbx3;
+        public System.Windows.Forms.PictureBox Pbx2;
+        public System.Windows.Forms.PictureBox Pbx1;
+        private System.Windows.Forms.Button Btn7;
+        private System.Windows.Forms.Button Btn6;
+        private System.Windows.Forms.Button Btn5;
+        private System.Windows.Forms.Button Btn4;
+        private System.Windows.Forms.Button Btn3;
+        private System.Windows.Forms.Button Btn2;
+        private System.Windows.Forms.Button Btn1;
     }
 }
