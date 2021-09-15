@@ -20,8 +20,9 @@ namespace MyDot
         private Point pntMouse;
         private Graphics[,] grpBitMap;
         private Graphics[] grpGrid;
-        private bool bolMouseDown;
+        private bool bolMouseDClick;
         private bool bolBorder;
+        private bool bolMouseDown;
 
         private void BitMapMain_Load(object sender, EventArgs e)
         {
@@ -101,13 +102,13 @@ namespace MyDot
 
         private void MouseDClick(object sender, EventArgs e)
         {
-            if (!bolMouseDown)
+            if (!bolMouseDClick)
             {
-                bolMouseDown = true;
+                bolMouseDClick = true;
             }
             else
             {
-                bolMouseDown = false;
+                bolMouseDClick = false;
             }
         }
 
@@ -260,10 +261,20 @@ namespace MyDot
 
         private void Pnl_MouseMove(object sender, MouseEventArgs e)
         {
-            if (bolMouseDown)
+            if (bolMouseDClick || bolMouseDown)
             {
                 BtnClick(sender, e);
             }
+        }
+
+        private void Pnl_MouseDown(object sender, MouseEventArgs e)
+        {
+            bolMouseDown = true;
+        }
+
+        private void Pnl_MouseUp(object sender, MouseEventArgs e)
+        {
+            bolMouseDown = false;
         }
     }
 }

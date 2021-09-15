@@ -43,7 +43,9 @@ namespace MyDot
             this.Pnl.TabIndex = 0;
             this.Pnl.Click += new System.EventHandler(this.BtnClick);
             this.Pnl.DoubleClick += new System.EventHandler(this.MouseDClick);
+            this.Pnl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Pnl_MouseDown);
             this.Pnl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Pnl_MouseMove);
+            this.Pnl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Pnl_MouseUp);
             // 
             // Timer
             // 
