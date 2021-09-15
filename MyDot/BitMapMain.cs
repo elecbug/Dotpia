@@ -249,5 +249,17 @@ namespace MyDot
         {
             DataSaver.bmmNow = null;
         }
+
+        private void BitMapMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Exit Now?", "Wait!", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

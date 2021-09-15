@@ -51,6 +51,7 @@ namespace MyDot
             this.MaximizeBox = false;
             this.Name = "BitMapMain";
             this.Text = "My Dot";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BitMapMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BitMapMain_FormClosed);
             this.Load += new System.EventHandler(this.BitMapMain_Load);
             this.ResumeLayout(false);
