@@ -66,6 +66,7 @@ namespace MyDot
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BitMapMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BitMapMain_FormClosed);
             this.Load += new System.EventHandler(this.BitMapMain_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BitMapMain_MouseMove);
             this.ResumeLayout(false);
 
         }

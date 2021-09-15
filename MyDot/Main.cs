@@ -48,15 +48,15 @@ namespace MyDot
             if (OfdOpen.ShowDialog() == DialogResult.OK)
             {
                 string strPath = OfdOpen.FileName.ToString();
-                Bitmap btmDrag = new Bitmap(strPath);
-                DataSaver.intWidth = btmDrag.Width;
-                DataSaver.intHeight = btmDrag.Height;
-                DataSaver.btmRGBA = new RGBA[btmDrag.Width, btmDrag.Height];
+                Bitmap btmFile = new Bitmap(strPath);
+                DataSaver.intWidth = btmFile.Width;
+                DataSaver.intHeight = btmFile.Height;
+                DataSaver.btmRGBA = new RGBA[btmFile.Width, btmFile.Height];
                 for (int x = 0; x < DataSaver.btmRGBA.GetLength(0); x++)
                 {
                     for (int y = 0; y < DataSaver.btmRGBA.GetLength(1); y++)
                     {
-                        DataSaver.btmRGBA[x, y] = new RGBA(btmDrag.GetPixel(x, y));
+                        DataSaver.btmRGBA[x, y] = new RGBA(btmFile.GetPixel(x, y));
                     }
                 }
                 if (DataSaver.bmmNow == null)

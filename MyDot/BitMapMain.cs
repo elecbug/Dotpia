@@ -23,6 +23,7 @@ namespace MyDot
         private bool bolMouseDClick;
         private bool bolBorder;
         private bool bolMouseDown;
+        private int intTimer = 0;
 
         private void BitMapMain_Load(object sender, EventArgs e)
         {
@@ -93,9 +94,6 @@ namespace MyDot
                 for (int x = 0; x < grpBitMap.GetLength(0); x++)
                 {
                     grpBitMap[x, y] = Pnl.CreateGraphics();
-                    Rectangle rect = new Rectangle(x * intSize, y * intSize, intSize, intSize);
-                    Brush pen = new SolidBrush(Color.White);
-                    grpBitMap[x, y].FillRectangle(pen, rect);
                 }
             }
         }
@@ -228,7 +226,6 @@ namespace MyDot
                             j++;
                         }
                     }
-                    bolBorder = true;
                 }
             }
             catch
@@ -257,6 +254,7 @@ namespace MyDot
         private void Timer_Tick(object sender, EventArgs e)
         {
             pntMouse = Pnl.PointToClient(new Point(MousePosition.X, MousePosition.Y));
+            intTimer++;
         }
 
         private void Pnl_MouseMove(object sender, MouseEventArgs e)
@@ -275,6 +273,39 @@ namespace MyDot
         private void Pnl_MouseUp(object sender, MouseEventArgs e)
         {
             bolMouseDown = false;
+        }
+
+        private void BitMapMain_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (intTimer < 1000)
+            {
+                for (int x = 0; x < DataSaver.intWidth; x++)
+                {
+                    for (int y = 0; y < DataSaver.intHeight; y++)
+                    {
+                        Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
+                        Brush pen = new SolidBrush(DataSaver.btmRGBA[x, y].ColorReturn());
+                        grpBitMap[x, y].FillRectangle(pen, rect);
+                    }
+                }
+                if (bolBorder)
+                {
+                    Pen pen = new Pen(Color.Green, 5);
+                    for (int i = 0, j = 0; i < grpGrid.Length; i++)
+                    {
+                        grpGrid[i] = Pnl.CreateGraphics();
+                        if (i <= DataSaver.intHeight + 1)
+                        {
+                            grpGrid[i].DrawLine(pen, new Point(0, i * DataSaver.intSize), new Point(DataSaver.intSize * grpBitMap.GetLength(1), i * DataSaver.intSize));
+                        }
+                        else
+                        {
+                            grpGrid[i].DrawLine(pen, new Point(j * DataSaver.intSize, 0), new Point(j * DataSaver.intSize, DataSaver.intSize * grpBitMap.GetLength(0)));
+                            j++;
+                        }
+                    }
+                }
+            }
         }
     }
 }
