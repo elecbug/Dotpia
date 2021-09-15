@@ -30,6 +30,7 @@ namespace MyDot
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BitMapMain));
             this.Pnl = new System.Windows.Forms.Panel();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
@@ -60,6 +61,7 @@ namespace MyDot
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(824, 624);
             this.Controls.Add(this.Pnl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "BitMapMain";
             this.Text = "My Dot";

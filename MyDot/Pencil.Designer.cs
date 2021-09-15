@@ -29,6 +29,7 @@ namespace MyDot
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pencil));
             this.PbxColor = new System.Windows.Forms.PictureBox();
             this.RtbR = new System.Windows.Forms.RichTextBox();
             this.RtbG = new System.Windows.Forms.RichTextBox();
@@ -476,6 +477,7 @@ namespace MyDot
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MaximizeBox = false;
             this.Name = "Pencil";

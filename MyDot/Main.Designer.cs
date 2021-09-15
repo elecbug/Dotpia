@@ -29,6 +29,7 @@ namespace MyDot
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.BtnNew = new System.Windows.Forms.Button();
             this.BtnLoad = new System.Windows.Forms.Button();
             this.RtbWidth = new System.Windows.Forms.RichTextBox();
@@ -150,6 +151,7 @@ namespace MyDot
             this.Controls.Add(this.BtnLoad);
             this.Controls.Add(this.BtnNew);
             this.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Main";
