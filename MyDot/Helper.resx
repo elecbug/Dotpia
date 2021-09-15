@@ -159,7 +159,9 @@ Set 버튼: 설정된 RGBA값으로 현재 색상을 변경합니다.
 
 Smart Set 버튼: ColorDialog를 통한 현재 색상 값을 재설정합니다.
 
-Extrain 버튼: BitMap의 비트에서 색상을 추출하여 현재 색상에 대입합니다.
+Extrain 버튼(활성화): BitMap의 비트에서 색상을 추출하여 현재 색상에 대입합니다.
+
+Paint 버튼(활성화): BitMap의 해당 비트와 직접 연결된 색상이 같은 모든 비트에 현재 색상을 칠합니다.
 
 Save 버튼: 현재 BitMap을 저장합니다.
 

@@ -170,12 +170,39 @@ namespace MyDot
 
         private void BtnExtraction_Click(object sender, EventArgs e)
         {
-            DataSaver.bolExtractionMod = true;
+            if (!DataSaver.bolExtraction)
+            {
+                DataSaver.bolExtraction = true;
+                DataSaver.bolPaint = false;
+                BtnExtraction.BackColor = Color.Green;
+                BtnPaint.BackColor = Color.Empty;
+            }
+            else
+            {
+                DataSaver.bolExtraction = false;
+                BtnExtraction.BackColor = Color.Empty;
+            }
         }
 
         private void Pencil_FormClosed(object sender, FormClosedEventArgs e)
         {
             DataSaver.pclNow = null;
+        }
+
+        private void BtnPaint_Click(object sender, EventArgs e)
+        {
+            if (!DataSaver.bolPaint)
+            {
+                DataSaver.bolPaint = true;
+                DataSaver.bolExtraction = false;
+                BtnPaint.BackColor = Color.Green;
+                BtnExtraction.BackColor = Color.Empty;
+            }
+            else
+            {
+                DataSaver.bolPaint = false;
+                BtnPaint.BackColor = Color.Empty;
+            }
         }
     }
 }

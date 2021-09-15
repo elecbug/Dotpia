@@ -47,6 +47,7 @@ namespace MyDot
             this.RtbCHeight = new System.Windows.Forms.RichTextBox();
             this.OfdOpen = new System.Windows.Forms.OpenFileDialog();
             this.BtnExtraction = new System.Windows.Forms.Button();
+            this.BtnPaint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -211,6 +212,18 @@ namespace MyDot
             this.BtnExtraction.UseVisualStyleBackColor = true;
             this.BtnExtraction.Click += new System.EventHandler(this.BtnExtraction_Click);
             // 
+            // BtnPaint
+            // 
+            this.BtnPaint.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BtnPaint.Location = new System.Drawing.Point(181, 19);
+            this.BtnPaint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.BtnPaint.Name = "BtnPaint";
+            this.BtnPaint.Size = new System.Drawing.Size(87, 42);
+            this.BtnPaint.TabIndex = 2;
+            this.BtnPaint.Text = "Paint";
+            this.BtnPaint.UseVisualStyleBackColor = true;
+            this.BtnPaint.Click += new System.EventHandler(this.BtnPaint_Click);
+            // 
             // Pencil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -224,6 +237,7 @@ namespace MyDot
             this.Controls.Add(this.BtnBorder);
             this.Controls.Add(this.BtnExport);
             this.Controls.Add(this.BtnSave);
+            this.Controls.Add(this.BtnPaint);
             this.Controls.Add(this.BtnExtraction);
             this.Controls.Add(this.BtnSmart);
             this.Controls.Add(this.BtnChoice);
@@ -263,5 +277,6 @@ namespace MyDot
         public System.Windows.Forms.RichTextBox RtbG;
         public System.Windows.Forms.RichTextBox RtbB;
         public System.Windows.Forms.RichTextBox RtbA;
+        private System.Windows.Forms.Button BtnPaint;
     }
 }

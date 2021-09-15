@@ -16,7 +16,8 @@ namespace MyDot
         public static BitMapMain bmmNow = null;
         public static Pencil pclNow = null;
         public static RGBA clickRGBA = new RGBA();
-        public static bool bolExtractionMod;
+        public static bool bolExtraction;
+        public static bool bolPaint;
     }
 
     public class RGBA
@@ -67,6 +68,36 @@ namespace MyDot
         {
             Color color = Color.FromArgb(A, R, G, B);
             return color;
+        }
+
+        public static bool operator ==(RGBA a, RGBA b)
+        {
+            if (a.R == b.R)
+            {
+                if (a.G == b.G)
+                {
+                    if (a.B == b.B)
+                    {
+                        if (a.A == b.A)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool operator !=(RGBA a, RGBA b)
+        {
+            if (a == b)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
