@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{90D6CAA8-A78C-40E3-946F-A1DF5217D76E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Dotpia</RootNamespace>
+    <RootNamespace>Mydot</RootNamespace>
     <AssemblyName>Dotpia</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -156,7 +156,6 @@
   <ItemGroup>
     <Content Include="Mana.ico" />
     <Content Include="Resources\Empty.png" />
-    <Content Include="TextTemplate.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
