@@ -18,6 +18,10 @@ namespace MyDot
         public static RGBA clickRGBA = new RGBA();
         public static bool bolExtraction;
         public static bool bolPaint;
+        public static int intMirror;
+        public static int intStrMirror;
+        public static Graphics g;
+        public static int intSize;
     }
 
     public class RGBA
@@ -26,7 +30,6 @@ namespace MyDot
         public int G;
         public int B;
         public int A;
-        private bool bolCheak;
 
         public RGBA()
         {
@@ -34,7 +37,6 @@ namespace MyDot
             G = 0;
             B = 0;
             A = 0;
-            bolCheak = true;
         }
 
         public RGBA(int R, int G, int B)
@@ -43,7 +45,6 @@ namespace MyDot
             this.G = G;
             this.B = B;
             this.A = 255;
-            bolCheak = true;
         }
 
         public RGBA(int R, int G, int B, int A)
@@ -52,7 +53,6 @@ namespace MyDot
             this.G = G;
             this.B = B;
             this.A = A;
-            bolCheak = true;
         }
 
         public RGBA(Color color)
@@ -61,7 +61,6 @@ namespace MyDot
             G = color.G;
             B = color.B;
             A = color.A;
-            bolCheak = true;
         }
 
         public Color ColorReturn()

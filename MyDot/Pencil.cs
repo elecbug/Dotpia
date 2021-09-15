@@ -18,6 +18,8 @@ namespace MyDot
             InitializeComponent();
         }
 
+        private bool bolColorDialog = false;
+
         private void Pencil_Load(object sender, EventArgs e)
         {
             DataSaver.pclNow = this;
@@ -73,7 +75,7 @@ namespace MyDot
 
         private void BtnSmart_Click(object sender, EventArgs e)
         {
-
+            bolColorDialog = true;
             if (CldColor.ShowDialog() == DialogResult.OK)
             {
                 DataSaver.nowRGBA = new RGBA(CldColor.Color);
@@ -83,6 +85,7 @@ namespace MyDot
                 RtbB.Text = DataSaver.nowRGBA.B.ToString();
                 RtbA.Text = DataSaver.nowRGBA.A.ToString();
             }
+            bolColorDialog = false;
         }
 
         private void BtnBorder_Click(object sender, EventArgs e)
@@ -174,8 +177,10 @@ namespace MyDot
             {
                 DataSaver.bolExtraction = true;
                 DataSaver.bolPaint = false;
+                DataSaver.intMirror = 0;
                 BtnExtraction.BackColor = Color.Green;
                 BtnPaint.BackColor = SystemColors.Control;
+                BtnMIrror.BackColor = SystemColors.Control;
             }
             else
             {
@@ -195,13 +200,75 @@ namespace MyDot
             {
                 DataSaver.bolPaint = true;
                 DataSaver.bolExtraction = false;
+                DataSaver.intMirror = 0;
                 BtnPaint.BackColor = Color.Green;
                 BtnExtraction.BackColor = SystemColors.Control;
+                BtnMIrror.BackColor = SystemColors.Control;
             }
             else
             {
                 DataSaver.bolPaint = false;
                 BtnPaint.BackColor = SystemColors.Control;
+            }
+        }
+
+        private void BtnMIrror_Click(object sender, EventArgs e)
+        {
+            if(DataSaver.intMirror==0)
+            {
+                DataSaver.bolPaint = false;
+                DataSaver.bolExtraction = false;
+                DataSaver.intMirror = 1;
+                BtnPaint.BackColor = SystemColors.Control;
+                BtnExtraction.BackColor = SystemColors.Control;
+                BtnMIrror.BackColor = Color.Blue;
+                RtbMirror_TextChanged(sender, e);
+            }
+            else if (DataSaver.intMirror==1)
+            {
+                DataSaver.intMirror = 2;
+                BtnMIrror.BackColor = Color.Red;
+                RtbMirror_TextChanged(sender, e);
+            }
+            else
+            {
+                DataSaver.intMirror = 0;
+                BtnMIrror.BackColor = SystemColors.Control;
+                DataSaver.g.Clear(DataSaver.bmmNow.BackColor);
+            }
+        }
+
+        private void RtbMirror_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataSaver.intStrMirror = int.Parse(RtbMirror.Text);
+                DataSaver.g = DataSaver.bmmNow.CreateGraphics();
+                DataSaver.g.Clear(DataSaver.bmmNow.BackColor);
+                if (DataSaver.intMirror == 1)
+                {
+                    DataSaver.g.DrawLine(new Pen(Color.White),
+                                         new Point(0, DataSaver.intSize * int.Parse(RtbMirror.Text) + 12),
+                                         new Point(DataSaver.bmmNow.Width, DataSaver.intSize * int.Parse(RtbMirror.Text) + 12));
+                }
+                else if (DataSaver.intMirror == 2)
+                {
+                    DataSaver.g.DrawLine(new Pen(Color.White),
+                                          new Point(DataSaver.intSize * int.Parse(RtbMirror.Text) + 12, 0),
+                                          new Point(DataSaver.intSize * int.Parse(RtbMirror.Text) + 12, DataSaver.bmmNow.Height));
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void RtbColor_TextChanged(object sender, EventArgs e)
+        {
+            if (!bolColorDialog)
+            {
+                BtnChoice_Click(sender, e);
             }
         }
     }

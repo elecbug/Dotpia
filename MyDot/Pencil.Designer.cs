@@ -34,7 +34,6 @@ namespace MyDot
             this.RtbG = new System.Windows.Forms.RichTextBox();
             this.RtbB = new System.Windows.Forms.RichTextBox();
             this.RtbA = new System.Windows.Forms.RichTextBox();
-            this.BtnChoice = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.SfdSave = new System.Windows.Forms.SaveFileDialog();
             this.CldColor = new System.Windows.Forms.ColorDialog();
@@ -51,6 +50,8 @@ namespace MyDot
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BtnMIrror = new System.Windows.Forms.Button();
+            this.RtbMirror = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -75,6 +76,7 @@ namespace MyDot
             this.RtbR.Size = new System.Drawing.Size(154, 31);
             this.RtbR.TabIndex = 1;
             this.RtbR.Text = "255";
+            this.RtbR.TextChanged += new System.EventHandler(this.RtbColor_TextChanged);
             this.RtbR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
             // 
             // RtbG
@@ -85,6 +87,7 @@ namespace MyDot
             this.RtbG.Size = new System.Drawing.Size(154, 31);
             this.RtbG.TabIndex = 1;
             this.RtbG.Text = "255";
+            this.RtbG.TextChanged += new System.EventHandler(this.RtbColor_TextChanged);
             this.RtbG.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
             // 
             // RtbB
@@ -95,6 +98,7 @@ namespace MyDot
             this.RtbB.Size = new System.Drawing.Size(154, 31);
             this.RtbB.TabIndex = 1;
             this.RtbB.Text = "255";
+            this.RtbB.TextChanged += new System.EventHandler(this.RtbColor_TextChanged);
             this.RtbB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
             // 
             // RtbA
@@ -105,19 +109,8 @@ namespace MyDot
             this.RtbA.Size = new System.Drawing.Size(154, 31);
             this.RtbA.TabIndex = 1;
             this.RtbA.Text = "255";
+            this.RtbA.TextChanged += new System.EventHandler(this.RtbColor_TextChanged);
             this.RtbA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
-            // 
-            // BtnChoice
-            // 
-            this.BtnChoice.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnChoice.Location = new System.Drawing.Point(6, 191);
-            this.BtnChoice.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.BtnChoice.Name = "BtnChoice";
-            this.BtnChoice.Size = new System.Drawing.Size(117, 43);
-            this.BtnChoice.TabIndex = 2;
-            this.BtnChoice.Text = "Set";
-            this.BtnChoice.UseVisualStyleBackColor = true;
-            this.BtnChoice.Click += new System.EventHandler(this.BtnChoice_Click);
             // 
             // BtnSave
             // 
@@ -136,10 +129,10 @@ namespace MyDot
             // BtnSmart
             // 
             this.BtnSmart.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnSmart.Location = new System.Drawing.Point(129, 191);
+            this.BtnSmart.Location = new System.Drawing.Point(6, 191);
             this.BtnSmart.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.BtnSmart.Name = "BtnSmart";
-            this.BtnSmart.Size = new System.Drawing.Size(190, 43);
+            this.BtnSmart.Size = new System.Drawing.Size(313, 43);
             this.BtnSmart.TabIndex = 2;
             this.BtnSmart.Text = "Smart Set";
             this.BtnSmart.UseVisualStyleBackColor = true;
@@ -211,7 +204,7 @@ namespace MyDot
             // 
             this.BtnExtraction.BackColor = System.Drawing.SystemColors.Control;
             this.BtnExtraction.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnExtraction.Location = new System.Drawing.Point(82, 27);
+            this.BtnExtraction.Location = new System.Drawing.Point(82, 25);
             this.BtnExtraction.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.BtnExtraction.Name = "BtnExtraction";
             this.BtnExtraction.Size = new System.Drawing.Size(90, 42);
@@ -224,7 +217,7 @@ namespace MyDot
             // 
             this.BtnPaint.BackColor = System.Drawing.SystemColors.Control;
             this.BtnPaint.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnPaint.Location = new System.Drawing.Point(178, 27);
+            this.BtnPaint.Location = new System.Drawing.Point(178, 25);
             this.BtnPaint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.BtnPaint.Name = "BtnPaint";
             this.BtnPaint.Size = new System.Drawing.Size(87, 42);
@@ -256,7 +249,6 @@ namespace MyDot
             this.groupBox2.Controls.Add(this.RtbB);
             this.groupBox2.Controls.Add(this.RtbA);
             this.groupBox2.Controls.Add(this.BtnSmart);
-            this.groupBox2.Controls.Add(this.BtnChoice);
             this.groupBox2.Location = new System.Drawing.Point(289, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(326, 242);
@@ -266,7 +258,9 @@ namespace MyDot
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.BtnMIrror);
             this.groupBox3.Controls.Add(this.BtnBorder);
+            this.groupBox3.Controls.Add(this.RtbMirror);
             this.groupBox3.Controls.Add(this.BtnExtraction);
             this.groupBox3.Controls.Add(this.BtnPaint);
             this.groupBox3.Location = new System.Drawing.Point(12, 12);
@@ -275,6 +269,27 @@ namespace MyDot
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tool";
+            // 
+            // BtnMIrror
+            // 
+            this.BtnMIrror.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnMIrror.Location = new System.Drawing.Point(63, 73);
+            this.BtnMIrror.Name = "BtnMIrror";
+            this.BtnMIrror.Size = new System.Drawing.Size(70, 42);
+            this.BtnMIrror.TabIndex = 3;
+            this.BtnMIrror.Text = "Mirror";
+            this.BtnMIrror.UseVisualStyleBackColor = false;
+            this.BtnMIrror.Click += new System.EventHandler(this.BtnMIrror_Click);
+            // 
+            // RtbMirror
+            // 
+            this.RtbMirror.Location = new System.Drawing.Point(6, 73);
+            this.RtbMirror.Name = "RtbMirror";
+            this.RtbMirror.Size = new System.Drawing.Size(51, 41);
+            this.RtbMirror.TabIndex = 4;
+            this.RtbMirror.Text = "";
+            this.RtbMirror.TextChanged += new System.EventHandler(this.RtbMirror_TextChanged);
+            this.RtbMirror.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
             // 
             // Pencil
             // 
@@ -301,7 +316,6 @@ namespace MyDot
         }
 
         #endregion
-        private System.Windows.Forms.Button BtnChoice;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.SaveFileDialog SfdSave;
         private System.Windows.Forms.ColorDialog CldColor;
@@ -323,5 +337,7 @@ namespace MyDot
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button BtnMIrror;
+        private System.Windows.Forms.RichTextBox RtbMirror;
     }
 }

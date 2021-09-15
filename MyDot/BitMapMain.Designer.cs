@@ -59,6 +59,6 @@ namespace MyDot
 
         #endregion
 
-        private System.Windows.Forms.Panel Pnl;
+        public System.Windows.Forms.Panel Pnl;
     }
 }

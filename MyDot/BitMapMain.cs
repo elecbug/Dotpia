@@ -80,6 +80,7 @@ namespace MyDot
             int intControlWidth = Pnl.Width / PbxButtons.GetLength(0);
             int intControlHeight = Pnl.Height / PbxButtons.GetLength(1);
             int intSize = Math.Min(intControlWidth, intControlHeight);
+            DataSaver.intSize = intSize;
             for (int y = 0; y < PbxButtons.GetLength(1); y++)
             {
                 for (int x = 0; x < PbxButtons.GetLength(0); x++)
@@ -186,6 +187,39 @@ namespace MyDot
                     RGBA nowRGBA = new RGBA(((PictureBox)sender).BackColor);
                     int i = 0;
                     PbxSave(ref buttons, ref i, intWidthCode, intHeightCode, nowRGBA);
+                }
+            }
+            else if (DataSaver.intMirror == 1)
+            {
+                string strName = ((PictureBox)sender).Name;
+                int intWidthCode = int.Parse($"{strName[3]}{strName[4]}{strName[5]}{strName[6]}{strName[7]}");
+                int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
+                ((PictureBox)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
+                DataSaver.btmRGBA[intWidthCode, intHeightCode] = DataSaver.nowRGBA;
+                Emptyer(sender);
+                int intNewY = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intHeightCode;
+                if (intNewY >= 0 && intNewY < DataSaver.intHeigth)
+                {
+                    PbxButtons[intWidthCode, intNewY].BackColor = DataSaver.nowRGBA.ColorReturn();
+                    DataSaver.btmRGBA[intWidthCode, intNewY] = DataSaver.nowRGBA;
+                    Emptyer(PbxButtons[intWidthCode, intNewY]);
+                }
+                
+            }
+            else if (DataSaver.intMirror == 2)
+            {
+                string strName = ((PictureBox)sender).Name;
+                int intWidthCode = int.Parse($"{strName[3]}{strName[4]}{strName[5]}{strName[6]}{strName[7]}");
+                int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
+                ((PictureBox)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
+                DataSaver.btmRGBA[intWidthCode, intHeightCode] = DataSaver.nowRGBA;
+                Emptyer(sender);
+                int intNewX = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intWidthCode;
+                if (intNewX >= 0 && intNewX < DataSaver.intWidth)
+                {
+                    PbxButtons[intNewX, intHeightCode].BackColor = DataSaver.nowRGBA.ColorReturn();
+                    DataSaver.btmRGBA[intNewX, intHeightCode] = DataSaver.nowRGBA;
+                    Emptyer(PbxButtons[intNewX, intHeightCode]);
                 }
             }
             else
