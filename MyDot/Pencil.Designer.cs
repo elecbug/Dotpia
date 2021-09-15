@@ -48,13 +48,19 @@ namespace MyDot
             this.OfdOpen = new System.Windows.Forms.OpenFileDialog();
             this.BtnExtraction = new System.Windows.Forms.Button();
             this.BtnPaint = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // PbxColor
             // 
             this.PbxColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PbxColor.Location = new System.Drawing.Point(299, 19);
+            this.PbxColor.Location = new System.Drawing.Point(6, 27);
             this.PbxColor.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.PbxColor.Name = "PbxColor";
             this.PbxColor.Size = new System.Drawing.Size(154, 154);
@@ -63,7 +69,7 @@ namespace MyDot
             // 
             // RtbR
             // 
-            this.RtbR.Location = new System.Drawing.Point(459, 19);
+            this.RtbR.Location = new System.Drawing.Point(166, 27);
             this.RtbR.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.RtbR.Name = "RtbR";
             this.RtbR.Size = new System.Drawing.Size(154, 31);
@@ -73,7 +79,7 @@ namespace MyDot
             // 
             // RtbG
             // 
-            this.RtbG.Location = new System.Drawing.Point(459, 60);
+            this.RtbG.Location = new System.Drawing.Point(166, 68);
             this.RtbG.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.RtbG.Name = "RtbG";
             this.RtbG.Size = new System.Drawing.Size(154, 31);
@@ -83,7 +89,7 @@ namespace MyDot
             // 
             // RtbB
             // 
-            this.RtbB.Location = new System.Drawing.Point(459, 101);
+            this.RtbB.Location = new System.Drawing.Point(166, 109);
             this.RtbB.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.RtbB.Name = "RtbB";
             this.RtbB.Size = new System.Drawing.Size(154, 31);
@@ -93,7 +99,7 @@ namespace MyDot
             // 
             // RtbA
             // 
-            this.RtbA.Location = new System.Drawing.Point(459, 142);
+            this.RtbA.Location = new System.Drawing.Point(166, 150);
             this.RtbA.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.RtbA.Name = "RtbA";
             this.RtbA.Size = new System.Drawing.Size(154, 31);
@@ -104,7 +110,7 @@ namespace MyDot
             // BtnChoice
             // 
             this.BtnChoice.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnChoice.Location = new System.Drawing.Point(299, 183);
+            this.BtnChoice.Location = new System.Drawing.Point(6, 191);
             this.BtnChoice.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.BtnChoice.Name = "BtnChoice";
             this.BtnChoice.Size = new System.Drawing.Size(117, 43);
@@ -115,7 +121,7 @@ namespace MyDot
             // 
             // BtnSave
             // 
-            this.BtnSave.Location = new System.Drawing.Point(492, 361);
+            this.BtnSave.Location = new System.Drawing.Point(98, 121);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(120, 42);
             this.BtnSave.TabIndex = 3;
@@ -130,7 +136,7 @@ namespace MyDot
             // BtnSmart
             // 
             this.BtnSmart.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnSmart.Location = new System.Drawing.Point(422, 183);
+            this.BtnSmart.Location = new System.Drawing.Point(129, 191);
             this.BtnSmart.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.BtnSmart.Name = "BtnSmart";
             this.BtnSmart.Size = new System.Drawing.Size(190, 43);
@@ -141,17 +147,18 @@ namespace MyDot
             // 
             // BtnBorder
             // 
-            this.BtnBorder.Location = new System.Drawing.Point(12, 19);
+            this.BtnBorder.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnBorder.Location = new System.Drawing.Point(6, 25);
             this.BtnBorder.Name = "BtnBorder";
             this.BtnBorder.Size = new System.Drawing.Size(70, 42);
             this.BtnBorder.TabIndex = 3;
             this.BtnBorder.Text = "Border";
-            this.BtnBorder.UseVisualStyleBackColor = true;
+            this.BtnBorder.UseVisualStyleBackColor = false;
             this.BtnBorder.Click += new System.EventHandler(this.BtnBorder_Click);
             // 
             // BtnExport
             // 
-            this.BtnExport.Location = new System.Drawing.Point(492, 313);
+            this.BtnExport.Location = new System.Drawing.Point(98, 73);
             this.BtnExport.Name = "BtnExport";
             this.BtnExport.Size = new System.Drawing.Size(120, 42);
             this.BtnExport.TabIndex = 3;
@@ -161,7 +168,7 @@ namespace MyDot
             // 
             // RtbExport
             // 
-            this.RtbExport.Location = new System.Drawing.Point(400, 313);
+            this.RtbExport.Location = new System.Drawing.Point(6, 73);
             this.RtbExport.Name = "RtbExport";
             this.RtbExport.Size = new System.Drawing.Size(86, 41);
             this.RtbExport.TabIndex = 4;
@@ -170,7 +177,7 @@ namespace MyDot
             // 
             // BtnCombine
             // 
-            this.BtnCombine.Location = new System.Drawing.Point(492, 265);
+            this.BtnCombine.Location = new System.Drawing.Point(98, 25);
             this.BtnCombine.Name = "BtnCombine";
             this.BtnCombine.Size = new System.Drawing.Size(120, 42);
             this.BtnCombine.TabIndex = 3;
@@ -180,7 +187,7 @@ namespace MyDot
             // 
             // RtbCWidth
             // 
-            this.RtbCWidth.Location = new System.Drawing.Point(400, 265);
+            this.RtbCWidth.Location = new System.Drawing.Point(6, 25);
             this.RtbCWidth.Name = "RtbCWidth";
             this.RtbCWidth.Size = new System.Drawing.Size(40, 41);
             this.RtbCWidth.TabIndex = 4;
@@ -189,7 +196,7 @@ namespace MyDot
             // 
             // RtbCHeight
             // 
-            this.RtbCHeight.Location = new System.Drawing.Point(446, 265);
+            this.RtbCHeight.Location = new System.Drawing.Point(52, 25);
             this.RtbCHeight.Name = "RtbCHeight";
             this.RtbCHeight.Size = new System.Drawing.Size(40, 41);
             this.RtbCHeight.TabIndex = 4;
@@ -202,27 +209,72 @@ namespace MyDot
             // 
             // BtnExtraction
             // 
+            this.BtnExtraction.BackColor = System.Drawing.SystemColors.Control;
             this.BtnExtraction.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnExtraction.Location = new System.Drawing.Point(88, 19);
+            this.BtnExtraction.Location = new System.Drawing.Point(82, 27);
             this.BtnExtraction.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.BtnExtraction.Name = "BtnExtraction";
-            this.BtnExtraction.Size = new System.Drawing.Size(87, 42);
+            this.BtnExtraction.Size = new System.Drawing.Size(90, 42);
             this.BtnExtraction.TabIndex = 2;
             this.BtnExtraction.Text = "Extraction";
-            this.BtnExtraction.UseVisualStyleBackColor = true;
+            this.BtnExtraction.UseVisualStyleBackColor = false;
             this.BtnExtraction.Click += new System.EventHandler(this.BtnExtraction_Click);
             // 
             // BtnPaint
             // 
+            this.BtnPaint.BackColor = System.Drawing.SystemColors.Control;
             this.BtnPaint.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BtnPaint.Location = new System.Drawing.Point(181, 19);
+            this.BtnPaint.Location = new System.Drawing.Point(178, 27);
             this.BtnPaint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.BtnPaint.Name = "BtnPaint";
             this.BtnPaint.Size = new System.Drawing.Size(87, 42);
             this.BtnPaint.TabIndex = 2;
             this.BtnPaint.Text = "Paint";
-            this.BtnPaint.UseVisualStyleBackColor = true;
+            this.BtnPaint.UseVisualStyleBackColor = false;
             this.BtnPaint.Click += new System.EventHandler(this.BtnPaint_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.RtbCWidth);
+            this.groupBox1.Controls.Add(this.RtbCHeight);
+            this.groupBox1.Controls.Add(this.BtnSave);
+            this.groupBox1.Controls.Add(this.BtnExport);
+            this.groupBox1.Controls.Add(this.RtbExport);
+            this.groupBox1.Controls.Add(this.BtnCombine);
+            this.groupBox1.Location = new System.Drawing.Point(12, 231);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(224, 169);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "File";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.PbxColor);
+            this.groupBox2.Controls.Add(this.RtbR);
+            this.groupBox2.Controls.Add(this.RtbG);
+            this.groupBox2.Controls.Add(this.RtbB);
+            this.groupBox2.Controls.Add(this.RtbA);
+            this.groupBox2.Controls.Add(this.BtnSmart);
+            this.groupBox2.Controls.Add(this.BtnChoice);
+            this.groupBox2.Location = new System.Drawing.Point(289, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(326, 242);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Color";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.BtnBorder);
+            this.groupBox3.Controls.Add(this.BtnExtraction);
+            this.groupBox3.Controls.Add(this.BtnPaint);
+            this.groupBox3.Location = new System.Drawing.Point(12, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(271, 213);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Tool";
             // 
             // Pencil
             // 
@@ -230,22 +282,9 @@ namespace MyDot
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(627, 412);
-            this.Controls.Add(this.RtbCHeight);
-            this.Controls.Add(this.RtbCWidth);
-            this.Controls.Add(this.RtbExport);
-            this.Controls.Add(this.BtnCombine);
-            this.Controls.Add(this.BtnBorder);
-            this.Controls.Add(this.BtnExport);
-            this.Controls.Add(this.BtnSave);
-            this.Controls.Add(this.BtnPaint);
-            this.Controls.Add(this.BtnExtraction);
-            this.Controls.Add(this.BtnSmart);
-            this.Controls.Add(this.BtnChoice);
-            this.Controls.Add(this.RtbA);
-            this.Controls.Add(this.RtbB);
-            this.Controls.Add(this.RtbG);
-            this.Controls.Add(this.RtbR);
-            this.Controls.Add(this.PbxColor);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MaximizeBox = false;
@@ -254,6 +293,9 @@ namespace MyDot
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Pencil_FormClosed);
             this.Load += new System.EventHandler(this.Pencil_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -278,5 +320,8 @@ namespace MyDot
         public System.Windows.Forms.RichTextBox RtbB;
         public System.Windows.Forms.RichTextBox RtbA;
         private System.Windows.Forms.Button BtnPaint;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

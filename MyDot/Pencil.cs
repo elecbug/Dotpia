@@ -175,12 +175,12 @@ namespace MyDot
                 DataSaver.bolExtraction = true;
                 DataSaver.bolPaint = false;
                 BtnExtraction.BackColor = Color.Green;
-                BtnPaint.BackColor = Color.Empty;
+                BtnPaint.BackColor = SystemColors.Control;
             }
             else
             {
                 DataSaver.bolExtraction = false;
-                BtnExtraction.BackColor = Color.Empty;
+                BtnExtraction.BackColor = SystemColors.Control;
             }
         }
 
@@ -196,12 +196,12 @@ namespace MyDot
                 DataSaver.bolPaint = true;
                 DataSaver.bolExtraction = false;
                 BtnPaint.BackColor = Color.Green;
-                BtnExtraction.BackColor = Color.Empty;
+                BtnExtraction.BackColor = SystemColors.Control;
             }
             else
             {
                 DataSaver.bolPaint = false;
-                BtnPaint.BackColor = Color.Empty;
+                BtnPaint.BackColor = SystemColors.Control;
             }
         }
     }

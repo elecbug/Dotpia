@@ -39,7 +39,11 @@ namespace MyDot
             {
                 for (int y = 0; y < DataSaver.intHeigth; y++)
                 {
-                    PbxButtons[x, y].BackColor = DataSaver.btmRGBA[x, y].ColorReturn();
+                    if (DataSaver.btmRGBA[x, y].A != 0)
+                    {
+                        PbxButtons[x, y].BackColor = DataSaver.btmRGBA[x, y].ColorReturn();
+                        PbxButtons[x, y].Image = null;
+                    }
                 }
             }
         }

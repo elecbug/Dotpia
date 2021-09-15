@@ -35,9 +35,9 @@ namespace MyDot
             // Pnl
             // 
             this.Pnl.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Pnl.Location = new System.Drawing.Point(0, 0);
+            this.Pnl.Location = new System.Drawing.Point(12, 12);
             this.Pnl.Name = "Pnl";
-            this.Pnl.Size = new System.Drawing.Size(800, 749);
+            this.Pnl.Size = new System.Drawing.Size(800, 600);
             this.Pnl.TabIndex = 0;
             // 
             // BitMapMain
@@ -45,7 +45,8 @@ namespace MyDot
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(800, 749);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(824, 624);
             this.Controls.Add(this.Pnl);
             this.MaximizeBox = false;
             this.Name = "BitMapMain";
