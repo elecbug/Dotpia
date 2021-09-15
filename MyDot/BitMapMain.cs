@@ -73,8 +73,8 @@ namespace MyDot
         private void ButtonMake(int intWidth, int intHeight)
         {
             PbxButtons = new PictureBox[intWidth, intHeight];
-            int intControlWidth = 800 / PbxButtons.GetLength(0);
-            int intControlHeight = 800 / PbxButtons.GetLength(1);
+            int intControlWidth = Pnl.Width / PbxButtons.GetLength(0);
+            int intControlHeight = Pnl.Height / PbxButtons.GetLength(1);
             int intSize = Math.Min(intControlWidth, intControlHeight);
             for (int y = 0; y < PbxButtons.GetLength(1); y++)
             {
@@ -84,14 +84,16 @@ namespace MyDot
                     {
                         Name = $"Pbx{x.ToString("D5")}{y.ToString("D5")}",
                         Size = new Size(intSize, intSize),
-                        Parent = this,
+                        Parent = Pnl,
                         Location = new Point(x * intSize, y * intSize),
                         Text = "",
+                        BackColor = new RGBA(0, 0, 0, 0).ColorReturn(),
+                        Image = Properties.Resources.Empty
                     };
                     PbxButtons[x, y].Click += new EventHandler(BtnClick);
                     PbxButtons[x, y].MouseEnter += new EventHandler(MouseInside);
                     PbxButtons[x, y].DoubleClick += new EventHandler(MouseDClick);
-                    this.Controls.Add(PbxButtons[x, y]);
+                    Pnl.Controls.Add(PbxButtons[x, y]);
                 }
             }
         }
@@ -120,6 +122,7 @@ namespace MyDot
         {
             DataSaver.btmRGBA[x, y] = DataSaver.nowRGBA;
             PbxButtons[x, y].BackColor = DataSaver.nowRGBA.ColorReturn();
+            Emptyer(PbxButtons[x, y]);
             for (int j = 0; j < 4; j++)
             {
                 if (y < DataSaver.btmRGBA.GetLength(1) - 1)
@@ -170,13 +173,16 @@ namespace MyDot
             }
             else if (DataSaver.bolPaint)
             {
-                string strName = ((PictureBox)sender).Name;
-                int intWidthCode = int.Parse($"{strName[3]}{strName[4]}{strName[5]}{strName[6]}{strName[7]}");
-                int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
-                PictureBox[] buttons = new PictureBox[DataSaver.intWidth * DataSaver.intHeigth];
-                RGBA nowRGBA = new RGBA(((PictureBox)sender).BackColor);
-                int i = 0;
-                PbxSave(ref buttons, ref i, intWidthCode, intHeightCode, nowRGBA);
+                if (((PictureBox)sender).BackColor != DataSaver.nowRGBA.ColorReturn())
+                {
+                    string strName = ((PictureBox)sender).Name;
+                    int intWidthCode = int.Parse($"{strName[3]}{strName[4]}{strName[5]}{strName[6]}{strName[7]}");
+                    int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
+                    PictureBox[] buttons = new PictureBox[DataSaver.intWidth * DataSaver.intHeigth];
+                    RGBA nowRGBA = new RGBA(((PictureBox)sender).BackColor);
+                    int i = 0;
+                    PbxSave(ref buttons, ref i, intWidthCode, intHeightCode, nowRGBA);
+                }
             }
             else
             {
@@ -185,6 +191,19 @@ namespace MyDot
                 int intHeightCode = int.Parse($"{strName[8]}{strName[9]}{strName[10]}{strName[11]}{strName[12]}");
                 ((PictureBox)sender).BackColor = DataSaver.nowRGBA.ColorReturn();
                 DataSaver.btmRGBA[intWidthCode, intHeightCode] = DataSaver.nowRGBA;
+                Emptyer(sender);
+            }
+        }
+
+        private void Emptyer(object sender)
+        {
+            if (((PictureBox)sender).BackColor.A == new RGBA(0, 0, 0, 0).ColorReturn().A)
+            {
+                ((PictureBox)sender).Image = Properties.Resources.Empty;
+            }
+            else
+            {
+                ((PictureBox)sender).Image = null;
             }
         }
 

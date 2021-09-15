@@ -29,14 +29,24 @@ namespace MyDot
         /// </summary>
         private void InitializeComponent()
         {
+            this.Pnl = new System.Windows.Forms.Panel();
             this.SuspendLayout();
+            // 
+            // Pnl
+            // 
+            this.Pnl.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Pnl.Location = new System.Drawing.Point(0, 0);
+            this.Pnl.Name = "Pnl";
+            this.Pnl.Size = new System.Drawing.Size(800, 749);
+            this.Pnl.TabIndex = 0;
             // 
             // BitMapMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(800, 800);
+            this.ClientSize = new System.Drawing.Size(800, 749);
+            this.Controls.Add(this.Pnl);
             this.MaximizeBox = false;
             this.Name = "BitMapMain";
             this.Text = "My Dot";
@@ -47,5 +57,7 @@ namespace MyDot
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel Pnl;
     }
 }
