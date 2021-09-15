@@ -239,7 +239,7 @@ namespace MyDot
             {
                 DataSaver.intMirror = 0;
                 BtnMIrror.BackColor = SystemColors.Control;
-                DataSaver.g.Clear(DataSaver.bmmNow.BackColor);
+                RtbMirror_TextChanged(sender, e);
             }
         }
 
