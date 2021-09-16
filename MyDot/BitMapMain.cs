@@ -18,32 +18,54 @@ namespace MyDot
         }
 
         private Point pntMouse;
-        private Graphics[,] grpBitMap;
+        public Graphics[,] grpBitMap;
         private Graphics[] grpGrid;
         private bool bolMouseDClick;
         private bool bolBorder;
         private bool bolMouseDown;
         private int intTimer = 0;
+        public int intNowRayer = 0;
 
         private void BitMapMain_Load(object sender, EventArgs e)
         {
             try
             {
+                for (int i = 0; i < DataSaver.HIGH_RAYER; i++)
+                {
+                    DataSaver.intRayerTP[i] = 100;
+                }
                 Pnl.MouseWheel += new MouseEventHandler(Mouse_Wheel);
                 Timer.Start();
                 grpGrid = new Graphics[DataSaver.intWidth + 1 + DataSaver.intHeight + 1 + 1];
-                ButtonMake(DataSaver.intWidth, DataSaver.intHeight);
+                grpBitMap = new Graphics[DataSaver.intWidth, DataSaver.intHeight];
+                int intControlWidth = Pnl.Width / grpBitMap.GetLength(0);
+                int intControlHeight = Pnl.Height / grpBitMap.GetLength(1);
+                int intSize = Math.Min(intControlWidth, intControlHeight);
+                Pnl.Width = intSize *DataSaver. intWidth;
+                Pnl.Height = intSize *DataSaver. intHeight;
+                DataSaver.intSize = intSize;
+                for (int y = 0; y < grpBitMap.GetLength(1); y++)
+                {
+                    for (int x = 0; x < grpBitMap.GetLength(0); x++)
+                    {
+                        grpBitMap[x, y] = Pnl.CreateGraphics();
+                    }
+                }
                 if (DataSaver.btmRGBA == null)
                 {
-                    DataSaver.btmRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight];
-                    for (int x = 0; x < DataSaver.intWidth; x++)
+                    DataSaver.btmRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight, DataSaver.HIGH_RAYER];
+                    for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
                     {
-                        for (int y = 0; y < DataSaver.intHeight; y++)
+                        for (int x = 0; x < DataSaver.intWidth; x++)
                         {
-                            DataSaver.btmRGBA[x, y] = new RGBA();
+                            for (int y = 0; y < DataSaver.intHeight; y++)
+                            {
+                                DataSaver.btmRGBA[x, y, r] = new RGBA();
+                            }
                         }
                     }
                 }
+                ReDrawing();
             }
             catch
             {
@@ -87,7 +109,7 @@ namespace MyDot
             ReDrawing();
         }
 
-        private void ReDrawing()
+        public void ReDrawing()
         {
             for (int y = 0; y < grpBitMap.GetLength(1); y++)
             {
@@ -97,15 +119,7 @@ namespace MyDot
                     grpBitMap[x, y] = Pnl.CreateGraphics();
                 }
             }
-            for (int y = 0; y < grpBitMap.GetLength(1); y++)
-            {
-                for (int x = 0; x < grpBitMap.GetLength(0); x++)
-                {
-                    Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
-                    Brush pen = new SolidBrush(DataSaver.btmRGBA[x, y].ColorReturn());
-                    grpBitMap[x, y].FillRectangle(pen, rect);
-                }
-            }
+            SeeBitSet();
             if (bolBorder)
             {
                 Pen pen = new Pen(Color.Green, 1);
@@ -152,40 +166,7 @@ namespace MyDot
                     grpGrid[i].Clear(Pnl.BackColor);
                 }
                 bolBorder = false;
-                for (int y = 0; y < grpBitMap.GetLength(1); y++)
-                {
-                    for (int x = 0; x < grpBitMap.GetLength(0); x++)
-                    {
-                        Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
-                        Brush pen = new SolidBrush(DataSaver.btmRGBA[x, y].ColorReturn());
-                        grpBitMap[x, y].FillRectangle(pen, rect);
-                    }
-                }
-            }
-        }
-
-        private void ButtonMake(int intWidth, int intHeight)
-        {
-            try
-            {
-                grpBitMap = new Graphics[intWidth, intHeight];
-                int intControlWidth = Pnl.Width / grpBitMap.GetLength(0);
-                int intControlHeight = Pnl.Height / grpBitMap.GetLength(1);
-                int intSize = Math.Min(intControlWidth, intControlHeight);
-                Pnl.Width = intSize * intWidth;
-                Pnl.Height = intSize * intHeight;
-                DataSaver.intSize = intSize;
-                for (int y = 0; y < grpBitMap.GetLength(1); y++)
-                {
-                    for (int x = 0; x < grpBitMap.GetLength(0); x++)
-                    {
-                        grpBitMap[x, y] = Pnl.CreateGraphics();
-                    }
-                }
-            }
-            catch
-            {
-
+                ReDrawing();
             }
         }
 
@@ -203,40 +184,54 @@ namespace MyDot
 
         private void PaintTool(int x, int y, RGBA nowRGBA)
         {
-            DataSaver.btmRGBA[x, y] = new RGBA(DataSaver.nowRGBA);
-            DataSaver.btmRGBA[x, y] = new RGBA(DataSaver.nowRGBA);
-            Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
-            Brush pen = new SolidBrush(DataSaver.btmRGBA[x, y].ColorReturn());
-            grpBitMap[x, y].FillRectangle(pen, rect);
+            DataSaver.btmRGBA[x, y, intNowRayer] = new RGBA(DataSaver.nowRGBA);
             for (int j = 0; j < 4; j++)
             {
                 if (y < DataSaver.btmRGBA.GetLength(1) - 1)
                 {
-                    if (DataSaver.btmRGBA[x, y + 1] == nowRGBA || (DataSaver.btmRGBA[x, y + 1].A == 0 && nowRGBA.A == 0))
+                    if (DataSaver.btmRGBA[x, y + 1, intNowRayer] == nowRGBA || (DataSaver.btmRGBA[x, y + 1, intNowRayer].A == 0 && nowRGBA.A == 0))
                     {
                         PaintTool(x, y + 1, nowRGBA);
                     }
                 }
                 if (y >= 1)
                 {
-                    if (DataSaver.btmRGBA[x, y - 1] == nowRGBA || (DataSaver.btmRGBA[x, y - 1].A == 0 && nowRGBA.A == 0))
+                    if (DataSaver.btmRGBA[x, y - 1, intNowRayer] == nowRGBA || (DataSaver.btmRGBA[x, y - 1, intNowRayer].A == 0 && nowRGBA.A == 0))
                     {
                         PaintTool(x, y - 1, nowRGBA);
                     }
                 }
                 if (x < DataSaver.btmRGBA.GetLength(0) - 1)
                 {
-                    if (DataSaver.btmRGBA[x + 1, y] == nowRGBA || (DataSaver.btmRGBA[x + 1, y].A == 0 && nowRGBA.A == 0))
+                    if (DataSaver.btmRGBA[x + 1, y, intNowRayer] == nowRGBA || (DataSaver.btmRGBA[x + 1, y, intNowRayer].A == 0 && nowRGBA.A == 0))
                     {
                         PaintTool(x + 1, y, nowRGBA);
                     }
                 }
                 if (x >= 1)
                 {
-                    if (DataSaver.btmRGBA[x - 1, y] == nowRGBA || (DataSaver.btmRGBA[x - 1, y].A == 0 && nowRGBA.A == 0))
+                    if (DataSaver.btmRGBA[x - 1, y, intNowRayer] == nowRGBA || (DataSaver.btmRGBA[x - 1, y, intNowRayer].A == 0 && nowRGBA.A == 0))
                     {
                         PaintTool(x - 1, y, nowRGBA);
                     }
+                }
+            }
+        }
+
+        private void PartedReDrawing(int x, int y)
+        {
+            Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
+            Brush brush = new SolidBrush(Pnl.BackColor);
+            grpBitMap[x, y].FillRectangle(brush, rect);
+            for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
+            {
+                if (DataSaver.btmRGBA[x,y,r].A != 0)
+                {
+                    RGBA newRGBA;
+                    newRGBA = new RGBA(DataSaver.btmRGBA[x, y, r]);
+                    newRGBA.A = (int)(DataSaver.btmRGBA[x, y, r].A * (DataSaver.intRayerTP[r] / 100d));
+                    Brush pen = new SolidBrush(newRGBA.ColorReturn());
+                    grpBitMap[x, y].FillRectangle(pen, rect);
                 }
             }
         }
@@ -248,7 +243,7 @@ namespace MyDot
                 int intPointX = pntMouse.X / DataSaver.intSize, intPointY = pntMouse.Y / DataSaver.intSize;
                 if (DataSaver.bolExtraction)
                 {
-                    DataSaver.nowRGBA = new RGBA(DataSaver.btmRGBA[intPointX, intPointY]);
+                    DataSaver.nowRGBA = new RGBA(DataSaver.btmRGBA[intPointX, intPointY, intNowRayer]);
                     DataSaver.pclNow.PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
                     DataSaver.pclNow.RtbR.Text = DataSaver.nowRGBA.R.ToString();
                     DataSaver.pclNow.RtbG.Text = DataSaver.nowRGBA.G.ToString();
@@ -257,49 +252,40 @@ namespace MyDot
                 }
                 else if (DataSaver.bolPaint)
                 {
-                    if (DataSaver.btmRGBA[intPointX, intPointY] != DataSaver.nowRGBA)
+                    if (DataSaver.btmRGBA[intPointX, intPointY, intNowRayer] != DataSaver.nowRGBA)
                     {
-                        RGBA nowRGBA = DataSaver.btmRGBA[intPointX, intPointY];
+                        RGBA nowRGBA = DataSaver.btmRGBA[intPointX, intPointY, intNowRayer];
                         PaintTool(intPointX, intPointY, nowRGBA);
+                        ReDrawing();
                     }
                 }
                 else if (DataSaver.intMirror == 1)
                 {
-                    DataSaver.btmRGBA[intPointX, intPointY] = new RGBA(DataSaver.nowRGBA);
-                    Rectangle rect = new Rectangle(intPointX * DataSaver.intSize, intPointY * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
-                    Brush pen = new SolidBrush(DataSaver.btmRGBA[intPointX, intPointY].ColorReturn());
-                    grpBitMap[intPointX, intPointY].FillRectangle(pen, rect);
+                    DataSaver.btmRGBA[intPointX, intPointY, intNowRayer] = new RGBA(DataSaver.nowRGBA);
+                    PartedReDrawing(intPointX, intPointY);
                     int intNewY = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intPointY;
                     if (intNewY >= 0 && intNewY < DataSaver.intHeight)
                     {
-                        DataSaver.btmRGBA[intPointX, intNewY] = new RGBA(DataSaver.nowRGBA);
-                        Rectangle rectM = new Rectangle(intPointX * DataSaver.intSize, intNewY * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
-                        Brush penM = new SolidBrush(DataSaver.btmRGBA[intPointX, intNewY].ColorReturn());
-                        grpBitMap[intPointX, intNewY].FillRectangle(penM, rectM);
+                        DataSaver.btmRGBA[intPointX, intNewY, intNowRayer] = new RGBA(DataSaver.nowRGBA);
+                        PartedReDrawing(intPointX, intNewY);
                     }
 
                 }
                 else if (DataSaver.intMirror == 2)
                 {
-                    DataSaver.btmRGBA[intPointX, intPointY] = new RGBA(DataSaver.nowRGBA);
-                    Rectangle rect = new Rectangle(intPointX * DataSaver.intSize, intPointY * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
-                    Brush pen = new SolidBrush(DataSaver.btmRGBA[intPointX, intPointY].ColorReturn());
-                    grpBitMap[intPointX, intPointY].FillRectangle(pen, rect);
+                    DataSaver.btmRGBA[intPointX, intPointY, intNowRayer] = new RGBA(DataSaver.nowRGBA);
+                    PartedReDrawing(intPointX,intPointY);
                     int intNewX = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intPointX;
                     if (intNewX >= 0 && intNewX < DataSaver.intWidth)
                     {
-                        DataSaver.btmRGBA[intNewX, intPointY] = new RGBA(DataSaver.nowRGBA);
-                        Rectangle rectM = new Rectangle(intNewX * DataSaver.intSize, intPointY * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
-                        Brush penM = new SolidBrush(DataSaver.btmRGBA[intNewX, intPointY].ColorReturn());
-                        grpBitMap[intNewX, intPointY].FillRectangle(penM, rectM);
+                        DataSaver.btmRGBA[intNewX, intPointY, intNowRayer] = new RGBA(DataSaver.nowRGBA);
+                        PartedReDrawing(intNewX,intPointY);
                     }
                 }
                 else
                 {
-                    DataSaver.btmRGBA[intPointX, intPointY] = new RGBA(DataSaver.nowRGBA);
-                    Rectangle rect = new Rectangle(intPointX * DataSaver.intSize, intPointY * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
-                    Brush pen = new SolidBrush(DataSaver.btmRGBA[intPointX, intPointY].ColorReturn());
-                    grpBitMap[intPointX, intPointY].FillRectangle(pen, rect);
+                    DataSaver.btmRGBA[intPointX, intPointY, intNowRayer] = new RGBA(DataSaver.nowRGBA);
+                    PartedReDrawing(intPointX,intPointY);
                 }
                 if (bolBorder)
                 {
@@ -322,6 +308,17 @@ namespace MyDot
             catch
             {
 
+            }
+        }
+
+        private void SeeBitSet()
+        {
+            for (int y = 0; y < grpBitMap.GetLength(1); y++)
+            {
+                for (int x = 0; x < grpBitMap.GetLength(0); x++)
+                {
+                    PartedReDrawing(x, y);
+                }
             }
         }
 
@@ -369,17 +366,9 @@ namespace MyDot
 
         private void BitMapMain_MouseMove(object sender, MouseEventArgs e)
         {
-            if (intTimer < 1000)
+            if (intTimer < 500)
             {
-                for (int x = 0; x < DataSaver.intWidth; x++)
-                {
-                    for (int y = 0; y < DataSaver.intHeight; y++)
-                    {
-                        Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
-                        Brush pen = new SolidBrush(DataSaver.btmRGBA[x, y].ColorReturn());
-                        grpBitMap[x, y].FillRectangle(pen, rect);
-                    }
-                }
+                ReDrawing();
                 if (bolBorder)
                 {
                     Pen pen = new Pen(Color.Green, 1);

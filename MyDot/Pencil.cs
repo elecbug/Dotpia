@@ -66,8 +66,12 @@ namespace MyDot
             {
                 for (int y = 0; y < DataSaver.intHeight; y++)
                 {
-                    Color color = DataSaver.btmRGBA[x, y].ColorReturn();
-                    bitmap.SetPixel(x, y, color);
+                    RGBA nowRGBA = DataSaver.btmRGBA[x, y, 0];
+                    for(int r=0;r<DataSaver.HIGH_RAYER-1;r++)
+                    {
+                        nowRGBA = Combine(nowRGBA, DataSaver.btmRGBA[x, y, r + 1], r);
+                    }
+                    bitmap.SetPixel(x, y, nowRGBA.ColorReturn());
                 }
             }
             if (File.Exists(strPath))
@@ -77,6 +81,41 @@ namespace MyDot
             bitmap.Save(strPath);
             bitmap.Dispose();
         }
+
+        private RGBA Combine(RGBA ibg, RGBA ifg, int intRayer)
+        {
+            ibg.A = (int)(ibg.A* DataSaver.intRayerTP[intRayer] / 100m);
+            ifg.A = (int)(ifg.A*DataSaver.intRayerTP[intRayer+1] / 100m);
+            RGBAby1 r = new RGBAby1();
+            RGBAby1 bg = new RGBAby1(ibg.R / 255m, ibg.G / 255m, ibg.B / 255m, ibg.A / 255m);
+            RGBAby1 fg = new RGBAby1(ifg.R / 255m, ifg.G / 255m, ifg.B / 255m, ifg.A / 255m);
+            //if (ibg.A==0)
+            //{
+            //    r.R = fg.R;
+            //    r.G = fg.G;
+            //    r.B = fg.B;
+            //}
+            //if(ibg.A==1)
+            //{
+            //    r.R = fg.R * fg.A + bg.R * (1 - fg.A);
+            //    r.G = fg.G * fg.A + bg.G * (1 - fg.A);
+            //    r.B = fg.B * fg.A + bg.B * (1 - fg.A);
+            //}
+            //if(ibg.A==1&&ifg.A==0)
+            //{
+            //    r.R = ibg.R;
+            //    r.G = ibg.G;
+            //    r.B = ibg.B;
+            //}
+            r.A = bg.A + (1 - bg.A) * fg.A;
+            r.R = fg.R * (1 - bg.A) + (fg.R * fg.A + bg.R * (1 - fg.A)) * bg.A;
+            r.G = fg.G * (1 - bg.A) + (fg.G * fg.A + bg.G * (1 - fg.A)) * bg.A;
+            r.B = fg.B * (1 - bg.A) + (fg.B * fg.A + bg.B * (1 - fg.A)) * bg.A;
+
+            return new RGBA((int)(r.R * 255), (int)(r.G * 255), (int)(r.B * 255), (int)(r.A * 255));
+        }
+
+
 
         private void BtnSmart_Click(object sender, EventArgs e)
         {
@@ -115,8 +154,12 @@ namespace MyDot
                             {
                                 for (int yy = 0; yy < intExport; yy++)
                                 {
-                                    Color color = DataSaver.btmRGBA[x / intExport, y / intExport].ColorReturn();
-                                    bitmap.SetPixel(x + xx, y + yy, color);
+                                    RGBA nowRGBA = DataSaver.btmRGBA[x, y, 0];
+                                    for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
+                                    {
+                                        nowRGBA = Combine(nowRGBA, DataSaver.btmRGBA[x, y, r + 1], r);
+                                    }
+                                    bitmap.SetPixel(x + xx, y + yy, nowRGBA.ColorReturn());
                                 }
                             }
                         }
@@ -307,6 +350,16 @@ namespace MyDot
         private void BtnZoom_Click(object sender, EventArgs e)
         {
             DataSaver.bmmNow.ZoomReset();
+        }
+
+        private void BtnRayer_Click(object sender, EventArgs e)
+        {
+            if (DataSaver.ryeNow == null)
+            {
+                Rayer rayer = new Rayer();
+                DataSaver.ryeNow = rayer;
+                rayer.Show();
+            }
         }
     }
 }

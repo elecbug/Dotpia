@@ -51,12 +51,22 @@ namespace MyDot
                 Bitmap btmFile = new Bitmap(strPath);
                 DataSaver.intWidth = btmFile.Width;
                 DataSaver.intHeight = btmFile.Height;
-                DataSaver.btmRGBA = new RGBA[btmFile.Width, btmFile.Height];
+                DataSaver.btmRGBA = new RGBA[btmFile.Width, btmFile.Height, DataSaver.HIGH_RAYER];
                 for (int x = 0; x < DataSaver.btmRGBA.GetLength(0); x++)
                 {
                     for (int y = 0; y < DataSaver.btmRGBA.GetLength(1); y++)
                     {
-                        DataSaver.btmRGBA[x, y] = new RGBA(btmFile.GetPixel(x, y));
+                        DataSaver.btmRGBA[x, y, 0] = new RGBA(btmFile.GetPixel(x, y));
+                    }
+                }
+                for (int r = 1; r < DataSaver.HIGH_RAYER; r++)
+                {
+                    for (int x = 0; x < DataSaver.btmRGBA.GetLength(0); x++)
+                    {
+                        for (int y = 0; y < DataSaver.btmRGBA.GetLength(1); y++)
+                        {
+                            DataSaver.btmRGBA[x, y, r] = new RGBA();
+                        }
                     }
                 }
                 if (DataSaver.bmmNow == null)
@@ -71,7 +81,6 @@ namespace MyDot
                     DataSaver.pclNow = pclForm;
                     pclForm.Show();
                 }
-
             }
         }
 

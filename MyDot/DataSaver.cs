@@ -12,7 +12,8 @@ namespace MyDot
         public static int intWidth = 0;
         public static int intHeight = 0;
         public static RGBA nowRGBA = new RGBA();
-        public static RGBA[,] btmRGBA;
+        public const int HIGH_RAYER = 5;
+        public static RGBA[,,] btmRGBA;
         public static BitMapMain bmmNow = null;
         public static Pencil pclNow = null;
         public static RGBA clickRGBA = new RGBA();
@@ -22,7 +23,9 @@ namespace MyDot
         public static int intStrMirror;
         public static Graphics g;
         public static int intSize;
-        public static RGBA[] saveRGBA = new RGBA[7]; 
+        public static RGBA[] saveRGBA = new RGBA[7];
+        public static Rayer ryeNow;
+        public static int[] intRayerTP = new int[5];
     }
 
     public class RGBA
@@ -106,6 +109,38 @@ namespace MyDot
             {
                 return true;
             }
+        }
+    }
+
+    public class RGBAby1
+    {
+        public decimal R;
+        public decimal G;
+        public decimal B;
+        public decimal A;
+
+        public RGBAby1()
+        {
+            R = 0;
+            G = 0;
+            B = 0;
+            A = 0;
+        }
+
+        public RGBAby1(decimal R, decimal G, decimal B)
+        {
+            this.R = R;
+            this.G = G;
+            this.B = B;
+            this.A = 255;
+        }
+
+        public RGBAby1(decimal R, decimal G, decimal B, decimal A)
+        {
+            this.R = R;
+            this.G = G;
+            this.B = B;
+            this.A = A;
         }
     }
 }

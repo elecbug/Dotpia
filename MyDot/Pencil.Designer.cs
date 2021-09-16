@@ -68,6 +68,7 @@ namespace MyDot
             this.BtnZoom = new System.Windows.Forms.Button();
             this.BtnMIrror = new System.Windows.Forms.Button();
             this.RtbMirror = new System.Windows.Forms.RichTextBox();
+            this.BtnRayer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -439,6 +440,7 @@ namespace MyDot
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.BtnRayer);
             this.groupBox3.Controls.Add(this.BtnZoom);
             this.groupBox3.Controls.Add(this.BtnMIrror);
             this.groupBox3.Controls.Add(this.BtnBorder);
@@ -483,6 +485,17 @@ namespace MyDot
             this.RtbMirror.Text = "";
             this.RtbMirror.TextChanged += new System.EventHandler(this.RtbMirror_TextChanged);
             this.RtbMirror.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
+            // 
+            // BtnRayer
+            // 
+            this.BtnRayer.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnRayer.Location = new System.Drawing.Point(7, 121);
+            this.BtnRayer.Name = "BtnRayer";
+            this.BtnRayer.Size = new System.Drawing.Size(69, 42);
+            this.BtnRayer.TabIndex = 3;
+            this.BtnRayer.Text = "Rayer";
+            this.BtnRayer.UseVisualStyleBackColor = false;
+            this.BtnRayer.Click += new System.EventHandler(this.BtnRayer_Click);
             // 
             // Pencil
             // 
@@ -555,5 +568,6 @@ namespace MyDot
         private System.Windows.Forms.Button Btn2;
         private System.Windows.Forms.Button Btn1;
         private System.Windows.Forms.Button BtnZoom;
+        private System.Windows.Forms.Button BtnRayer;
     }
 }
