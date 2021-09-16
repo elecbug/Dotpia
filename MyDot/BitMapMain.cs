@@ -85,7 +85,6 @@ namespace MyDot
             Pnl.Width = DataSaver.intSize * DataSaver.intWidth;
             Pnl.Height = DataSaver.intSize * DataSaver.intHeight;
             ReDrawing();
-
         }
 
         private void ReDrawing()
@@ -105,6 +104,23 @@ namespace MyDot
                     Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
                     Brush pen = new SolidBrush(DataSaver.btmRGBA[x, y].ColorReturn());
                     grpBitMap[x, y].FillRectangle(pen, rect);
+                }
+            }
+            if (bolBorder)
+            {
+                Pen pen = new Pen(Color.Green, 1);
+                for (int i = 0, j = 0; i < grpGrid.Length; i++)
+                {
+                    grpGrid[i] = Pnl.CreateGraphics();
+                    if (i <= DataSaver.intHeight + 1)
+                    {
+                        grpGrid[i].DrawLine(pen, new Point(0, i * DataSaver.intSize), new Point(DataSaver.intSize * grpBitMap.GetLength(1), i * DataSaver.intSize));
+                    }
+                    else
+                    {
+                        grpGrid[i].DrawLine(pen, new Point(j * DataSaver.intSize, 0), new Point(j * DataSaver.intSize, DataSaver.intSize * grpBitMap.GetLength(0)));
+                        j++;
+                    }
                 }
             }
         }
