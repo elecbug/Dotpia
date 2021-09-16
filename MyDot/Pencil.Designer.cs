@@ -49,6 +49,7 @@ namespace MyDot
             this.BtnExtraction = new System.Windows.Forms.Button();
             this.BtnPaint = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnNewSave = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Btn7 = new System.Windows.Forms.Button();
             this.Btn6 = new System.Windows.Forms.Button();
@@ -69,7 +70,6 @@ namespace MyDot
             this.BtnZoom = new System.Windows.Forms.Button();
             this.BtnMIrror = new System.Windows.Forms.Button();
             this.RtbMirror = new System.Windows.Forms.RichTextBox();
-            this.BtnNewSave = new System.Windows.Forms.Button();
             this.SfdNewSave = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -272,6 +272,17 @@ namespace MyDot
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "File";
             // 
+            // BtnNewSave
+            // 
+            this.BtnNewSave.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnNewSave.Location = new System.Drawing.Point(98, 121);
+            this.BtnNewSave.Name = "BtnNewSave";
+            this.BtnNewSave.Size = new System.Drawing.Size(120, 42);
+            this.BtnNewSave.TabIndex = 3;
+            this.BtnNewSave.Text = "Save Dotpia";
+            this.BtnNewSave.UseVisualStyleBackColor = false;
+            this.BtnNewSave.Click += new System.EventHandler(this.BtnNewSave_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.Btn7);
@@ -464,7 +475,7 @@ namespace MyDot
             this.BtnRayer.Name = "BtnRayer";
             this.BtnRayer.Size = new System.Drawing.Size(69, 42);
             this.BtnRayer.TabIndex = 3;
-            this.BtnRayer.Text = "Rayer";
+            this.BtnRayer.Text = "Layer";
             this.BtnRayer.UseVisualStyleBackColor = false;
             this.BtnRayer.Click += new System.EventHandler(this.BtnRayer_Click);
             // 
@@ -499,17 +510,6 @@ namespace MyDot
             this.RtbMirror.Text = "";
             this.RtbMirror.TextChanged += new System.EventHandler(this.RtbMirror_TextChanged);
             this.RtbMirror.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
-            // 
-            // BtnNewSave
-            // 
-            this.BtnNewSave.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnNewSave.Location = new System.Drawing.Point(98, 121);
-            this.BtnNewSave.Name = "BtnNewSave";
-            this.BtnNewSave.Size = new System.Drawing.Size(120, 42);
-            this.BtnNewSave.TabIndex = 3;
-            this.BtnNewSave.Text = "Save Dotpia";
-            this.BtnNewSave.UseVisualStyleBackColor = false;
-            this.BtnNewSave.Click += new System.EventHandler(this.BtnNewSave_Click);
             // 
             // SfdNewSave
             // 

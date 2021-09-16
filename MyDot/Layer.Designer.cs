@@ -1,7 +1,7 @@
 ﻿
 namespace MyDot
 {
-    partial class Rayer
+    partial class Layer
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace MyDot
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Rayer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Layer));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Rtb0 = new System.Windows.Forms.RichTextBox();
             this.Rtb1 = new System.Windows.Forms.RichTextBox();
@@ -61,7 +61,7 @@ namespace MyDot
             this.groupBox1.Size = new System.Drawing.Size(138, 174);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Choice Rayer";
+            this.groupBox1.Text = "Choice Layer";
             // 
             // Rtb0
             // 
@@ -173,7 +173,7 @@ namespace MyDot
             this.Cbx4.UseVisualStyleBackColor = true;
             this.Cbx4.CheckedChanged += new System.EventHandler(this.Cbx_CheckedChanged);
             // 
-            // Rayer
+            // Layer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -184,7 +184,7 @@ namespace MyDot
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MaximizeBox = false;
-            this.Name = "Rayer";
+            this.Name = "Layer";
             this.Text = "Rayer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Rayer_FormClosed);
             this.Load += new System.EventHandler(this.Rayer_Load);

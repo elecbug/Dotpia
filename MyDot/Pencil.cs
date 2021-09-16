@@ -357,7 +357,7 @@ namespace MyDot
         {
             if (DataSaver.ryeNow == null)
             {
-                Rayer rayer = new Rayer();
+                Layer rayer = new Layer();
                 DataSaver.ryeNow = rayer;
                 rayer.Show();
             }

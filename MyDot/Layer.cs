@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MyDot
 {
-    public partial class Rayer : Form
+    public partial class Layer : Form
     {
-        public Rayer()
+        public Layer()
         {
             InitializeComponent();
         }
