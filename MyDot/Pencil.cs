@@ -303,5 +303,10 @@ namespace MyDot
                 case 6: Pbx7.BackColor = DataSaver.nowRGBA.ColorReturn(); break;
             }
         }
+
+        private void BtnZoom_Click(object sender, EventArgs e)
+        {
+            DataSaver.bmmNow.ZoomReset();
+        }
     }
 }

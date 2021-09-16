@@ -65,6 +65,7 @@ namespace MyDot
             this.Pbx2 = new System.Windows.Forms.PictureBox();
             this.Pbx1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BtnZoom = new System.Windows.Forms.Button();
             this.BtnMIrror = new System.Windows.Forms.Button();
             this.RtbMirror = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
@@ -136,12 +137,13 @@ namespace MyDot
             // 
             // BtnSave
             // 
+            this.BtnSave.BackColor = System.Drawing.SystemColors.Control;
             this.BtnSave.Location = new System.Drawing.Point(98, 121);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(120, 42);
             this.BtnSave.TabIndex = 3;
             this.BtnSave.Text = "Save";
-            this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.UseVisualStyleBackColor = false;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // SfdSave
@@ -150,6 +152,7 @@ namespace MyDot
             // 
             // BtnSmart
             // 
+            this.BtnSmart.BackColor = System.Drawing.SystemColors.Control;
             this.BtnSmart.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.BtnSmart.Location = new System.Drawing.Point(6, 249);
             this.BtnSmart.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -157,7 +160,7 @@ namespace MyDot
             this.BtnSmart.Size = new System.Drawing.Size(314, 43);
             this.BtnSmart.TabIndex = 2;
             this.BtnSmart.Text = "Smart Set";
-            this.BtnSmart.UseVisualStyleBackColor = true;
+            this.BtnSmart.UseVisualStyleBackColor = false;
             this.BtnSmart.Click += new System.EventHandler(this.BtnSmart_Click);
             // 
             // BtnBorder
@@ -173,12 +176,13 @@ namespace MyDot
             // 
             // BtnExport
             // 
+            this.BtnExport.BackColor = System.Drawing.SystemColors.Control;
             this.BtnExport.Location = new System.Drawing.Point(98, 73);
             this.BtnExport.Name = "BtnExport";
             this.BtnExport.Size = new System.Drawing.Size(120, 42);
             this.BtnExport.TabIndex = 3;
             this.BtnExport.Text = "Export";
-            this.BtnExport.UseVisualStyleBackColor = true;
+            this.BtnExport.UseVisualStyleBackColor = false;
             this.BtnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 
             // RtbExport
@@ -192,12 +196,13 @@ namespace MyDot
             // 
             // BtnCombine
             // 
+            this.BtnCombine.BackColor = System.Drawing.SystemColors.Control;
             this.BtnCombine.Location = new System.Drawing.Point(98, 25);
             this.BtnCombine.Name = "BtnCombine";
             this.BtnCombine.Size = new System.Drawing.Size(120, 42);
             this.BtnCombine.TabIndex = 3;
             this.BtnCombine.Text = "Combine";
-            this.BtnCombine.UseVisualStyleBackColor = true;
+            this.BtnCombine.UseVisualStyleBackColor = false;
             this.BtnCombine.Click += new System.EventHandler(this.BtnCombine_Click);
             // 
             // RtbCWidth
@@ -434,6 +439,7 @@ namespace MyDot
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.BtnZoom);
             this.groupBox3.Controls.Add(this.BtnMIrror);
             this.groupBox3.Controls.Add(this.BtnBorder);
             this.groupBox3.Controls.Add(this.RtbMirror);
@@ -445,6 +451,17 @@ namespace MyDot
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tool";
+            // 
+            // BtnZoom
+            // 
+            this.BtnZoom.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnZoom.Location = new System.Drawing.Point(139, 73);
+            this.BtnZoom.Name = "BtnZoom";
+            this.BtnZoom.Size = new System.Drawing.Size(126, 42);
+            this.BtnZoom.TabIndex = 3;
+            this.BtnZoom.Text = "Zoom Reset";
+            this.BtnZoom.UseVisualStyleBackColor = false;
+            this.BtnZoom.Click += new System.EventHandler(this.BtnZoom_Click);
             // 
             // BtnMIrror
             // 
@@ -537,5 +554,6 @@ namespace MyDot
         private System.Windows.Forms.Button Btn3;
         private System.Windows.Forms.Button Btn2;
         private System.Windows.Forms.Button Btn1;
+        private System.Windows.Forms.Button BtnZoom;
     }
 }

@@ -27,18 +27,84 @@ namespace MyDot
 
         private void BitMapMain_Load(object sender, EventArgs e)
         {
-            Timer.Start();
-            grpGrid = new Graphics[DataSaver.intWidth + 1 + DataSaver.intHeight + 1 + 1];
-            ButtonMake(DataSaver.intWidth, DataSaver.intHeight);
-            if (DataSaver.btmRGBA == null)
+            try
             {
-                DataSaver.btmRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight];
-                for (int x = 0; x < DataSaver.intWidth; x++)
+                Pnl.MouseWheel += new MouseEventHandler(Mouse_Wheel);
+                Timer.Start();
+                grpGrid = new Graphics[DataSaver.intWidth + 1 + DataSaver.intHeight + 1 + 1];
+                ButtonMake(DataSaver.intWidth, DataSaver.intHeight);
+                if (DataSaver.btmRGBA == null)
                 {
-                    for (int y = 0; y < DataSaver.intHeight; y++)
+                    DataSaver.btmRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight];
+                    for (int x = 0; x < DataSaver.intWidth; x++)
                     {
-                        DataSaver.btmRGBA[x, y] = new RGBA();
+                        for (int y = 0; y < DataSaver.intHeight; y++)
+                        {
+                            DataSaver.btmRGBA[x, y] = new RGBA();
+                        }
                     }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Mouse_Wheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                Point pntNow = Pnl.Location;
+                pntNow.X -= pntMouse.X;
+                pntNow.Y -= pntMouse.Y;
+                Pnl.Location = pntNow;
+                Pnl.Width *= 2;
+                Pnl.Height *= 2;
+                DataSaver.intSize *= 2;
+            }
+            if (e.Delta < 0)
+            {
+                Point pntNow = Pnl.Location;
+                pntNow.X += pntMouse.X / 2;
+                pntNow.Y += pntMouse.Y / 2;
+                Pnl.Location = pntNow;
+                Pnl.Width /= 2;
+                Pnl.Height /= 2;
+                DataSaver.intSize /= 2;
+            }
+            ReDrawing();
+        }
+
+        public void ZoomReset()
+        {
+            Pnl.Location = new Point(12, 12);
+            Pnl.Width = 800;
+            Pnl.Height = 600;
+            DataSaver.intSize = Math.Min(Pnl.Width / grpBitMap.GetLength(0), Pnl.Height / grpBitMap.GetLength(1));
+            Pnl.Width = DataSaver.intSize * DataSaver.intWidth;
+            Pnl.Height = DataSaver.intSize * DataSaver.intHeight;
+            ReDrawing();
+
+        }
+
+        private void ReDrawing()
+        {
+            for (int y = 0; y < grpBitMap.GetLength(1); y++)
+            {
+                for (int x = 0; x < grpBitMap.GetLength(0); x++)
+                {
+                    grpBitMap[x, y].Clear(Pnl.BackColor);
+                    grpBitMap[x, y] = Pnl.CreateGraphics();
+                }
+            }
+            for (int y = 0; y < grpBitMap.GetLength(1); y++)
+            {
+                for (int x = 0; x < grpBitMap.GetLength(0); x++)
+                {
+                    Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
+                    Brush pen = new SolidBrush(DataSaver.btmRGBA[x, y].ColorReturn());
+                    grpBitMap[x, y].FillRectangle(pen, rect);
                 }
             }
         }
@@ -47,7 +113,7 @@ namespace MyDot
         {
             if (!bolBorder)
             {
-                Pen pen = new Pen(Color.Green, 5);
+                Pen pen = new Pen(Color.Green, 1);
                 for (int i = 0, j = 0; i < grpGrid.Length; i++)
                 {
                     grpGrid[i] = Pnl.CreateGraphics();
@@ -84,19 +150,26 @@ namespace MyDot
 
         private void ButtonMake(int intWidth, int intHeight)
         {
-            grpBitMap = new Graphics[intWidth, intHeight];
-            int intControlWidth = Pnl.Width / grpBitMap.GetLength(0);
-            int intControlHeight = Pnl.Height / grpBitMap.GetLength(1);
-            int intSize = Math.Min(intControlWidth, intControlHeight);
-            Pnl.Width = intSize * intWidth;
-            Pnl.Height = intSize * intHeight;
-            DataSaver.intSize = intSize;
-            for (int y = 0; y < grpBitMap.GetLength(1); y++)
+            try
             {
-                for (int x = 0; x < grpBitMap.GetLength(0); x++)
+                grpBitMap = new Graphics[intWidth, intHeight];
+                int intControlWidth = Pnl.Width / grpBitMap.GetLength(0);
+                int intControlHeight = Pnl.Height / grpBitMap.GetLength(1);
+                int intSize = Math.Min(intControlWidth, intControlHeight);
+                Pnl.Width = intSize * intWidth;
+                Pnl.Height = intSize * intHeight;
+                DataSaver.intSize = intSize;
+                for (int y = 0; y < grpBitMap.GetLength(1); y++)
                 {
-                    grpBitMap[x, y] = Pnl.CreateGraphics();
+                    for (int x = 0; x < grpBitMap.GetLength(0); x++)
+                    {
+                        grpBitMap[x, y] = Pnl.CreateGraphics();
+                    }
                 }
+            }
+            catch
+            {
+
             }
         }
 
@@ -214,7 +287,7 @@ namespace MyDot
                 }
                 if (bolBorder)
                 {
-                    Pen pen = new Pen(Color.Green, 5);
+                    Pen pen = new Pen(Color.Green, 1);
                     for (int i = 0, j = 0; i < grpGrid.Length; i++)
                     {
                         grpGrid[i] = Pnl.CreateGraphics();
@@ -239,6 +312,7 @@ namespace MyDot
         private void BitMapMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             DataSaver.bmmNow = null;
+            DataSaver.btmRGBA = null;
         }
 
         private void BitMapMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -292,7 +366,7 @@ namespace MyDot
                 }
                 if (bolBorder)
                 {
-                    Pen pen = new Pen(Color.Green, 5);
+                    Pen pen = new Pen(Color.Green, 1);
                     for (int i = 0, j = 0; i < grpGrid.Length; i++)
                     {
                         grpGrid[i] = Pnl.CreateGraphics();
