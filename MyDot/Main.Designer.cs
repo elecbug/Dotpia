@@ -155,7 +155,7 @@ namespace MyDot
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.Text = "My Dot";
+            this.Text = "Dotpia";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

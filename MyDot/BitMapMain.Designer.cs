@@ -64,7 +64,7 @@ namespace MyDot
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "BitMapMain";
-            this.Text = "My Dot";
+            this.Text = "Dotpia";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BitMapMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BitMapMain_FormClosed);
             this.Load += new System.EventHandler(this.BitMapMain_Load);
