@@ -65,10 +65,12 @@ namespace MyDot
             this.Pbx2 = new System.Windows.Forms.PictureBox();
             this.Pbx1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BtnRayer = new System.Windows.Forms.Button();
             this.BtnZoom = new System.Windows.Forms.Button();
             this.BtnMIrror = new System.Windows.Forms.Button();
             this.RtbMirror = new System.Windows.Forms.RichTextBox();
-            this.BtnRayer = new System.Windows.Forms.Button();
+            this.BtnNewSave = new System.Windows.Forms.Button();
+            this.SfdNewSave = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -139,9 +141,9 @@ namespace MyDot
             // BtnSave
             // 
             this.BtnSave.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnSave.Location = new System.Drawing.Point(98, 121);
+            this.BtnSave.Location = new System.Drawing.Point(7, 121);
             this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(120, 42);
+            this.BtnSave.Size = new System.Drawing.Size(85, 42);
             this.BtnSave.TabIndex = 3;
             this.BtnSave.Text = "Save";
             this.BtnSave.UseVisualStyleBackColor = false;
@@ -258,6 +260,7 @@ namespace MyDot
             // 
             this.groupBox1.Controls.Add(this.RtbCWidth);
             this.groupBox1.Controls.Add(this.RtbCHeight);
+            this.groupBox1.Controls.Add(this.BtnNewSave);
             this.groupBox1.Controls.Add(this.BtnSave);
             this.groupBox1.Controls.Add(this.BtnExport);
             this.groupBox1.Controls.Add(this.RtbExport);
@@ -454,6 +457,17 @@ namespace MyDot
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tool";
             // 
+            // BtnRayer
+            // 
+            this.BtnRayer.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnRayer.Location = new System.Drawing.Point(7, 121);
+            this.BtnRayer.Name = "BtnRayer";
+            this.BtnRayer.Size = new System.Drawing.Size(69, 42);
+            this.BtnRayer.TabIndex = 3;
+            this.BtnRayer.Text = "Rayer";
+            this.BtnRayer.UseVisualStyleBackColor = false;
+            this.BtnRayer.Click += new System.EventHandler(this.BtnRayer_Click);
+            // 
             // BtnZoom
             // 
             this.BtnZoom.BackColor = System.Drawing.SystemColors.Control;
@@ -486,16 +500,20 @@ namespace MyDot
             this.RtbMirror.TextChanged += new System.EventHandler(this.RtbMirror_TextChanged);
             this.RtbMirror.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
             // 
-            // BtnRayer
+            // BtnNewSave
             // 
-            this.BtnRayer.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnRayer.Location = new System.Drawing.Point(7, 121);
-            this.BtnRayer.Name = "BtnRayer";
-            this.BtnRayer.Size = new System.Drawing.Size(69, 42);
-            this.BtnRayer.TabIndex = 3;
-            this.BtnRayer.Text = "Rayer";
-            this.BtnRayer.UseVisualStyleBackColor = false;
-            this.BtnRayer.Click += new System.EventHandler(this.BtnRayer_Click);
+            this.BtnNewSave.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnNewSave.Location = new System.Drawing.Point(98, 121);
+            this.BtnNewSave.Name = "BtnNewSave";
+            this.BtnNewSave.Size = new System.Drawing.Size(120, 42);
+            this.BtnNewSave.TabIndex = 3;
+            this.BtnNewSave.Text = "Save Dotpia";
+            this.BtnNewSave.UseVisualStyleBackColor = false;
+            this.BtnNewSave.Click += new System.EventHandler(this.BtnNewSave_Click);
+            // 
+            // SfdNewSave
+            // 
+            this.SfdNewSave.Filter = "|*.dotpia";
             // 
             // Pencil
             // 
@@ -569,5 +587,7 @@ namespace MyDot
         private System.Windows.Forms.Button Btn1;
         private System.Windows.Forms.Button BtnZoom;
         private System.Windows.Forms.Button BtnRayer;
+        private System.Windows.Forms.Button BtnNewSave;
+        private System.Windows.Forms.SaveFileDialog SfdNewSave;
     }
 }

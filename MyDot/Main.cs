@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,7 +87,7 @@ namespace MyDot
 
         private void RtbKeyPress(object sender, KeyPressEventArgs e)
         {
-            if(!Char.IsDigit(e.KeyChar)||e.KeyChar==Convert.ToChar(Keys.Back))
+            if (!Char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back))
             {
                 e.Handled = true;
             }
@@ -105,6 +106,51 @@ namespace MyDot
         private void Main_HelpButtonClicked(object sender, EventArgs e)
         {
             new Helper().Show();
+        }
+
+        private void BtnNewLoad_Click(object sender, EventArgs e)
+        {
+            if (OfdNewOpen.ShowDialog() == DialogResult.OK)
+            {
+                string strValue = File.ReadAllText(OfdNewOpen.FileName.ToString());
+                int intWidth = int.Parse(strValue[0].ToString() + strValue[1].ToString() + strValue[2].ToString() + strValue[3].ToString());
+                int intHeight = int.Parse(strValue[4].ToString() + strValue[5].ToString() + strValue[6].ToString() + strValue[7].ToString());
+                int intRayer = int.Parse(strValue[8].ToString());
+                DataSaver.intWidth = intWidth;
+                DataSaver.intHeight = intHeight;
+                int intReader = 9;
+                DataSaver.btmRGBA = new RGBA[intWidth, intHeight, intRayer];
+                for (int r = 0; r < intRayer; r++)
+                {
+                    for (int y = 0; y < intHeight; y++)
+                    {
+                        for (int x = 0; x < intWidth; x++)
+                        {
+                            int R = int.Parse(strValue[intReader].ToString() + strValue[intReader + 1].ToString() + strValue[intReader + 2].ToString());
+                            intReader += 3;
+                            int G = int.Parse(strValue[intReader].ToString() + strValue[intReader + 1].ToString() + strValue[intReader + 2].ToString());
+                            intReader += 3;
+                            int B = int.Parse(strValue[intReader].ToString() + strValue[intReader + 1].ToString() + strValue[intReader + 2].ToString());
+                            intReader += 3;
+                            int A = int.Parse(strValue[intReader].ToString() + strValue[intReader + 1].ToString() + strValue[intReader + 2].ToString());
+                            intReader += 3;
+                            DataSaver.btmRGBA[x, y, r] = new RGBA(R, G, B, A);
+                        }
+                    }
+                }
+                if (DataSaver.bmmNow == null)
+                {
+                    BitMapMain BmmForm = new BitMapMain();
+                    DataSaver.bmmNow = BmmForm;
+                    BmmForm.Show();
+                }
+                if (DataSaver.pclNow == null)
+                {
+                    Pencil pclForm = new Pencil();
+                    DataSaver.pclNow = pclForm;
+                    pclForm.Show();
+                }
+            }
         }
     }
 }

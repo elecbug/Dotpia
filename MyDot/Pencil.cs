@@ -67,9 +67,14 @@ namespace MyDot
                 for (int y = 0; y < DataSaver.intHeight; y++)
                 {
                     RGBA nowRGBA = DataSaver.btmRGBA[x, y, 0];
-                    for(int r=0;r<DataSaver.HIGH_RAYER-1;r++)
+                    for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
                     {
                         nowRGBA = Combine(nowRGBA, DataSaver.btmRGBA[x, y, r + 1], r);
+                    }
+                    nowRGBA.A *= 2;
+                    if (nowRGBA.A > 255)
+                    {
+                        nowRGBA.A = 255;
                     }
                     bitmap.SetPixel(x, y, nowRGBA.ColorReturn());
                 }
@@ -84,34 +89,30 @@ namespace MyDot
 
         private RGBA Combine(RGBA ibg, RGBA ifg, int intRayer)
         {
-            ibg.A = (int)(ibg.A* DataSaver.intRayerTP[intRayer] / 100m);
-            ifg.A = (int)(ifg.A*DataSaver.intRayerTP[intRayer+1] / 100m);
+            ibg.A = (int)(ibg.A * DataSaver.intRayerTP[intRayer] / 100m);
+            ifg.A = (int)(ifg.A * DataSaver.intRayerTP[intRayer + 1] / 100m);
             RGBAby1 r = new RGBAby1();
             RGBAby1 bg = new RGBAby1(ibg.R / 255m, ibg.G / 255m, ibg.B / 255m, ibg.A / 255m);
             RGBAby1 fg = new RGBAby1(ifg.R / 255m, ifg.G / 255m, ifg.B / 255m, ifg.A / 255m);
-            //if (ibg.A==0)
-            //{
-            //    r.R = fg.R;
-            //    r.G = fg.G;
-            //    r.B = fg.B;
-            //}
-            //if(ibg.A==1)
-            //{
-            //    r.R = fg.R * fg.A + bg.R * (1 - fg.A);
-            //    r.G = fg.G * fg.A + bg.G * (1 - fg.A);
-            //    r.B = fg.B * fg.A + bg.B * (1 - fg.A);
-            //}
-            //if(ibg.A==1&&ifg.A==0)
-            //{
-            //    r.R = ibg.R;
-            //    r.G = ibg.G;
-            //    r.B = ibg.B;
-            //}
-            r.A = bg.A + (1 - bg.A) * fg.A;
-            r.R = fg.R * (1 - bg.A) + (fg.R * fg.A + bg.R * (1 - fg.A)) * bg.A;
-            r.G = fg.G * (1 - bg.A) + (fg.G * fg.A + bg.G * (1 - fg.A)) * bg.A;
-            r.B = fg.B * (1 - bg.A) + (fg.B * fg.A + bg.B * (1 - fg.A)) * bg.A;
+            if (bg.A == 0 && fg.A == 0)
+            {
 
+            }
+            else if (bg.A == 0)
+            {
+                r = new RGBAby1(fg);
+            }
+            else if (fg.A == 0)
+            {
+                r = new RGBAby1(bg);
+            }
+            else if (fg.A != 0 && bg.A != 0)
+            {
+                r.A = 1 - (1 - fg.A) * (1 - bg.A);
+                r.R = (fg.R * fg.A / r.A) + (bg.R * bg.A * (1 - fg.A) / r.A);
+                r.G = (fg.G * fg.A / r.A) + (bg.G * bg.A * (1 - fg.A) / r.A);
+                r.B = (fg.B * fg.A / r.A) + (bg.B * bg.A * (1 - fg.A) / r.A);
+            }
             return new RGBA((int)(r.R * 255), (int)(r.G * 255), (int)(r.B * 255), (int)(r.A * 255));
         }
 
@@ -262,7 +263,7 @@ namespace MyDot
 
         private void BtnMIrror_Click(object sender, EventArgs e)
         {
-            if(DataSaver.intMirror==0)
+            if (DataSaver.intMirror == 0)
             {
                 DataSaver.bolPaint = false;
                 DataSaver.bolExtraction = false;
@@ -272,7 +273,7 @@ namespace MyDot
                 BtnMIrror.BackColor = Color.Blue;
                 RtbMirror_TextChanged(sender, e);
             }
-            else if (DataSaver.intMirror==1)
+            else if (DataSaver.intMirror == 1)
             {
                 DataSaver.intMirror = 2;
                 BtnMIrror.BackColor = Color.Red;
@@ -335,7 +336,7 @@ namespace MyDot
         private void Btn_Click(object sender, EventArgs e)
         {
             DataSaver.saveRGBA[((Button)sender).Name[3] - 48 - 1] = new RGBA(DataSaver.nowRGBA);
-            switch(((Button)sender).Name[3] - 48 - 1)
+            switch (((Button)sender).Name[3] - 48 - 1)
             {
                 case 0: Pbx1.BackColor = DataSaver.nowRGBA.ColorReturn(); break;
                 case 1: Pbx2.BackColor = DataSaver.nowRGBA.ColorReturn(); break;
@@ -359,6 +360,36 @@ namespace MyDot
                 Rayer rayer = new Rayer();
                 DataSaver.ryeNow = rayer;
                 rayer.Show();
+            }
+        }
+
+        private void BtnNewSave_Click(object sender, EventArgs e)
+        {
+            if (SfdNewSave.ShowDialog() == DialogResult.OK)
+            {
+                string strSaveTxt = "";
+                strSaveTxt += DataSaver.intWidth.ToString("D4");
+                strSaveTxt += DataSaver.intHeight.ToString("D4");
+                strSaveTxt += DataSaver.HIGH_RAYER;
+                for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
+                {
+                    for (int y = 0; y < DataSaver.intHeight; y++)
+                    {
+                        for (int x = 0; x < DataSaver.intWidth; x++)
+                        {
+                            strSaveTxt += DataSaver.btmRGBA[x, y, r].R.ToString("D3");
+                            strSaveTxt += DataSaver.btmRGBA[x, y, r].G.ToString("D3");
+                            strSaveTxt += DataSaver.btmRGBA[x, y, r].B.ToString("D3");
+                            strSaveTxt += DataSaver.btmRGBA[x, y, r].A.ToString("D3");
+                        }
+                    }
+                }
+                string strPath = SfdNewSave.FileName.ToString();
+                if (File.Exists(strPath))
+                {
+                    File.Delete(strPath);
+                }
+                File.WriteAllText(strPath, strSaveTxt, Encoding.Default);
             }
         }
     }

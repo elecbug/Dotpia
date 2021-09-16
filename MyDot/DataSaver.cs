@@ -142,5 +142,13 @@ namespace MyDot
             this.B = B;
             this.A = A;
         }
+
+        public RGBAby1(RGBAby1 a)
+        {
+            this.R = a.R;
+            this.G = a.G;
+            this.B = a.B;
+            this.A = a.A;
+        }
     }
 }

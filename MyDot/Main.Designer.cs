@@ -40,12 +40,14 @@ namespace MyDot
             this.OfdOpen = new System.Windows.Forms.OpenFileDialog();
             this.BtnPencil = new System.Windows.Forms.Button();
             this.BtnHelp = new System.Windows.Forms.Button();
+            this.BtnNewLoad = new System.Windows.Forms.Button();
+            this.OfdNewOpen = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnNew
             // 
-            this.BtnNew.Location = new System.Drawing.Point(13, 448);
+            this.BtnNew.Location = new System.Drawing.Point(13, 394);
             this.BtnNew.Margin = new System.Windows.Forms.Padding(4);
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(358, 46);
@@ -57,12 +59,12 @@ namespace MyDot
             // BtnLoad
             // 
             this.BtnLoad.AllowDrop = true;
-            this.BtnLoad.Location = new System.Drawing.Point(13, 502);
+            this.BtnLoad.Location = new System.Drawing.Point(12, 448);
             this.BtnLoad.Margin = new System.Windows.Forms.Padding(4);
             this.BtnLoad.Name = "BtnLoad";
             this.BtnLoad.Size = new System.Drawing.Size(358, 46);
             this.BtnLoad.TabIndex = 4;
-            this.BtnLoad.Text = "Load";
+            this.BtnLoad.Text = "Load PNG";
             this.BtnLoad.UseVisualStyleBackColor = true;
             this.BtnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
             // 
@@ -108,7 +110,7 @@ namespace MyDot
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.RtbHeight);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(158, 330);
+            this.groupBox1.Location = new System.Drawing.Point(159, 276);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(213, 111);
             this.groupBox1.TabIndex = 3;
@@ -139,6 +141,22 @@ namespace MyDot
             this.BtnHelp.UseVisualStyleBackColor = true;
             this.BtnHelp.Click += new System.EventHandler(this.Main_HelpButtonClicked);
             // 
+            // BtnNewLoad
+            // 
+            this.BtnNewLoad.AllowDrop = true;
+            this.BtnNewLoad.Location = new System.Drawing.Point(12, 502);
+            this.BtnNewLoad.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnNewLoad.Name = "BtnNewLoad";
+            this.BtnNewLoad.Size = new System.Drawing.Size(358, 46);
+            this.BtnNewLoad.TabIndex = 4;
+            this.BtnNewLoad.Text = "Load Dotpia";
+            this.BtnNewLoad.UseVisualStyleBackColor = true;
+            this.BtnNewLoad.Click += new System.EventHandler(this.BtnNewLoad_Click);
+            // 
+            // OfdNewOpen
+            // 
+            this.OfdNewOpen.Filter = "|*.dotpia";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -148,6 +166,7 @@ namespace MyDot
             this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.BtnPencil);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.BtnNewLoad);
             this.Controls.Add(this.BtnLoad);
             this.Controls.Add(this.BtnNew);
             this.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -174,6 +193,8 @@ namespace MyDot
         private System.Windows.Forms.OpenFileDialog OfdOpen;
         private System.Windows.Forms.Button BtnPencil;
         private System.Windows.Forms.Button BtnHelp;
+        private System.Windows.Forms.Button BtnNewLoad;
+        private System.Windows.Forms.OpenFileDialog OfdNewOpen;
     }
 }
 

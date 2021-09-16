@@ -29,6 +29,7 @@ namespace MyDot
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Rayer));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Rtb0 = new System.Windows.Forms.RichTextBox();
             this.Rtb1 = new System.Windows.Forms.RichTextBox();
@@ -57,14 +58,14 @@ namespace MyDot
             this.groupBox1.Controls.Add(this.Cbx4);
             this.groupBox1.Location = new System.Drawing.Point(9, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(112, 189);
+            this.groupBox1.Size = new System.Drawing.Size(138, 174);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Choice Rayer";
             // 
             // Rtb0
             // 
-            this.Rtb0.Location = new System.Drawing.Point(44, 140);
+            this.Rtb0.Location = new System.Drawing.Point(70, 140);
             this.Rtb0.Name = "Rtb0";
             this.Rtb0.Size = new System.Drawing.Size(62, 23);
             this.Rtb0.TabIndex = 2;
@@ -74,7 +75,7 @@ namespace MyDot
             // 
             // Rtb1
             // 
-            this.Rtb1.Location = new System.Drawing.Point(44, 111);
+            this.Rtb1.Location = new System.Drawing.Point(70, 111);
             this.Rtb1.Name = "Rtb1";
             this.Rtb1.Size = new System.Drawing.Size(62, 23);
             this.Rtb1.TabIndex = 2;
@@ -84,7 +85,7 @@ namespace MyDot
             // 
             // Rtb2
             // 
-            this.Rtb2.Location = new System.Drawing.Point(44, 82);
+            this.Rtb2.Location = new System.Drawing.Point(70, 82);
             this.Rtb2.Name = "Rtb2";
             this.Rtb2.Size = new System.Drawing.Size(62, 23);
             this.Rtb2.TabIndex = 2;
@@ -94,7 +95,7 @@ namespace MyDot
             // 
             // Rtb3
             // 
-            this.Rtb3.Location = new System.Drawing.Point(44, 53);
+            this.Rtb3.Location = new System.Drawing.Point(70, 53);
             this.Rtb3.Name = "Rtb3";
             this.Rtb3.Size = new System.Drawing.Size(62, 23);
             this.Rtb3.TabIndex = 2;
@@ -104,7 +105,7 @@ namespace MyDot
             // 
             // Rtb4
             // 
-            this.Rtb4.Location = new System.Drawing.Point(44, 25);
+            this.Rtb4.Location = new System.Drawing.Point(70, 25);
             this.Rtb4.Name = "Rtb4";
             this.Rtb4.Size = new System.Drawing.Size(62, 23);
             this.Rtb4.TabIndex = 2;
@@ -177,9 +178,10 @@ namespace MyDot
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(296, 362);
+            this.ClientSize = new System.Drawing.Size(159, 196);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MaximizeBox = false;
             this.Name = "Rayer";

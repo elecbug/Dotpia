@@ -54,10 +54,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>711950844E1B81806A44C8FF8284AD3495D26142</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A5F45127F4538E05705FCF04427197F1A0058416</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>MyDot_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -137,7 +138,6 @@
     <EmbeddedResource Include="Rayer.resx">
       <DependentUpon>Rayer.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="MyDot_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

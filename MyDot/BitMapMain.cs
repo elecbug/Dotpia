@@ -41,8 +41,8 @@ namespace MyDot
                 int intControlWidth = Pnl.Width / grpBitMap.GetLength(0);
                 int intControlHeight = Pnl.Height / grpBitMap.GetLength(1);
                 int intSize = Math.Min(intControlWidth, intControlHeight);
-                Pnl.Width = intSize *DataSaver. intWidth;
-                Pnl.Height = intSize *DataSaver. intHeight;
+                Pnl.Width = intSize * DataSaver.intWidth;
+                Pnl.Height = intSize * DataSaver.intHeight;
                 DataSaver.intSize = intSize;
                 for (int y = 0; y < grpBitMap.GetLength(1); y++)
                 {
@@ -225,7 +225,7 @@ namespace MyDot
             grpBitMap[x, y].FillRectangle(brush, rect);
             for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
             {
-                if (DataSaver.btmRGBA[x,y,r].A != 0)
+                if (DataSaver.btmRGBA[x, y, r].A != 0)
                 {
                     RGBA newRGBA;
                     newRGBA = new RGBA(DataSaver.btmRGBA[x, y, r]);
@@ -274,18 +274,18 @@ namespace MyDot
                 else if (DataSaver.intMirror == 2)
                 {
                     DataSaver.btmRGBA[intPointX, intPointY, intNowRayer] = new RGBA(DataSaver.nowRGBA);
-                    PartedReDrawing(intPointX,intPointY);
+                    PartedReDrawing(intPointX, intPointY);
                     int intNewX = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intPointX;
                     if (intNewX >= 0 && intNewX < DataSaver.intWidth)
                     {
                         DataSaver.btmRGBA[intNewX, intPointY, intNowRayer] = new RGBA(DataSaver.nowRGBA);
-                        PartedReDrawing(intNewX,intPointY);
+                        PartedReDrawing(intNewX, intPointY);
                     }
                 }
                 else
                 {
                     DataSaver.btmRGBA[intPointX, intPointY, intNowRayer] = new RGBA(DataSaver.nowRGBA);
-                    PartedReDrawing(intPointX,intPointY);
+                    PartedReDrawing(intPointX, intPointY);
                 }
                 if (bolBorder)
                 {
