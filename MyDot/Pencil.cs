@@ -297,14 +297,14 @@ namespace MyDot
                 if (DataSaver.intMirror == 1)
                 {
                     DataSaver.g.DrawLine(new Pen(Color.White),
-                                         new Point(0, DataSaver.intSize * int.Parse(RtbMirror.Text) + 12),
-                                         new Point(DataSaver.bmmNow.Width, DataSaver.intSize * int.Parse(RtbMirror.Text) + 12));
+                                        new Point(0, DataSaver.intSize * DataSaver.intStrMirror + DataSaver.bmmNow.Pnl.Location.Y),
+                                        new Point(DataSaver.bmmNow.Width, DataSaver.intSize * DataSaver.intStrMirror + DataSaver.bmmNow.Pnl.Location.Y));
                 }
                 else if (DataSaver.intMirror == 2)
                 {
                     DataSaver.g.DrawLine(new Pen(Color.White),
-                                         new Point(DataSaver.intSize * int.Parse(RtbMirror.Text) + 12, 0),
-                                         new Point(DataSaver.intSize * int.Parse(RtbMirror.Text) + 12, DataSaver.bmmNow.Height));
+                                         new Point(DataSaver.intSize * int.Parse(RtbMirror.Text) + DataSaver.bmmNow.Pnl.Location.X, 0),
+                                         new Point(DataSaver.intSize * int.Parse(RtbMirror.Text) + DataSaver.bmmNow.Pnl.Location.X, DataSaver.bmmNow.Height));
                 }
             }
             catch
