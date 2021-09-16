@@ -64,7 +64,7 @@ namespace MyDot
             this.BtnLoad.Name = "BtnLoad";
             this.BtnLoad.Size = new System.Drawing.Size(358, 46);
             this.BtnLoad.TabIndex = 4;
-            this.BtnLoad.Text = "Load PNG";
+            this.BtnLoad.Text = "Load";
             this.BtnLoad.UseVisualStyleBackColor = true;
             this.BtnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
             // 
