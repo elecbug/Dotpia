@@ -368,7 +368,12 @@ namespace Dotpia
         private void BtnNewSave_Click(object sender, EventArgs e)
         {
             if (SfdNewSave.ShowDialog() == DialogResult.OK)
-            {
+            {       
+                string strPath = SfdNewSave.FileName.ToString();
+                if (File.Exists(strPath))
+                {
+                    File.Delete(strPath);
+                }
                 string strSaveTxt = "";
                 strSaveTxt += DataSaver.intWidth.ToString("D4");
                 strSaveTxt += DataSaver.intHeight.ToString("D4");
@@ -377,6 +382,8 @@ namespace Dotpia
                 {
                     strSaveTxt += DataSaver.intRayerTP[i].ToString("D3");
                 }
+                StreamWriter w = File.AppendText(strPath);
+                w.Write(strSaveTxt);
                 for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
                 {
                     for (int y = 0; y < DataSaver.intHeight; y++)
@@ -385,17 +392,15 @@ namespace Dotpia
                         {
                             string strUnicode1 = DataSaver.btmRGBA[x, y, r].RGBAtoUni1().ToString("D5");
                             string strUnicode2 = DataSaver.btmRGBA[x, y, r].RGBAtoUni2().ToString("D5");
-                            strSaveTxt += strUnicode1;
-                            strSaveTxt += strUnicode2;
+                            //strSaveTxt += strUnicode1;
+                            //strSaveTxt += strUnicode2;
+                            w.Write(strUnicode1 + strUnicode2);
                         }
                     }
                 }
-                string strPath = SfdNewSave.FileName.ToString();
-                if (File.Exists(strPath))
-                {
-                    File.Delete(strPath);
-                }
-                File.WriteAllText(strPath, strSaveTxt, Encoding.Default);
+                w.Close();
+                //File.WriteAllText(strPath, strSaveTxt, Encoding.Default);
+                //Writer(strPath, strSaveTxt);
             }
         }
     }
