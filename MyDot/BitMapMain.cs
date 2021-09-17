@@ -372,6 +372,7 @@ namespace MyDot
         {
             DataSaver.bmmNow = null;
             DataSaver.btmRGBA = null;
+            DataSaver.intRayerTP = null;
         }
 
         private void BitMapMain_FormClosing(object sender, FormClosingEventArgs e)
