@@ -18,6 +18,11 @@ namespace Dotpia
             InitializeComponent();
         }
 
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void BtnNew_Click(object sender, EventArgs e)
         {
             try

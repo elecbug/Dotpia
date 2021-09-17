@@ -175,6 +175,7 @@ namespace Dotpia
             this.MaximizeBox = false;
             this.Name = "Main";
             this.Text = "Dotpia";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
