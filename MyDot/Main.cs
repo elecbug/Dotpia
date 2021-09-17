@@ -136,14 +136,22 @@ namespace Dotpia
                     {
                         for (int x = 0; x < intWidth; x++)
                         {
-                            int R = int.Parse(strValue[intReader].ToString() + strValue[intReader + 1].ToString() + strValue[intReader + 2].ToString());
-                            intReader += 3;
-                            int G = int.Parse(strValue[intReader].ToString() + strValue[intReader + 1].ToString() + strValue[intReader + 2].ToString());
-                            intReader += 3;
-                            int B = int.Parse(strValue[intReader].ToString() + strValue[intReader + 1].ToString() + strValue[intReader + 2].ToString());
-                            intReader += 3;
-                            int A = int.Parse(strValue[intReader].ToString() + strValue[intReader + 1].ToString() + strValue[intReader + 2].ToString());
-                            intReader += 3;
+                            int intUnicode1 = int.Parse(strValue[intReader].ToString()
+                                                      + strValue[intReader + 1].ToString()
+                                                      + strValue[intReader + 2].ToString()
+                                                      + strValue[intReader + 3].ToString()
+                                                      + strValue[intReader + 4].ToString());
+                            intReader += 5;
+                            int R = intUnicode1 / 256;
+                            int G = intUnicode1 - R * 256;
+                            int intUnicode2 = int.Parse(strValue[intReader].ToString()
+                                                      + strValue[intReader + 1].ToString()
+                                                      + strValue[intReader + 2].ToString()
+                                                      + strValue[intReader + 3].ToString()
+                                                      + strValue[intReader + 4].ToString());
+                            intReader += 5;
+                            int B = intUnicode2 / 256;
+                            int A = intUnicode2 - B * 256;
                             DataSaver.btmRGBA[x, y, r] = new RGBA(R, G, B, A);
                         }
                     }

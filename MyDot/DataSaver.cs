@@ -110,6 +110,24 @@ namespace Dotpia
                 return true;
             }
         }
+
+        public int RGBAtoUni1()
+        {
+            int returner;
+            int R = this.R * 256;
+            int G = this.G;
+            returner = R + G;
+            return returner;
+        }
+
+        public int RGBAtoUni2()
+        {
+            int returner;
+            int B = this.B * 256;
+            int A = this.A;
+            returner = B + A;
+            return returner;
+        }
     }
 
     public class RGBAby1

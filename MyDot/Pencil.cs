@@ -383,10 +383,10 @@ namespace Dotpia
                     {
                         for (int x = 0; x < DataSaver.intWidth; x++)
                         {
-                            strSaveTxt += DataSaver.btmRGBA[x, y, r].R.ToString("D3");
-                            strSaveTxt += DataSaver.btmRGBA[x, y, r].G.ToString("D3");
-                            strSaveTxt += DataSaver.btmRGBA[x, y, r].B.ToString("D3");
-                            strSaveTxt += DataSaver.btmRGBA[x, y, r].A.ToString("D3");
+                            string strUnicode1 = DataSaver.btmRGBA[x, y, r].RGBAtoUni1().ToString("D5");
+                            string strUnicode2 = DataSaver.btmRGBA[x, y, r].RGBAtoUni2().ToString("D5");
+                            strSaveTxt += strUnicode1;
+                            strSaveTxt += strUnicode2;
                         }
                     }
                 }
