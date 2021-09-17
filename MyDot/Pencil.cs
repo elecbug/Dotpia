@@ -28,6 +28,8 @@ namespace MyDot
             {
                 DataSaver.saveRGBA[i] = new RGBA();
             }
+            PbxColor.BackColor = Color.White;
+            DataSaver.nowRGBA = new RGBA(255, 255, 255, 255);
         }
 
         private void RtbKeyPress(object sender, KeyPressEventArgs e)
