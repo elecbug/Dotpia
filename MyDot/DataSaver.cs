@@ -24,8 +24,8 @@ namespace MyDot
         public static Graphics g;
         public static int intSize;
         public static RGBA[] saveRGBA = new RGBA[7];
-        public static Layer ryeNow;
-        public static int[] intRayerTP = new int[5];
+        public static Layer lyeNow;
+        public static int[] intRayerTP;
     }
 
     public class RGBA

@@ -30,9 +30,13 @@ namespace MyDot
         {
             try
             {
-                for (int i = 0; i < DataSaver.HIGH_RAYER; i++)
+                if (DataSaver.intRayerTP == null)
                 {
-                    DataSaver.intRayerTP[i] = 100;
+                    DataSaver.intRayerTP = new int[DataSaver.HIGH_RAYER];
+                    for (int i = 0; i < DataSaver.HIGH_RAYER; i++)
+                    {
+                        DataSaver.intRayerTP[i] = 100;
+                    }
                 }
                 Pnl.MouseWheel += new MouseEventHandler(Mouse_Wheel);
                 Timer.Start();

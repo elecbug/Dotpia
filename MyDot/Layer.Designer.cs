@@ -202,10 +202,10 @@ namespace MyDot
         private System.Windows.Forms.RadioButton Cbx2;
         private System.Windows.Forms.RadioButton Cbx3;
         private System.Windows.Forms.RadioButton Cbx4;
-        private System.Windows.Forms.RichTextBox Rtb0;
-        private System.Windows.Forms.RichTextBox Rtb1;
-        private System.Windows.Forms.RichTextBox Rtb2;
-        private System.Windows.Forms.RichTextBox Rtb3;
-        private System.Windows.Forms.RichTextBox Rtb4;
+        public System.Windows.Forms.RichTextBox Rtb0;
+        public System.Windows.Forms.RichTextBox Rtb1;
+        public System.Windows.Forms.RichTextBox Rtb2;
+        public System.Windows.Forms.RichTextBox Rtb3;
+        public System.Windows.Forms.RichTextBox Rtb4;
     }
 }

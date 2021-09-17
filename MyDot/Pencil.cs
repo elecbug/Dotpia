@@ -355,10 +355,10 @@ namespace MyDot
 
         private void BtnRayer_Click(object sender, EventArgs e)
         {
-            if (DataSaver.ryeNow == null)
+            if (DataSaver.lyeNow == null)
             {
                 Layer rayer = new Layer();
-                DataSaver.ryeNow = rayer;
+                DataSaver.lyeNow = rayer;
                 rayer.Show();
             }
         }
@@ -371,6 +371,10 @@ namespace MyDot
                 strSaveTxt += DataSaver.intWidth.ToString("D4");
                 strSaveTxt += DataSaver.intHeight.ToString("D4");
                 strSaveTxt += DataSaver.HIGH_RAYER;
+                for (int i = 0; i < DataSaver.HIGH_RAYER; i++)
+                {
+                    strSaveTxt += DataSaver.intRayerTP[i].ToString("D3");
+                }
                 for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
                 {
                     for (int y = 0; y < DataSaver.intHeight; y++)

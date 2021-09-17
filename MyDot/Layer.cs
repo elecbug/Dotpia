@@ -19,12 +19,16 @@ namespace MyDot
 
         private void Rayer_Load(object sender, EventArgs e)
         {
-
+            Rtb0.Text = DataSaver.intRayerTP[0].ToString();
+            Rtb1.Text = DataSaver.intRayerTP[1].ToString();
+            Rtb2.Text = DataSaver.intRayerTP[2].ToString();
+            Rtb3.Text = DataSaver.intRayerTP[3].ToString();
+            Rtb4.Text = DataSaver.intRayerTP[4].ToString();
         }
 
         private void Rayer_FormClosed(object sender, FormClosedEventArgs e)
         {
-            DataSaver.ryeNow = null;
+            DataSaver.lyeNow = null;
         }
 
         private void Cbx_CheckedChanged(object sender, EventArgs e)
