@@ -1,5 +1,5 @@
 ﻿
-namespace MyDot
+namespace Dotpia
 {
     partial class Pencil
     {

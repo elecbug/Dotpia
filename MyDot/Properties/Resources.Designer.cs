@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyDot.Properties {
+namespace Dotpia.Properties {
     using System;
     
     
