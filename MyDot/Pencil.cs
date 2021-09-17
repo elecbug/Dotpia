@@ -384,6 +384,10 @@ namespace Dotpia
                 }
                 StreamWriter w = File.AppendText(strPath);
                 w.Write(strSaveTxt);
+                w.Write(":");
+                string strTemp = "";
+                int intReNum = 1;
+                bool bolFirst = false;
                 for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
                 {
                     for (int y = 0; y < DataSaver.intHeight; y++)
@@ -392,12 +396,26 @@ namespace Dotpia
                         {
                             string strUnicode1 = DataSaver.btmRGBA[x, y, r].RGBAtoUni1().ToString("D5");
                             string strUnicode2 = DataSaver.btmRGBA[x, y, r].RGBAtoUni2().ToString("D5");
+                            if(!bolFirst)
+                            {
+                                bolFirst = true;
+                            }
+                            else if (strTemp != strUnicode1 + strUnicode2)
+                            {
+                                w.Write($"({intReNum}:" + strTemp + ")");
+                                intReNum = 1;
+                            }
+                            else
+                            {
+                                intReNum++;
+                            }
+                            strTemp = strUnicode1 + strUnicode2;
                             //strSaveTxt += strUnicode1;
                             //strSaveTxt += strUnicode2;
-                            w.Write(strUnicode1 + strUnicode2);
                         }
                     }
                 }
+                w.Write($"({intReNum}:" + strTemp + ")");
                 w.Close();
                 //File.WriteAllText(strPath, strSaveTxt, Encoding.Default);
                 //Writer(strPath, strSaveTxt);

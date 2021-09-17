@@ -120,7 +120,7 @@ namespace Dotpia
                 string strValue = File.ReadAllText(OfdNewOpen.FileName.ToString());
                 int intWidth = int.Parse(strValue[0].ToString() + strValue[1].ToString() + strValue[2].ToString() + strValue[3].ToString());
                 int intHeight = int.Parse(strValue[4].ToString() + strValue[5].ToString() + strValue[6].ToString() + strValue[7].ToString());
-                int intRayer = int.Parse(strValue[8].ToString());
+                int intLayer = int.Parse(strValue[8].ToString());
                 DataSaver.intRayerTP = new int[DataSaver.HIGH_RAYER];
                 for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
                 {
@@ -128,31 +128,76 @@ namespace Dotpia
                 }
                 DataSaver.intWidth = intWidth;
                 DataSaver.intHeight = intHeight;
-                int intReader = 24;
-                DataSaver.btmRGBA = new RGBA[intWidth, intHeight, intRayer];
-                for (int r = 0; r < intRayer; r++)
+                int intReader = 24 + 1;
+                DataSaver.btmRGBA = new RGBA[intWidth, intHeight, intLayer];
+                for (int r = 0; r < intLayer; r++)
                 {
                     for (int y = 0; y < intHeight; y++)
                     {
                         for (int x = 0; x < intWidth; x++)
                         {
+                            int intNum = 0;
+                            if (strValue[intReader] == '(')
+                            {
+                                string strNum = "";
+                                for (intReader++; strValue[intReader] != ':'; intReader++)
+                                {
+                                    strNum += strValue[intReader];
+                                }
+                                intNum = int.Parse(strNum);
+                                intReader++;
+                            }
                             int intUnicode1 = int.Parse(strValue[intReader].ToString()
                                                       + strValue[intReader + 1].ToString()
                                                       + strValue[intReader + 2].ToString()
                                                       + strValue[intReader + 3].ToString()
                                                       + strValue[intReader + 4].ToString());
-                            intReader += 5;
                             int R = intUnicode1 / 256;
                             int G = intUnicode1 - R * 256;
-                            int intUnicode2 = int.Parse(strValue[intReader].ToString()
-                                                      + strValue[intReader + 1].ToString()
-                                                      + strValue[intReader + 2].ToString()
-                                                      + strValue[intReader + 3].ToString()
-                                                      + strValue[intReader + 4].ToString());
-                            intReader += 5;
+                            int intUnicode2 = int.Parse(strValue[intReader + 5].ToString()
+                                                      + strValue[intReader + 6].ToString()
+                                                      + strValue[intReader + 7].ToString()
+                                                      + strValue[intReader + 8].ToString()
+                                                      + strValue[intReader + 9].ToString());
                             int B = intUnicode2 / 256;
                             int A = intUnicode2 - B * 256;
-                            DataSaver.btmRGBA[x, y, r] = new RGBA(R, G, B, A);
+                            for (int i = 0; i < intNum; i++)
+                            {
+                                DataSaver.btmRGBA[x, y, r] = new RGBA(R, G, B, A);
+                                x++;
+                                if (x == intWidth)
+                                {
+                                    x = 0;
+                                    y++;
+                                }
+                                if (y == intHeight)
+                                {
+                                    y = 0;
+                                    r++;
+                                }
+                            }
+                            if (r == intLayer)
+                            {
+                                r = intLayer - 1;
+                                y = intHeight - 1;
+                                x = intWidth - 1;
+                            }
+                            else
+                            {
+                                x--;
+                                if (x == -1)
+                                {
+                                    x = intWidth - 1;
+                                    y--;
+                                }
+                                if (y == -1)
+                                {
+                                    y = intHeight - 1;
+                                    r--;
+                                }
+                            }
+                            intReader += 10;
+                            intReader++;
                         }
                     }
                 }
