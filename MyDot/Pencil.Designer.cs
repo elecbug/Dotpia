@@ -552,7 +552,6 @@ namespace MyDot
         private System.Windows.Forms.SaveFileDialog SfdSave;
         private System.Windows.Forms.ColorDialog CldColor;
         private System.Windows.Forms.Button BtnSmart;
-        private System.Windows.Forms.Button BtnBorder;
         private System.Windows.Forms.Button BtnExport;
         private System.Windows.Forms.RichTextBox RtbExport;
         private System.Windows.Forms.Button BtnCombine;
@@ -589,5 +588,6 @@ namespace MyDot
         private System.Windows.Forms.Button BtnRayer;
         private System.Windows.Forms.Button BtnNewSave;
         private System.Windows.Forms.SaveFileDialog SfdNewSave;
+        public System.Windows.Forms.Button BtnBorder;
     }
 }
