@@ -91,8 +91,8 @@ namespace Dotpia
 
         private RGBA Combine(RGBA ibg, RGBA ifg, int intRayer)
         {
-            ibg.A = (int)(ibg.A * DataSaver.intRayerTP[intRayer] / 100m);
-            ifg.A = (int)(ifg.A * DataSaver.intRayerTP[intRayer + 1] / 100m);
+            ibg.A = (int)(ibg.A * DataSaver.intLayerTP[intRayer] / 100m);
+            ifg.A = (int)(ifg.A * DataSaver.intLayerTP[intRayer + 1] / 100m);
             RGBAby1 r = new RGBAby1();
             RGBAby1 bg = new RGBAby1(ibg.R / 255m, ibg.G / 255m, ibg.B / 255m, ibg.A / 255m);
             RGBAby1 fg = new RGBAby1(ifg.R / 255m, ifg.G / 255m, ifg.B / 255m, ifg.A / 255m);
@@ -380,7 +380,7 @@ namespace Dotpia
                 strSaveTxt += DataSaver.HIGH_RAYER;
                 for (int i = 0; i < DataSaver.HIGH_RAYER; i++)
                 {
-                    strSaveTxt += DataSaver.intRayerTP[i].ToString("D3");
+                    strSaveTxt += DataSaver.intLayerTP[i].ToString("D3");
                 }
                 StreamWriter w = File.AppendText(strPath);
                 w.Write(strSaveTxt);

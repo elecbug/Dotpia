@@ -121,10 +121,10 @@ namespace Dotpia
                 int intWidth = int.Parse(strValue[0].ToString() + strValue[1].ToString() + strValue[2].ToString() + strValue[3].ToString());
                 int intHeight = int.Parse(strValue[4].ToString() + strValue[5].ToString() + strValue[6].ToString() + strValue[7].ToString());
                 int intLayer = int.Parse(strValue[8].ToString());
-                DataSaver.intRayerTP = new int[DataSaver.HIGH_RAYER];
+                DataSaver.intLayerTP = new int[DataSaver.HIGH_RAYER];
                 for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
                 {
-                    DataSaver.intRayerTP[r] = int.Parse(strValue[r * 3 + 9].ToString() + strValue[r * 3 + 10].ToString() + strValue[r * 3 + 11].ToString());
+                    DataSaver.intLayerTP[r] = int.Parse(strValue[r * 3 + 9].ToString() + strValue[r * 3 + 10].ToString() + strValue[r * 3 + 11].ToString());
                 }
                 DataSaver.intWidth = intWidth;
                 DataSaver.intHeight = intHeight;

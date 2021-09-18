@@ -19,11 +19,11 @@ namespace Dotpia
 
         private void Rayer_Load(object sender, EventArgs e)
         {
-            Rtb0.Text = DataSaver.intRayerTP[0].ToString();
-            Rtb1.Text = DataSaver.intRayerTP[1].ToString();
-            Rtb2.Text = DataSaver.intRayerTP[2].ToString();
-            Rtb3.Text = DataSaver.intRayerTP[3].ToString();
-            Rtb4.Text = DataSaver.intRayerTP[4].ToString();
+            Rtb0.Text = DataSaver.intLayerTP[0].ToString();
+            Rtb1.Text = DataSaver.intLayerTP[1].ToString();
+            Rtb2.Text = DataSaver.intLayerTP[2].ToString();
+            Rtb3.Text = DataSaver.intLayerTP[3].ToString();
+            Rtb4.Text = DataSaver.intLayerTP[4].ToString();
         }
 
         private void Rayer_FormClosed(object sender, FormClosedEventArgs e)
@@ -33,14 +33,14 @@ namespace Dotpia
 
         private void Cbx_CheckedChanged(object sender, EventArgs e)
         {
-            DataSaver.bmmNow.intNowRayer = int.Parse($"{((RadioButton)sender).Name[3]}");
+            DataSaver.bmmNow.intNowLayer = int.Parse($"{((RadioButton)sender).Name[3]}");
         }
 
         private void Rtb_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                DataSaver.intRayerTP[int.Parse($"{ ((RichTextBox)sender).Name[3]}")] = int.Parse(((RichTextBox)sender).Text);
+                DataSaver.intLayerTP[int.Parse($"{ ((RichTextBox)sender).Name[3]}")] = int.Parse(((RichTextBox)sender).Text);
                 DataSaver.bmmNow.ReDrawing();
             }
             catch
