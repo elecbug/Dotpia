@@ -288,40 +288,205 @@ namespace Dotpia
             }
         }
 
-        private void PaintTool(int x, int y, RGBA nowRGBA)
+        /*
+        private void OldPaintTool(int x, int y, RGBA clickRGBA)
         {
             DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(DataSaver.nowRGBA);
             for (int j = 0; j < 4; j++)
             {
                 if (y < DataSaver.btmRGBA.GetLength(1) - 1)
                 {
-                    if (DataSaver.btmRGBA[x, y + 1, intNowLayer] == nowRGBA || (DataSaver.btmRGBA[x, y + 1, intNowLayer].A == 0 && nowRGBA.A == 0))
+                    if (DataSaver.btmRGBA[x, y + 1, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x, y + 1, intNowLayer].A == 0 && clickRGBA.A == 0))
                     {
-                        PaintTool(x, y + 1, nowRGBA);
+                        PaintTool(x, y + 1, clickRGBA);
                     }
                 }
                 if (y >= 1)
                 {
-                    if (DataSaver.btmRGBA[x, y - 1, intNowLayer] == nowRGBA || (DataSaver.btmRGBA[x, y - 1, intNowLayer].A == 0 && nowRGBA.A == 0))
+                    if (DataSaver.btmRGBA[x, y - 1, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x, y - 1, intNowLayer].A == 0 && clickRGBA.A == 0))
                     {
-                        PaintTool(x, y - 1, nowRGBA);
+                        PaintTool(x, y - 1, clickRGBA);
                     }
                 }
                 if (x < DataSaver.btmRGBA.GetLength(0) - 1)
                 {
-                    if (DataSaver.btmRGBA[x + 1, y, intNowLayer] == nowRGBA || (DataSaver.btmRGBA[x + 1, y, intNowLayer].A == 0 && nowRGBA.A == 0))
+                    if (DataSaver.btmRGBA[x + 1, y, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x + 1, y, intNowLayer].A == 0 && clickRGBA.A == 0))
                     {
-                        PaintTool(x + 1, y, nowRGBA);
+                        PaintTool(x + 1, y, clickRGBA);
                     }
                 }
                 if (x >= 1)
                 {
-                    if (DataSaver.btmRGBA[x - 1, y, intNowLayer] == nowRGBA || (DataSaver.btmRGBA[x - 1, y, intNowLayer].A == 0 && nowRGBA.A == 0))
+                    if (DataSaver.btmRGBA[x - 1, y, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x - 1, y, intNowLayer].A == 0 && clickRGBA.A == 0))
                     {
-                        PaintTool(x - 1, y, nowRGBA);
+                        PaintTool(x - 1, y, clickRGBA);
                     }
                 }
             }
+        }
+        */
+
+        private void PaintTool(int x, int y)
+        {
+            RGBA[,] combineLayerRGBA = BitSave();
+            int[,] intBitMap = new int[DataSaver.intWidth, DataSaver.intHeight];    //if 0: Don't able to paint; if 1: Be able to paint; if 2: Real painting area; 
+            RGBA clickRGBA = combineLayerRGBA[x, y];
+            for (int w = 0; w < intBitMap.GetLength(0); w++)
+            {
+                for (int h = 0; h < intBitMap.GetLength(1); h++)
+                {
+                    if (combineLayerRGBA[w, h] == clickRGBA)
+                    {
+                        intBitMap[w, h] = 1;
+                    }
+                }
+            }
+            intBitMap[x, y] = 2;
+        ReTry:
+            for (int h = y; h >= 0; h--)
+            {
+                for (int w = x + 1; w < intBitMap.GetLength(0); w++)
+                {
+                    if (intBitMap[w, h] == 1)
+                    {
+                        if ((w > 0 && intBitMap[w - 1, h] == 2)
+                         || (h > 0 && intBitMap[w, h - 1] == 2)
+                         || (w < intBitMap.GetLength(0) - 1 && intBitMap[w + 1, h] == 2)
+                         || (h < intBitMap.GetLength(1) - 1 && intBitMap[w, h + 1] == 2))
+                        {
+                            intBitMap[w, h] = 2;
+                        }
+                    }
+                }
+            }
+            for (int w = x; w >= 0; w--)
+            {
+                for (int h = y - 1; h >= 0; h--)
+                {
+                    if (intBitMap[w, h] == 1)
+                    {
+                        if ((w > 0 && intBitMap[w - 1, h] == 2)
+                         || (h > 0 && intBitMap[w, h - 1] == 2)
+                         || (w < intBitMap.GetLength(0) - 1 && intBitMap[w + 1, h] == 2)
+                         || (h < intBitMap.GetLength(1) - 1 && intBitMap[w, h + 1] == 2))
+                        {
+                            intBitMap[w, h] = 2;
+                        }
+                    }
+                }
+            }
+            for (int h = y; h < intBitMap.GetLength(1); h++)
+            {
+                for (int w = x - 1; w >= 0; w--)
+                {
+                    if (intBitMap[w, h] == 1)
+                    {
+                        if ((w > 0 && intBitMap[w - 1, h] == 2)
+                         || (h > 0 && intBitMap[w, h - 1] == 2)
+                         || (w < intBitMap.GetLength(0) - 1 && intBitMap[w + 1, h] == 2)
+                         || (h < intBitMap.GetLength(1) - 1 && intBitMap[w, h + 1] == 2))
+                        {
+                            intBitMap[w, h] = 2;
+                        }
+                    }
+                }
+            }
+            for (int w = x; w < intBitMap.GetLength(0); w++)
+            {
+                for (int h = y + 1; h < intBitMap.GetLength(1); h++)
+                {
+                    if (intBitMap[w, h] == 1)
+                    {
+                        if ((w > 0 && intBitMap[w - 1, h] == 2)
+                         || (h > 0 && intBitMap[w, h - 1] == 2)
+                         || (w < intBitMap.GetLength(0) - 1 && intBitMap[w + 1, h] == 2)
+                         || (h < intBitMap.GetLength(1) - 1 && intBitMap[w, h + 1] == 2))
+                        {
+                            intBitMap[w, h] = 2;
+                        }
+                    }
+                }
+            }
+            for (int w = 0; w < intBitMap.GetLength(0); w++)
+            {
+                for (int h = 0; h < intBitMap.GetLength(1); h++)
+                {
+                    if (intBitMap[w, h] == 2)
+                    {
+                        if ((w > 0 && intBitMap[w - 1, h] == 1)
+                         || (h > 0 && intBitMap[w, h - 1] == 1)
+                         || (w < intBitMap.GetLength(0) - 1 && intBitMap[w + 1, h] == 1)
+                         || (h < intBitMap.GetLength(1) - 1 && intBitMap[w, h + 1] == 1))
+                        {
+                            x = w;
+                            y = h;
+                            goto ReTry;
+                        }
+                    }
+                }
+            }
+            for (int w = 0; w < intBitMap.GetLength(0); w++)
+            {
+                for (int h = 0; h < intBitMap.GetLength(1); h++)
+                {
+                    if (intBitMap[w, h] == 2)
+                    {
+                        DataSaver.btmRGBA[w, h, intNowLayer] = DataSaver.nowRGBA;
+                    }
+                }
+            }
+        }
+
+        private RGBA[,] BitSave()
+        {
+            RGBA[,] bitmap = new RGBA[DataSaver.intWidth, DataSaver.intHeight];
+            for (int x = 0; x < DataSaver.intWidth; x++)
+            {
+                for (int y = 0; y < DataSaver.intHeight; y++)
+                {
+                    RGBA nowRGBA = DataSaver.btmRGBA[x, y, 0];
+                    for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
+                    {
+                        nowRGBA = Combine(nowRGBA, DataSaver.btmRGBA[x, y, r + 1], r);
+                    }
+                    nowRGBA.A *= 2;
+                    if (nowRGBA.A > 255)
+                    {
+                        nowRGBA.A = 255;
+                    }
+                    bitmap[x, y] = nowRGBA;
+                }
+            }
+            return bitmap;
+        }
+
+        private RGBA Combine(RGBA ibg, RGBA ifg, int intRayer)
+        {
+            ibg.A = (int)(ibg.A * DataSaver.intLayerTP[intRayer] / 100m);
+            ifg.A = (int)(ifg.A * DataSaver.intLayerTP[intRayer + 1] / 100m);
+            RGBAby1 r = new RGBAby1();
+            RGBAby1 bg = new RGBAby1(ibg.R / 255m, ibg.G / 255m, ibg.B / 255m, ibg.A / 255m);
+            RGBAby1 fg = new RGBAby1(ifg.R / 255m, ifg.G / 255m, ifg.B / 255m, ifg.A / 255m);
+            if (bg.A == 0 && fg.A == 0)
+            {
+
+            }
+            else if (bg.A == 0)
+            {
+                r = new RGBAby1(fg);
+            }
+            else if (fg.A == 0)
+            {
+                r = new RGBAby1(bg);
+            }
+            else if (fg.A != 0 && bg.A != 0)
+            {
+                r.A = 1 - (1 - fg.A) * (1 - bg.A);
+                r.R = (fg.R * fg.A / r.A) + (bg.R * bg.A * (1 - fg.A) / r.A);
+                r.G = (fg.G * fg.A / r.A) + (bg.G * bg.A * (1 - fg.A) / r.A);
+                r.B = (fg.B * fg.A / r.A) + (bg.B * bg.A * (1 - fg.A) / r.A);
+            }
+            return new RGBA((int)(r.R * 255), (int)(r.G * 255), (int)(r.B * 255), (int)(r.A * 255));
         }
 
         private void PartedReDrawing(int x, int y)
@@ -361,7 +526,7 @@ namespace Dotpia
                     if (DataSaver.btmRGBA[intPointX, intPointY, intNowLayer] != DataSaver.nowRGBA)
                     {
                         RGBA clickRGBA = DataSaver.btmRGBA[intPointX, intPointY, intNowLayer];
-                        PaintTool(intPointX, intPointY, clickRGBA);
+                        PaintTool(intPointX, intPointY);
                         ReDrawing();
                     }
                 }

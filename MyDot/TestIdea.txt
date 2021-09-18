@@ -1,0 +1,397 @@
+﻿LineCalculator(x, y, combineLayerRGBA, clickRGBA, ref bolBitMap);
+            int minX = bolBitMap.GetLength(0) - 1, maxX = 0, minY = bolBitMap.GetLength(1) -1, maxY = 0;
+            for (int w = 0; w < bolBitMap.GetLength(0); w++)
+            {
+                for (int h = 0; h < bolBitMap.GetLength(1); h++)
+                {
+                    if (bolBitMap[w, h])
+                    {
+                        minX = Math.Min(minX, w);
+                        minY = Math.Min(minY, h);
+                        maxX = Math.Max(maxX, w);
+                        maxY = Math.Max(maxY, h);
+                    }
+                }
+            }
+            for (int w = minX + 1; w < maxX; w++)
+            {
+                for (int h = minY + 1; h < maxY; h++)
+                {
+                    if (h % 3 == 0 && w % 2 == 0)
+                    {
+                        LineCalculator(w, h, combineLayerRGBA, clickRGBA, ref bolBitMap);
+                    }
+                    if ((h - 2) % 3 == 0 && w % 2 == 1)
+                    {
+                        LineCalculator(w, h, combineLayerRGBA, clickRGBA, ref bolBitMap);
+                    }
+                }
+            }
+            for (int h = 0; h < DataSaver.intHeight; h++)
+            {
+                for (int w = 0; w < DataSaver.intWidth; w++)
+                {
+                    if (bolBitMap[w, h])
+                    {
+                        System.Diagnostics.Debug.Write("T ");
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.Write("F ");
+                    }
+                }
+                System.Diagnostics.Debug.Write("\n");
+            }
+        }
+
+        private void LineCalculator(int x, int y, RGBA[,] combineLayerRGBA, RGBA clickRGBA, ref bool[,] bolBitMap)
+        {
+            if (clickRGBA == combineLayerRGBA[x, y])
+            {
+                while (y > 0 && combineLayerRGBA[x, y - 1] == clickRGBA)
+                {
+                    y--;
+                }
+                if (!bolBitMap[x, y])
+                {
+                    LineMaker(x, y, combineLayerRGBA, clickRGBA, ref bolBitMap, 'D');
+                }
+            }
+            if (clickRGBA != combineLayerRGBA[x, y])
+            {
+                while (y > 0 && combineLayerRGBA[x, y - 1] != clickRGBA)
+                {
+                    y--;
+                }
+                y--;
+                if (combineLayerRGBA[x, y] == clickRGBA)
+                {
+                    if (!bolBitMap[x, y])
+                    {
+                        LineMaker(x, y, combineLayerRGBA, clickRGBA, ref bolBitMap, 'U');
+                    }
+                }
+            }
+        }
+
+        private void LineMaker(int x, int y, RGBA[,] combineLayerRGBA, RGBA clickRGBA, ref bool[,] bolBitMap, char chrCode)
+        {
+            int xStart = x, yStart = y;
+            bool bolInWhile = true;
+            while ((x != xStart || y != yStart) || bolInWhile)
+            {
+                bolInWhile = false;
+                bolBitMap[x, y] = true;
+                switch (chrCode)
+                {
+                    case 'U':
+                        {
+                            if (x > 0 && combineLayerRGBA[x - 1, y] == clickRGBA)
+                            {
+                                x--;
+                                chrCode = 'L';
+                            }
+                            else if (y > 0 && combineLayerRGBA[x, y - 1] == clickRGBA)
+                            {
+                                y--;
+                                chrCode = 'U';
+                            }
+                            else if (x < bolBitMap.GetLength(0) - 1 && combineLayerRGBA[x + 1, y] == clickRGBA)
+                            {
+                                x++;
+                                chrCode = 'R';
+                            }
+                            else if (y < bolBitMap.GetLength(1) - 1 && combineLayerRGBA[x, y + 1] == clickRGBA)
+                            {
+                                y++;
+                                chrCode = 'D';
+                            }
+                        }
+                        break;
+                    case 'D':
+                        {
+                            if (x < bolBitMap.GetLength(0) - 1 && combineLayerRGBA[x + 1, y] == clickRGBA)
+                            {
+                                x++;
+                                chrCode = 'R';
+                            }
+                            else if (y < bolBitMap.GetLength(1) - 1 && combineLayerRGBA[x, y + 1] == clickRGBA)
+                            {
+                                y++;
+                                chrCode = 'D';
+                            }
+                            else if (x > 0 && combineLayerRGBA[x - 1, y] == clickRGBA)
+                            {
+                                x--;
+                                chrCode = 'L';
+                            }
+                            else if (y > 0 && combineLayerRGBA[x, y - 1] == clickRGBA)
+                            {
+                                y--;
+                                chrCode = 'U';
+                            }
+                        }
+                        break;
+                    case 'L':
+                        {
+                            if (y < bolBitMap.GetLength(1) - 1 && combineLayerRGBA[x, y + 1] == clickRGBA)
+                            {
+                                y++;
+                                chrCode = 'D';
+                            }
+                            else if (x > 0 && combineLayerRGBA[x - 1, y] == clickRGBA)
+                            {
+                                x--;
+                                chrCode = 'L';
+                            }
+                            else if (y > 0 && combineLayerRGBA[x, y - 1] == clickRGBA)
+                            {
+                                y--;
+                                chrCode = 'U';
+                            }
+                            else if (x < bolBitMap.GetLength(0) - 1 && combineLayerRGBA[x + 1, y] == clickRGBA)
+                            {
+                                x++;
+                                chrCode = 'R';
+                            }
+                        }
+                        break;
+                    case 'R':
+                        {
+                            if (y > 0 && combineLayerRGBA[x, y - 1] == clickRGBA)
+                            {
+                                y--;
+                                chrCode = 'U';
+                            }
+                            else if (x < bolBitMap.GetLength(0) - 1 && combineLayerRGBA[x + 1, y] == clickRGBA)
+                            {
+                                x++;
+                                chrCode = 'R';
+                            }
+                            else if (y < bolBitMap.GetLength(1) - 1 && combineLayerRGBA[x, y + 1] == clickRGBA)
+                            {
+                                y++;
+                                chrCode = 'D';
+                            }
+                            else if (x > 0 && combineLayerRGBA[x - 1, y] == clickRGBA)
+                            {
+                                x--;
+                                chrCode = 'L';
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+
+
+
+        FalseArea[] falseArea = new FalseArea[1];
+            falseArea[0] = new FalseArea();
+            for (int w = 0; w < bolBitMap.GetLength(0); w++)
+            {
+                for (int h = 0; h < bolBitMap.GetLength(1); h++)
+                {
+                    for (int fa = 0; fa < falseArea.Length; fa++)
+                    {
+                        if (falseArea[fa].minX >= w && falseArea[fa].maxX <= w && falseArea[fa].minY >= h && falseArea[fa].maxY <= h)
+                        {
+                            goto doubletinue;
+                        }
+                        if (!bolBitMap[w, h])
+                        {
+                            while (bolBitMap[w, h--]) ;
+                            FalseArea.ArrayPlus(ref falseArea);
+                            falseArea[falseArea.Length - 1] = TrueSide(bolBitMap, w, h);
+                            for (int test = 0; test < falseArea.Length - 1; test++)
+                            {
+                                if (falseArea[falseArea.Length - 1] == falseArea[test])
+                                {
+                                    FalseArea.ArrayMinus(ref falseArea);
+                                }
+                            }
+                        }
+                    }
+                doubletinue:
+                    continue;
+                }
+            }
+            int mw = 0, mh = 0, Mw = bolBitMap.GetLength(0) - 1, Mh = bolBitMap.GetLength(1) - 1;
+            for (int fa = 0; fa < falseArea.Length; fa++)
+            {
+                if (falseArea[fa].minX == 0 && falseArea[fa].maxX == bolBitMap.GetLength(0) - 1)
+                {
+                    if (y <= falseArea[fa].minY)
+                    {
+                        Mh = Math.Min(falseArea[fa].minY, Mh);
+                    }
+                    if(y>=falseArea[fa].maxY)
+                    {
+                        mh = Math.Max(falseArea[fa].maxY, mh);
+                    }
+                }
+                if (falseArea[fa].minY == 0 && falseArea[fa].maxY == bolBitMap.GetLength(1) - 1)
+                {
+                    if (x <= falseArea[fa].minX)
+                    {
+                        Mw = Math.Min(falseArea[fa].minX, Mw);
+                    }
+                    if (x >= falseArea[fa].maxX)
+                    {
+                        mw = Math.Max(falseArea[fa].maxX, mw);
+                    }
+                }
+            }
+
+            for (int w = mw; w <= Mw; w++)
+            {
+                for (int h = mh; h <= Mh; h++)
+                {
+                    for (int fa = 0; fa < falseArea.Length; fa++)
+                    {
+                        if (falseArea[fa].minX < w || falseArea[fa].maxX > w || falseArea[fa].minY < h || falseArea[fa].maxY > h)
+                        {
+                            DataSaver.btmRGBA[w, h, intNowLayer] = DataSaver.nowRGBA;
+                        }
+                    }
+                }
+            }
+
+            for (int h = 0; h < DataSaver.intHeight; h++)
+            {
+                for (int w = 0; w < DataSaver.intWidth; w++)
+                {
+                    if (bolBitMap[w, h])
+                    {
+                        System.Diagnostics.Debug.Write("T ");
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.Write("F ");
+                    }
+                }
+                System.Diagnostics.Debug.Write("\n");
+            }
+
+
+
+             private FalseArea TrueSide(bool[,] bolBitMap, int x, int y)
+        {
+            FalseArea falseArea = new FalseArea();
+            falseArea.minX = bolBitMap.GetLength(0) - 1;
+            falseArea.minY = bolBitMap.GetLength(1) - 1;
+            falseArea.maxX = 0;
+            falseArea.maxY = 0;
+            char chrCode = 'U';
+            int xStart = x, yStart = y;
+            bool bolInWhile = true;
+            while ((x != xStart || y != yStart) || bolInWhile)
+            {
+                bolInWhile = false;
+                switch (chrCode)
+                {
+                    case 'U':
+                        {
+                            if (x > 0 && bolBitMap[x - 1, y] == false)
+                            {
+                                x--;
+                                chrCode = 'L';
+                            }
+                            else if (y > 0 && bolBitMap[x, y - 1] == false)
+                            {
+                                y--;
+                                chrCode = 'U';
+                            }
+                            else if (x < bolBitMap.GetLength(0) - 1 && bolBitMap[x + 1, y] == false)
+                            {
+                                x++;
+                                chrCode = 'R';
+                            }
+                            else if (y < bolBitMap.GetLength(1) - 1 && bolBitMap[x, y + 1] == false)
+                            {
+                                y++;
+                                chrCode = 'D';
+                            }
+                        }
+                        break;
+                    case 'D':
+                        {
+                            if (x < bolBitMap.GetLength(0) - 1 && bolBitMap[x + 1, y] == false)
+                            {
+                                x++;
+                                chrCode = 'R';
+                            }
+                            else if (y < bolBitMap.GetLength(1) - 1 && bolBitMap[x, y + 1] == false)
+                            {
+                                y++;
+                                chrCode = 'D';
+                            }
+                            else if (x > 0 && bolBitMap[x - 1, y] == false)
+                            {
+                                x--;
+                                chrCode = 'L';
+                            }
+                            else if (y > 0 && bolBitMap[x, y - 1] == false)
+                            {
+                                y--;
+                                chrCode = 'U';
+                            }
+                        }
+                        break;
+                    case 'L':
+                        {
+                            if (y < bolBitMap.GetLength(1) - 1 && bolBitMap[x, y + 1] == false)
+                            {
+                                y++;
+                                chrCode = 'D';
+                            }
+                            else if (x > 0 && bolBitMap[x - 1, y] == false)
+                            {
+                                x--;
+                                chrCode = 'L';
+                            }
+                            else if (y > 0 && bolBitMap[x, y - 1] == false)
+                            {
+                                y--;
+                                chrCode = 'U';
+                            }
+                            else if(x < bolBitMap.GetLength(0) - 1 && bolBitMap[x + 1, y] == false)
+                            {
+                                x++;
+                                chrCode = 'R';
+                            }
+                        }
+                        break;
+                    case 'R':
+                        {
+                            if (y > 0 && bolBitMap[x, y - 1] == false)
+                            {
+                                y--;
+                                chrCode = 'U';
+                            }
+                            else if (x < bolBitMap.GetLength(0) - 1 && bolBitMap[x + 1, y] == false)
+                            {
+                                x++;
+                                chrCode = 'R';
+                            }
+                            else if (y < bolBitMap.GetLength(1) - 1 && bolBitMap[x, y + 1] == false)
+                            {
+                                y++;
+                                chrCode = 'D';
+                            }
+                            else if (x > 0 && bolBitMap[x - 1, y] == false)
+                            {
+                                x--;
+                                chrCode = 'L';
+                            }
+                        }
+                        break;
+                }
+                falseArea.minX = Math.Min(falseArea.minX, x);
+                falseArea.minY = Math.Min(falseArea.minY, y);
+                falseArea.maxX = Math.Max(falseArea.maxX, x);
+                falseArea.maxY = Math.Max(falseArea.maxY, y);
+            }
+            return falseArea;
+        }

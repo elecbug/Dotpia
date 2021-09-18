@@ -234,7 +234,10 @@ namespace Dotpia
                 BtnExtraction.BackColor = Color.Green;
                 BtnPaint.BackColor = SystemColors.Control;
                 BtnMIrror.BackColor = SystemColors.Control;
-                DataSaver.grpMirror.Clear(DataSaver.bmmNow.BackColor);
+                if (DataSaver.grpMirror != null)
+                {
+                    DataSaver.grpMirror.Clear(DataSaver.bmmNow.BackColor);
+                }
             }
             else
             {
@@ -258,7 +261,10 @@ namespace Dotpia
                 BtnPaint.BackColor = Color.Green;
                 BtnExtraction.BackColor = SystemColors.Control;
                 BtnMIrror.BackColor = SystemColors.Control;
-                DataSaver.grpMirror.Clear(DataSaver.bmmNow.BackColor);
+                if (DataSaver.grpMirror != null)
+                {
+                    DataSaver.grpMirror.Clear(DataSaver.bmmNow.BackColor);
+                }
             }
             else
             {
