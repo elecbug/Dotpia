@@ -29,14 +29,15 @@ namespace Dotpia
         private int intScale = 0;
         private int intDefaultSize;
         private decimal[] dcmMouseLocationWithPnl = new decimal[2];
-        private Graphics grpZeroLine;
+        private bool bolNewFile;
+        //private Graphics grpZeroLine;
 
         private void BitMapMain_Load(object sender, EventArgs e)
         {
             try
             {
                 DataSaver.ctrlZ = new CtrlZ();
-                grpZeroLine = this.CreateGraphics();
+                //grpZeroLine = this.CreateGraphics();
                 if (DataSaver.intLayerTP == null)
                 {
                     DataSaver.intLayerTP = new int[DataSaver.HIGH_RAYER];
@@ -67,6 +68,7 @@ namespace Dotpia
                 }
                 if (DataSaver.btmRGBA == null)
                 {
+                    bolNewFile = true;
                     DataSaver.btmRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight, DataSaver.HIGH_RAYER];
                     for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
                     {
@@ -716,7 +718,7 @@ namespace Dotpia
 
         private void BitMapMain_MouseMove(object sender, MouseEventArgs e)
         {
-            if (intTimer < 500)
+            if (intTimer < 500 && !bolNewFile)
             {
                 //ZeroLineDraw();
                 ReDrawing();
