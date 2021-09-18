@@ -28,8 +28,6 @@ namespace Dotpia
         public int intNowLayer = 0;
         private int intScale = 0;
         private int intDefaultSize;
-        private List<int> intPaintX;
-        private List<int> intPaintY;
 
         private void BitMapMain_Load(object sender, EventArgs e)
         {
@@ -276,58 +274,6 @@ namespace Dotpia
                     }
                 }
             }
-        }
-
-        private RGBA[,] BitSave()
-        {
-            RGBA[,] rgba = new RGBA[DataSaver.intWidth, DataSaver.intHeight];
-            for (int x = 0; x < DataSaver.intWidth; x++)
-            {
-                for (int y = 0; y < DataSaver.intHeight; y++)
-                {
-                    RGBA nowRGBA = DataSaver.btmRGBA[x, y, 0];
-                    for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
-                    {
-                        nowRGBA = Combine(nowRGBA, DataSaver.btmRGBA[x, y, r + 1], r);
-                    }
-                    nowRGBA.A *= 2;
-                    if (nowRGBA.A > 255)
-                    {
-                        nowRGBA.A = 255;
-                    }
-                    rgba[x, y] = nowRGBA;
-                }
-            }
-            return rgba;
-        }
-
-        private RGBA Combine(RGBA ibg, RGBA ifg, int intRayer)
-        {
-            ibg.A = (int)(ibg.A * DataSaver.intLayerTP[intRayer] / 100m);
-            ifg.A = (int)(ifg.A * DataSaver.intLayerTP[intRayer + 1] / 100m);
-            RGBAby1 r = new RGBAby1();
-            RGBAby1 bg = new RGBAby1(ibg.R / 255m, ibg.G / 255m, ibg.B / 255m, ibg.A / 255m);
-            RGBAby1 fg = new RGBAby1(ifg.R / 255m, ifg.G / 255m, ifg.B / 255m, ifg.A / 255m);
-            if (bg.A == 0 && fg.A == 0)
-            {
-
-            }
-            else if (bg.A == 0)
-            {
-                r = new RGBAby1(fg);
-            }
-            else if (fg.A == 0)
-            {
-                r = new RGBAby1(bg);
-            }
-            else if (fg.A != 0 && bg.A != 0)
-            {
-                r.A = 1 - (1 - fg.A) * (1 - bg.A);
-                r.R = (fg.R * fg.A / r.A) + (bg.R * bg.A * (1 - fg.A) / r.A);
-                r.G = (fg.G * fg.A / r.A) + (bg.G * bg.A * (1 - fg.A) / r.A);
-                r.B = (fg.B * fg.A / r.A) + (bg.B * bg.A * (1 - fg.A) / r.A);
-            }
-            return new RGBA((int)(r.R * 255), (int)(r.G * 255), (int)(r.B * 255), (int)(r.A * 255));
         }
 
         private void PaintTool(int x, int y, RGBA nowRGBA)
