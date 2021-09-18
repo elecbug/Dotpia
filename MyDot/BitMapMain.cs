@@ -132,17 +132,17 @@ namespace Dotpia
             }
             try
             {
-                DataSaver.g = DataSaver.bmmNow.CreateGraphics();
-                DataSaver.g.Clear(DataSaver.bmmNow.BackColor);
+                DataSaver.grpMirror = DataSaver.bmmNow.CreateGraphics();
+                DataSaver.grpMirror.Clear(DataSaver.bmmNow.BackColor);
                 if (DataSaver.intMirror == 1)
                 {
-                    DataSaver.g.DrawLine(new Pen(Color.White),
+                    DataSaver.grpMirror.DrawLine(new Pen(Color.White),
                                          new Point(0, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y),
                                          new Point(DataSaver.bmmNow.Width, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y));
                 }
                 else if (DataSaver.intMirror == 2)
                 {
-                    DataSaver.g.DrawLine(new Pen(Color.White),
+                    DataSaver.grpMirror.DrawLine(new Pen(Color.White),
                                          new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, 0),
                                          new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, DataSaver.bmmNow.Height));
                 }
@@ -166,17 +166,17 @@ namespace Dotpia
             ReDrawing();
             try
             {
-                DataSaver.g = DataSaver.bmmNow.CreateGraphics();
-                DataSaver.g.Clear(DataSaver.bmmNow.BackColor);
+                DataSaver.grpMirror = DataSaver.bmmNow.CreateGraphics();
+                DataSaver.grpMirror.Clear(DataSaver.bmmNow.BackColor);
                 if (DataSaver.intMirror == 1)
                 {
-                    DataSaver.g.DrawLine(new Pen(Color.White),
+                    DataSaver.grpMirror.DrawLine(new Pen(Color.White),
                                          new Point(0, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y),
                                          new Point(DataSaver.bmmNow.Width, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y));
                 }
                 else if (DataSaver.intMirror == 2)
                 {
-                    DataSaver.g.DrawLine(new Pen(Color.White),
+                    DataSaver.grpMirror.DrawLine(new Pen(Color.White),
                                          new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, 0),
                                          new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, DataSaver.bmmNow.Height));
                 }
