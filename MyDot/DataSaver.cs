@@ -15,6 +15,7 @@ namespace Dotpia
         public static RGBA nowRGBA = new RGBA();
         public const int HIGH_RAYER = 5;
         public static RGBA[,,] btmRGBA;
+        public static RGBA[,,] startRGBA;
         public static BitMapMain bmmNow = null;
         public static Pencil pclNow = null;
         public static RGBA clickRGBA = new RGBA();
@@ -27,7 +28,11 @@ namespace Dotpia
         public static RGBA[] saveRGBA = new RGBA[7];
         public static Layer lyeNow;
         public static int[] intLayerTP;
-        public static Stack<int> intPaintX;
-        public static Stack<int> intPaintY;
+        public static CtrlZ ctrlZ;
+    }
+
+    public class HelperJson
+    {
+        public string[] HelperValue { get; set; }
     }
 }

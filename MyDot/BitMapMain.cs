@@ -35,6 +35,7 @@ namespace Dotpia
         {
             try
             {
+                DataSaver.ctrlZ = new CtrlZ();
                 grpZeroLine = this.CreateGraphics();
                 if (DataSaver.intLayerTP == null)
                 {
@@ -78,6 +79,8 @@ namespace Dotpia
                         }
                     }
                 }
+                DataSaver.ctrlZ.Push(DataSaver.btmRGBA);
+                DataSaver.startRGBA = (RGBA[,,])DataSaver.btmRGBA.Clone();
                 ReDrawing();
             }
             catch
@@ -268,6 +271,7 @@ namespace Dotpia
             else
             {
                 bolMouseDClick = false;
+                CtrlZPush();
             }
             if (bolBorder)
             {
@@ -511,6 +515,11 @@ namespace Dotpia
         {
             try
             {
+                RGBA color = new RGBA(DataSaver.nowRGBA);
+                if(((MouseEventArgs)e).Button==MouseButtons.Right)
+                {
+                    DataSaver.nowRGBA = new RGBA(0, 0, 0, 0);
+                }
                 int intPointX = pntMouseWithPnl.X / DataSaver.intSize, intPointY = pntMouseWithPnl.Y / DataSaver.intSize;
                 if (DataSaver.bolExtraction)
                 {
@@ -575,10 +584,20 @@ namespace Dotpia
                         }
                     }
                 }
+                DataSaver.nowRGBA = new RGBA(color);
+                CtrlZPush();
             }
             catch
             {
 
+            }
+        }
+
+        private void CtrlZPush()
+        {
+            if (!bolMouseDClick && !bolMouseDown)
+            {
+                DataSaver.ctrlZ.Push(DataSaver.btmRGBA);
             }
         }
 
@@ -661,6 +680,7 @@ namespace Dotpia
         private void Pnl_MouseUp(object sender, MouseEventArgs e)
         {
             bolMouseDown = false;
+            CtrlZPush();
             if (bolBorder)
             {
                 Pen pen = new Pen(Color.Green, 1);

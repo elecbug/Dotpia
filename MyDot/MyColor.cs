@@ -148,4 +148,72 @@ namespace Dotpia
             this.A = a.A;
         }
     }
+
+    public class SaveBitMap
+    {
+        public RGBA[,,] data;
+
+        public SaveBitMap()
+        {
+            data = null;
+        }
+
+        public SaveBitMap(RGBA[,,] bitMap)
+        {
+            data = (RGBA[,,])bitMap.Clone();
+        }
+    }
+
+    public class CtrlZ
+    {
+        public SaveBitMap[] data;
+        private decimal dcmMaxByte = 2m * 1024m * 1024m * 1024m;
+        private int intArrayMax;
+
+        public CtrlZ()
+        {
+            intArrayMax = (int)(dcmMaxByte / 16 / DataSaver.intWidth / DataSaver.intHeight / DataSaver.HIGH_RAYER);
+            data = new SaveBitMap[0];
+        }
+
+        public void Push(RGBA[,,] push)
+        {
+            int intNowArrayLength = data.Length;
+            if (intNowArrayLength < intArrayMax)
+            {
+                SaveBitMap[] tempBitMap = new SaveBitMap[intNowArrayLength + 1];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    tempBitMap[i] = data[i];
+                }
+                tempBitMap[intNowArrayLength] = new SaveBitMap(push);
+                data = (SaveBitMap[])tempBitMap.Clone();
+            }
+            else
+            {
+                for (int i = 0; i < intNowArrayLength - 1; i++)
+                {
+                    data[i] = data[i + 1];
+                }
+                data[intNowArrayLength - 1] = new SaveBitMap(push);
+            }
+        }
+
+        public RGBA[,,] Pop()
+        {
+            if (data.Length > 0)
+            {
+                SaveBitMap[] tempBitMap = new SaveBitMap[data.Length - 1];
+                for (int i = 0; i < tempBitMap.Length; i++)
+                {
+                    tempBitMap[i] = data[i];
+                }
+                SaveBitMap temp;
+                temp = new SaveBitMap(data[data.Length - 1].data);
+                data = (SaveBitMap[])tempBitMap.Clone();
+                return temp.data;
+            }
+            return DataSaver.startRGBA;
+        }
+    }
 }

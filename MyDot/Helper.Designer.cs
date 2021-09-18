@@ -30,18 +30,18 @@ namespace Dotpia
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Helper));
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.Rtb = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // Rtb
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 12);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBox1.Size = new System.Drawing.Size(290, 440);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            this.Rtb.Location = new System.Drawing.Point(12, 12);
+            this.Rtb.Name = "Rtb";
+            this.Rtb.ReadOnly = true;
+            this.Rtb.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.Rtb.Size = new System.Drawing.Size(290, 440);
+            this.Rtb.TabIndex = 0;
+            this.Rtb.Text = "";
             // 
             // Helper
             // 
@@ -49,17 +49,18 @@ namespace Dotpia
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(314, 464);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.Rtb);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Helper";
             this.Text = "Helper";
+            this.Load += new System.EventHandler(this.Helper_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox Rtb;
     }
 }

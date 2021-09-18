@@ -378,7 +378,7 @@ namespace Dotpia
         private void BtnNewSave_Click(object sender, EventArgs e)
         {
             if (SfdNewSave.ShowDialog() == DialogResult.OK)
-            {       
+            {
                 string strPath = SfdNewSave.FileName.ToString();
                 if (File.Exists(strPath))
                 {
@@ -406,7 +406,7 @@ namespace Dotpia
                         {
                             string strUnicode1 = DataSaver.btmRGBA[x, y, r].RGBAtoUni1().ToString("D5");
                             string strUnicode2 = DataSaver.btmRGBA[x, y, r].RGBAtoUni2().ToString("D5");
-                            if(!bolFirst)
+                            if (!bolFirst)
                             {
                                 bolFirst = true;
                             }
@@ -429,6 +429,21 @@ namespace Dotpia
                 w.Close();
                 //File.WriteAllText(strPath, strSaveTxt, Encoding.Default);
                 //Writer(strPath, strSaveTxt);
+            }
+        }
+
+        private void BtnZ_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataSaver.btmRGBA = DataSaver.ctrlZ.Pop();
+                DataSaver.btmRGBA = DataSaver.ctrlZ.Pop();
+                DataSaver.ctrlZ.Push(DataSaver.btmRGBA);
+                DataSaver.bmmNow.ReDrawing();
+            }
+            catch
+            {
+
             }
         }
     }
