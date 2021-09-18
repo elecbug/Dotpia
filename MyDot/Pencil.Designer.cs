@@ -482,7 +482,7 @@ namespace Dotpia
             this.BtnRayer.TabIndex = 3;
             this.BtnRayer.Text = "Layer";
             this.BtnRayer.UseVisualStyleBackColor = false;
-            this.BtnRayer.Click += new System.EventHandler(this.BtnRayer_Click);
+            this.BtnRayer.Click += new System.EventHandler(this.BtnLayer_Click);
             // 
             // BtnZoom
             // 

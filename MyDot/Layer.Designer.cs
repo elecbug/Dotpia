@@ -186,8 +186,8 @@ namespace Dotpia
             this.MaximizeBox = false;
             this.Name = "Layer";
             this.Text = "Rayer";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Rayer_FormClosed);
-            this.Load += new System.EventHandler(this.Rayer_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Layer_FormClosed);
+            this.Load += new System.EventHandler(this.Layer_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

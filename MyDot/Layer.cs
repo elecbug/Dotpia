@@ -17,16 +17,31 @@ namespace Dotpia
             InitializeComponent();
         }
 
-        private void Rayer_Load(object sender, EventArgs e)
+        private void Layer_Load(object sender, EventArgs e)
         {
-            Rtb0.Text = DataSaver.intLayerTP[0].ToString();
+            if (DataSaver.intLayerTP[0] != 100)
+            {
+                Rtb0.Text = DataSaver.intLayerTP[0].ToString();
+            }
+            if (DataSaver.intLayerTP[1] != 100)
+            {
             Rtb1.Text = DataSaver.intLayerTP[1].ToString();
-            Rtb2.Text = DataSaver.intLayerTP[2].ToString();
-            Rtb3.Text = DataSaver.intLayerTP[3].ToString();
-            Rtb4.Text = DataSaver.intLayerTP[4].ToString();
+            }
+            if (DataSaver.intLayerTP[2] != 100)
+            {
+                Rtb2.Text = DataSaver.intLayerTP[2].ToString();
+            }
+            if (DataSaver.intLayerTP[3] != 100)
+            {
+                Rtb3.Text = DataSaver.intLayerTP[3].ToString();
+            }
+            if (DataSaver.intLayerTP[4] != 100)
+            {
+                Rtb4.Text = DataSaver.intLayerTP[4].ToString();
+            }
         }
 
-        private void Rayer_FormClosed(object sender, FormClosedEventArgs e)
+        private void Layer_FormClosed(object sender, FormClosedEventArgs e)
         {
             DataSaver.lyeNow = null;
         }

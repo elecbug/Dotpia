@@ -357,7 +357,7 @@ namespace Dotpia
             DataSaver.bmmNow.ZoomReset();
         }
 
-        private void BtnRayer_Click(object sender, EventArgs e)
+        private void BtnLayer_Click(object sender, EventArgs e)
         {
             if (DataSaver.lyeNow == null)
             {
