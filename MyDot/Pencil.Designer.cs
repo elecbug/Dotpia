@@ -71,6 +71,10 @@ namespace Dotpia
             this.BtnMIrror = new System.Windows.Forms.Button();
             this.RtbMirror = new System.Windows.Forms.RichTextBox();
             this.SfdNewSave = new System.Windows.Forms.SaveFileDialog();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.LblWidth = new System.Windows.Forms.Label();
+            this.LblHeight = new System.Windows.Forms.Label();
+            this.LblMouse = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -82,6 +86,7 @@ namespace Dotpia
             ((System.ComponentModel.ISupportInitialize)(this.Pbx2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pbx1)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // PbxColor
@@ -515,12 +520,49 @@ namespace Dotpia
             // 
             this.SfdNewSave.Filter = "|*.dotpia";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.LblMouse);
+            this.groupBox4.Controls.Add(this.LblHeight);
+            this.groupBox4.Controls.Add(this.LblWidth);
+            this.groupBox4.Location = new System.Drawing.Point(289, 318);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(326, 82);
+            this.groupBox4.TabIndex = 8;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Data";
+            // 
+            // LblWidth
+            // 
+            this.LblWidth.AutoSize = true;
+            this.LblWidth.Location = new System.Drawing.Point(6, 22);
+            this.LblWidth.Name = "LblWidth";
+            this.LblWidth.Size = new System.Drawing.Size(0, 19);
+            this.LblWidth.TabIndex = 0;
+            // 
+            // LblHeight
+            // 
+            this.LblHeight.AutoSize = true;
+            this.LblHeight.Location = new System.Drawing.Point(6, 46);
+            this.LblHeight.Name = "LblHeight";
+            this.LblHeight.Size = new System.Drawing.Size(0, 19);
+            this.LblHeight.TabIndex = 0;
+            // 
+            // LblMouse
+            // 
+            this.LblMouse.AutoSize = true;
+            this.LblMouse.Location = new System.Drawing.Point(100, 34);
+            this.LblMouse.Name = "LblMouse";
+            this.LblMouse.Size = new System.Drawing.Size(0, 19);
+            this.LblMouse.TabIndex = 1;
+            // 
             // Pencil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(627, 412);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -543,6 +585,8 @@ namespace Dotpia
             ((System.ComponentModel.ISupportInitialize)(this.Pbx2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pbx1)).EndInit();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -589,5 +633,9 @@ namespace Dotpia
         private System.Windows.Forms.Button BtnNewSave;
         private System.Windows.Forms.SaveFileDialog SfdNewSave;
         public System.Windows.Forms.Button BtnBorder;
+        private System.Windows.Forms.GroupBox groupBox4;
+        public System.Windows.Forms.Label LblWidth;
+        public System.Windows.Forms.Label LblMouse;
+        public System.Windows.Forms.Label LblHeight;
     }
 }

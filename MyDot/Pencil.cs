@@ -30,6 +30,8 @@ namespace Dotpia
             }
             PbxColor.BackColor = Color.White;
             DataSaver.nowRGBA = new RGBA(255, 255, 255, 255);
+            LblWidth.Text = $"Width: {DataSaver.intWidth}";
+            LblHeight.Text = $"Height: {DataSaver.intHeight}";
         }
 
         private void RtbKeyPress(object sender, KeyPressEventArgs e)

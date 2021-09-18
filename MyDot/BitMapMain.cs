@@ -28,11 +28,14 @@ namespace Dotpia
         public int intNowLayer = 0;
         private int intScale = 0;
         private int intDefaultSize;
+        private decimal[] dcmMouseLocationWithPnl = new decimal[2];
+        private Graphics grpZeroLine;
 
         private void BitMapMain_Load(object sender, EventArgs e)
         {
             try
             {
+                grpZeroLine = this.CreateGraphics();
                 if (DataSaver.intLayerTP == null)
                 {
                     DataSaver.intLayerTP = new int[DataSaver.HIGH_RAYER];
@@ -105,7 +108,6 @@ namespace Dotpia
                 nowMouse.X = (int)(nowMouse.X * dcmWidth);
                 nowMouse.Y = (int)(nowMouse.Y * dcmHeight);
                 Pnl.Location = new Point(pntMouseWithForm.X - nowMouse.X, pntMouseWithForm.Y - nowMouse.Y);
-
             }
             if (e.Delta / 120 < 0)
             {
@@ -144,6 +146,7 @@ namespace Dotpia
                                          new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, 0),
                                          new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, DataSaver.bmmNow.Height));
                 }
+                //ZeroLineDraw();
             }
             catch
             {
@@ -177,6 +180,7 @@ namespace Dotpia
                                          new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, 0),
                                          new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, DataSaver.bmmNow.Height));
                 }
+                //ZeroLineDraw();
             }
             catch
             {
@@ -194,7 +198,15 @@ namespace Dotpia
                     grpBitMap[x, y] = Pnl.CreateGraphics();
                 }
             }
-            SeeBitSet();
+            for (int y = Math.Max(-(DataSaver.intSize + Pnl.Location.Y) / DataSaver.intSize, 0);
+                     y < Math.Min((this.Height - Pnl.Location.Y) / DataSaver.intSize, DataSaver.intHeight); y++)
+            {
+                for (int x = Math.Max(-(DataSaver.intSize + Pnl.Location.X) / DataSaver.intSize, 0);
+                         x < Math.Min((this.Width - Pnl.Location.X) / DataSaver.intSize, DataSaver.intWidth); x++)
+                {
+                    PartedReDrawing(x, y);
+                }
+            }
             if (bolBorder)
             {
                 Pen pen = new Pen(Color.Green, 1);
@@ -405,17 +417,6 @@ namespace Dotpia
             }
         }
 
-        private void SeeBitSet()
-        {
-            for (int y = 0; y < grpBitMap.GetLength(1); y++)
-            {
-                for (int x = 0; x < grpBitMap.GetLength(0); x++)
-                {
-                    PartedReDrawing(x, y);
-                }
-            }
-        }
-
         private void BitMapMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             DataSaver.bmmNow = null;
@@ -437,16 +438,53 @@ namespace Dotpia
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            pntMouseWithPnl = Pnl.PointToClient(new Point(MousePosition.X, MousePosition.Y));
-            pntMouseWithForm = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
-            intTimer++;
+            try
+            {
+                intTimer++;
+                pntMouseWithPnl = Pnl.PointToClient(new Point(MousePosition.X, MousePosition.Y));
+                pntMouseWithForm = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
+                dcmMouseLocationWithPnl[0] = pntMouseWithPnl.X / (decimal)DataSaver.intSize;
+                dcmMouseLocationWithPnl[1] = pntMouseWithPnl.Y / (decimal)DataSaver.intSize;
+                string strPositionX = dcmMouseLocationWithPnl[0].ToString("F2"), 
+                       strPositionY = dcmMouseLocationWithPnl[1].ToString("F2");
+                if (dcmMouseLocationWithPnl[0] < 0)
+                {
+                    strPositionX = "Less";
+                }
+                if (dcmMouseLocationWithPnl[1] < 0)
+                {
+                    strPositionY = "Less";
+                }
+                if (dcmMouseLocationWithPnl[0] > DataSaver.intWidth)
+                {
+                    strPositionX = "Over";
+                }
+                if (dcmMouseLocationWithPnl[1] > DataSaver.intHeight)
+                {
+                    strPositionY = "Over";
+                }
+                if (DataSaver.pclNow != null)
+                {
+                    DataSaver.pclNow.LblMouse.Text = "Mouse Position(" + strPositionX +", "+ strPositionY + ")";
+                }
+            }
+            catch
+            {
+
+            }
         }
 
         private void Pnl_MouseMove(object sender, MouseEventArgs e)
         {
             if (bolMouseDClick || bolMouseDown)
             {
-                BtnClick(sender, e);
+                if (pntMouseWithPnl.X >= 0 
+                 && pntMouseWithPnl.Y >= 0 
+                 && pntMouseWithPnl.X <= Pnl.Width
+                 && pntMouseWithPnl.Y <= Pnl.Height)
+                {
+                    BtnClick(sender, e);
+                }
             }
         }
 
@@ -477,10 +515,25 @@ namespace Dotpia
             }
         }
 
+        /*
+        private void ZeroLineDraw()
+        {
+            if (DataSaver.intMirror != 1 && DataSaver.intMirror != 2)
+            {
+                grpZeroLine.Clear(this.BackColor);
+            }
+            Pen penZero = new Pen(Color.White, 1);
+            grpZeroLine = this.CreateGraphics();
+            grpZeroLine.DrawLine(penZero, 0, Pnl.Location.Y, this.Width, Pnl.Location.Y);
+            grpZeroLine.DrawLine(penZero, Pnl.Location.X, 0, Pnl.Location.X, this.Height);
+        }
+        */
+
         private void BitMapMain_MouseMove(object sender, MouseEventArgs e)
         {
             if (intTimer < 500)
             {
+                //ZeroLineDraw();
                 ReDrawing();
                 if (bolBorder)
                 {

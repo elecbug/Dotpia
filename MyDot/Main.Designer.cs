@@ -148,7 +148,7 @@ namespace Dotpia
             this.BtnNewLoad.Margin = new System.Windows.Forms.Padding(4);
             this.BtnNewLoad.Name = "BtnNewLoad";
             this.BtnNewLoad.Size = new System.Drawing.Size(358, 46);
-            this.BtnNewLoad.TabIndex = 4;
+            this.BtnNewLoad.TabIndex = 5;
             this.BtnNewLoad.Text = "Load Dotpia";
             this.BtnNewLoad.UseVisualStyleBackColor = true;
             this.BtnNewLoad.Click += new System.EventHandler(this.BtnNewLoad_Click);
