@@ -68,6 +68,8 @@ namespace Dotpia
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BitMapMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BitMapMain_FormClosed);
             this.Load += new System.EventHandler(this.BitMapMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BitMapMain_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BitMapMain_KeyUp);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BitMapMain_MouseMove);
             this.ResumeLayout(false);
 

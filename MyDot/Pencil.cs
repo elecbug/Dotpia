@@ -491,7 +491,7 @@ namespace Dotpia
             }
         }
 
-        private void BtnZ_Click(object sender, EventArgs e)
+        public void BtnZ_Click(object sender, EventArgs e)
         {
             try
             {

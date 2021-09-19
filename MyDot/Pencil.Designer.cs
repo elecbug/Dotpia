@@ -66,6 +66,7 @@ namespace Dotpia
             this.Pbx2 = new System.Windows.Forms.PictureBox();
             this.Pbx1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BtnZ = new System.Windows.Forms.Button();
             this.BtnRayer = new System.Windows.Forms.Button();
             this.BtnZoom = new System.Windows.Forms.Button();
             this.BtnMIrror = new System.Windows.Forms.Button();
@@ -75,7 +76,7 @@ namespace Dotpia
             this.LblMouse = new System.Windows.Forms.Label();
             this.LblHeight = new System.Windows.Forms.Label();
             this.LblWidth = new System.Windows.Forms.Label();
-            this.BtnZ = new System.Windows.Forms.Button();
+            this.LblPx = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -475,6 +476,17 @@ namespace Dotpia
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tool";
             // 
+            // BtnZ
+            // 
+            this.BtnZ.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnZ.Location = new System.Drawing.Point(82, 121);
+            this.BtnZ.Name = "BtnZ";
+            this.BtnZ.Size = new System.Drawing.Size(69, 42);
+            this.BtnZ.TabIndex = 3;
+            this.BtnZ.Text = "Ctrl+Z";
+            this.BtnZ.UseVisualStyleBackColor = false;
+            this.BtnZ.Click += new System.EventHandler(this.BtnZ_Click);
+            // 
             // BtnRayer
             // 
             this.BtnRayer.BackColor = System.Drawing.SystemColors.Control;
@@ -524,6 +536,7 @@ namespace Dotpia
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.LblPx);
             this.groupBox4.Controls.Add(this.LblMouse);
             this.groupBox4.Controls.Add(this.LblHeight);
             this.groupBox4.Controls.Add(this.LblWidth);
@@ -537,7 +550,7 @@ namespace Dotpia
             // LblMouse
             // 
             this.LblMouse.AutoSize = true;
-            this.LblMouse.Location = new System.Drawing.Point(100, 34);
+            this.LblMouse.Location = new System.Drawing.Point(100, 22);
             this.LblMouse.Name = "LblMouse";
             this.LblMouse.Size = new System.Drawing.Size(0, 19);
             this.LblMouse.TabIndex = 1;
@@ -558,16 +571,14 @@ namespace Dotpia
             this.LblWidth.Size = new System.Drawing.Size(0, 19);
             this.LblWidth.TabIndex = 0;
             // 
-            // BtnZ
+            // LblPx
             // 
-            this.BtnZ.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnZ.Location = new System.Drawing.Point(82, 121);
-            this.BtnZ.Name = "BtnZ";
-            this.BtnZ.Size = new System.Drawing.Size(69, 42);
-            this.BtnZ.TabIndex = 3;
-            this.BtnZ.Text = "Ctrl+Z";
-            this.BtnZ.UseVisualStyleBackColor = false;
-            this.BtnZ.Click += new System.EventHandler(this.BtnZ_Click);
+            this.LblPx.AutoSize = true;
+            this.LblPx.Location = new System.Drawing.Point(100, 46);
+            this.LblPx.Name = "LblPx";
+            this.LblPx.Size = new System.Drawing.Size(42, 19);
+            this.LblPx.TabIndex = 1;
+            this.LblPx.Text = "Px: 1";
             // 
             // Pencil
             // 
@@ -651,5 +662,6 @@ namespace Dotpia
         public System.Windows.Forms.Label LblMouse;
         public System.Windows.Forms.Label LblHeight;
         private System.Windows.Forms.Button BtnZ;
+        public System.Windows.Forms.Label LblPx;
     }
 }

@@ -30,6 +30,8 @@ namespace Dotpia
         private int intDefaultSize;
         private decimal[] dcmMouseLocationWithPnl = new decimal[2];
         private bool bolNewFile;
+        private bool bolCtrlPress = false;
+        private int intMousePixel = 1;
         //private Graphics grpZeroLine;
 
         private void BitMapMain_Load(object sender, EventArgs e)
@@ -93,71 +95,91 @@ namespace Dotpia
 
         private void Mouse_Wheel(object sender, MouseEventArgs e)
         {
-            if (e.Delta / 120 > 0)
+            if (bolCtrlPress)
             {
-                intScale++;
-                //Point pntNow = Pnl.Location;
-                //pntNow.X -= pntMouse.X;
-                //pntNow.Y -= pntMouse.Y;
-                //Pnl.Location = pntNow; 
-                //Pnl.Width = (int)Math.Ceiling(intPnlDefaultWidth * Math.Pow(2, intScale));
-                //Pnl.Height = (int)Math.Ceiling(intPnlDefaultHeight * Math.Pow(2, intScale));
-                int intTempWidth = Pnl.Width;
-                int intTempHeight = Pnl.Height;
-                Point nowMouse = pntMouseWithPnl;
-                DataSaver.intSize = (int)Math.Ceiling(intDefaultSize * Math.Pow(2, intScale));
-                Pnl.Width = DataSaver.intWidth * DataSaver.intSize;
-                Pnl.Height = DataSaver.intHeight * DataSaver.intSize;
-                decimal dcmWidth = (Pnl.Width / (decimal)intTempWidth);
-                decimal dcmHeight= (Pnl.Height / (decimal)intTempHeight);
-                nowMouse.X = (int)(nowMouse.X * dcmWidth);
-                nowMouse.Y = (int)(nowMouse.Y * dcmHeight);
-                Pnl.Location = new Point(pntMouseWithForm.X - nowMouse.X, pntMouseWithForm.Y - nowMouse.Y);
-            }
-            if (e.Delta / 120 < 0)
-            {
-                intScale--;
-                //Point pntNow = Pnl.Location;
-                //pntNow.X += pntMouse.X / 2;
-                //pntNow.Y += pntMouse.Y / 2;
-                //Pnl.Location = pntNow;
-                //Pnl.Width = (int)Math.Ceiling(intPnlDefaultWidth * Math.Pow(2, intScale));
-                //Pnl.Height = (int)Math.Ceiling(intPnlDefaultHeight * Math.Pow(2, intScale));
-                int intTempWidth = Pnl.Width;
-                int intTempHeight = Pnl.Height;
-                Point nowMouse = pntMouseWithPnl;
-                DataSaver.intSize = (int)Math.Ceiling(intDefaultSize * Math.Pow(2, intScale));
-                Pnl.Width = DataSaver.intWidth * DataSaver.intSize;
-                Pnl.Height = DataSaver.intHeight * DataSaver.intSize;
-                decimal dcmWidth = (Pnl.Width / (decimal)intTempWidth);
-                decimal dcmHeight = (Pnl.Height / (decimal)intTempHeight);
-                nowMouse.X = (int)(nowMouse.X * dcmWidth);
-                nowMouse.Y = (int)(nowMouse.Y * dcmHeight);
-                Pnl.Location = new Point(pntMouseWithForm.X - nowMouse.X, pntMouseWithForm.Y - nowMouse.Y);
-            }
-            try
-            {
-                DataSaver.grpMirror = DataSaver.bmmNow.CreateGraphics();
-                DataSaver.grpMirror.Clear(DataSaver.bmmNow.BackColor);
-                if (DataSaver.intMirror == 1)
+                if (e.Delta / 120 > 0)
                 {
-                    DataSaver.grpMirror.DrawLine(new Pen(Color.White),
-                                         new Point(0, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y),
-                                         new Point(DataSaver.bmmNow.Width, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y));
+                    intMousePixel += 2;
                 }
-                else if (DataSaver.intMirror == 2)
+                if (e.Delta / 120 < 0)
                 {
-                    DataSaver.grpMirror.DrawLine(new Pen(Color.White),
-                                         new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, 0),
-                                         new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, DataSaver.bmmNow.Height));
+                    intMousePixel -= 2;
+                    if(intMousePixel<1)
+                    {
+                        intMousePixel = 1;
+                    }
                 }
-                //ZeroLineDraw();
+                DataSaver.pclNow.LblPx.Text = "Px: ";
+                DataSaver.pclNow.LblPx.Text += intMousePixel.ToString();
             }
-            catch
+            else
             {
+                if (e.Delta / 120 > 0)
+                {
+                    intScale++;
+                    //Point pntNow = Pnl.Location;
+                    //pntNow.X -= pntMouse.X;
+                    //pntNow.Y -= pntMouse.Y;
+                    //Pnl.Location = pntNow; 
+                    //Pnl.Width = (int)Math.Ceiling(intPnlDefaultWidth * Math.Pow(2, intScale));
+                    //Pnl.Height = (int)Math.Ceiling(intPnlDefaultHeight * Math.Pow(2, intScale));
+                    int intTempWidth = Pnl.Width;
+                    int intTempHeight = Pnl.Height;
+                    Point nowMouse = pntMouseWithPnl;
+                    DataSaver.intSize = (int)Math.Ceiling(intDefaultSize * Math.Pow(2, intScale));
+                    Pnl.Width = DataSaver.intWidth * DataSaver.intSize;
+                    Pnl.Height = DataSaver.intHeight * DataSaver.intSize;
+                    decimal dcmWidth = (Pnl.Width / (decimal)intTempWidth);
+                    decimal dcmHeight = (Pnl.Height / (decimal)intTempHeight);
+                    nowMouse.X = (int)(nowMouse.X * dcmWidth);
+                    nowMouse.Y = (int)(nowMouse.Y * dcmHeight);
+                    Pnl.Location = new Point(pntMouseWithForm.X - nowMouse.X, pntMouseWithForm.Y - nowMouse.Y);
+                }
+                if (e.Delta / 120 < 0)
+                {
+                    intScale--;
+                    //Point pntNow = Pnl.Location;
+                    //pntNow.X += pntMouse.X / 2;
+                    //pntNow.Y += pntMouse.Y / 2;
+                    //Pnl.Location = pntNow;
+                    //Pnl.Width = (int)Math.Ceiling(intPnlDefaultWidth * Math.Pow(2, intScale));
+                    //Pnl.Height = (int)Math.Ceiling(intPnlDefaultHeight * Math.Pow(2, intScale));
+                    int intTempWidth = Pnl.Width;
+                    int intTempHeight = Pnl.Height;
+                    Point nowMouse = pntMouseWithPnl;
+                    DataSaver.intSize = (int)Math.Ceiling(intDefaultSize * Math.Pow(2, intScale));
+                    Pnl.Width = DataSaver.intWidth * DataSaver.intSize;
+                    Pnl.Height = DataSaver.intHeight * DataSaver.intSize;
+                    decimal dcmWidth = (Pnl.Width / (decimal)intTempWidth);
+                    decimal dcmHeight = (Pnl.Height / (decimal)intTempHeight);
+                    nowMouse.X = (int)(nowMouse.X * dcmWidth);
+                    nowMouse.Y = (int)(nowMouse.Y * dcmHeight);
+                    Pnl.Location = new Point(pntMouseWithForm.X - nowMouse.X, pntMouseWithForm.Y - nowMouse.Y);
+                }
+                try
+                {
+                    DataSaver.grpMirror = DataSaver.bmmNow.CreateGraphics();
+                    DataSaver.grpMirror.Clear(DataSaver.bmmNow.BackColor);
+                    if (DataSaver.intMirror == 1)
+                    {
+                        DataSaver.grpMirror.DrawLine(new Pen(Color.White),
+                                             new Point(0, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y),
+                                             new Point(DataSaver.bmmNow.Width, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y));
+                    }
+                    else if (DataSaver.intMirror == 2)
+                    {
+                        DataSaver.grpMirror.DrawLine(new Pen(Color.White),
+                                             new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, 0),
+                                             new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, DataSaver.bmmNow.Height));
+                    }
+                    //ZeroLineDraw();
+                }
+                catch
+                {
 
+                }
+                ReDrawing();
             }
-            ReDrawing();
         }
 
         public void ZoomReset()
@@ -518,7 +540,7 @@ namespace Dotpia
             try
             {
                 RGBA color = new RGBA(DataSaver.nowRGBA);
-                if(((MouseEventArgs)e).Button==MouseButtons.Right)
+                if (((MouseEventArgs)e).Button == MouseButtons.Right)
                 {
                     DataSaver.nowRGBA = new RGBA(0, 0, 0, 0);
                 }
@@ -545,11 +567,33 @@ namespace Dotpia
                 {
                     DataSaver.btmRGBA[intPointX, intPointY, intNowLayer] = new RGBA(DataSaver.nowRGBA);
                     PartedReDrawing(intPointX, intPointY);
+                    if (intMousePixel > 1)
+                    {
+                        for (int x = intPointX - (intMousePixel / 2 + 1); x < intPointX + (intMousePixel / 2 + 1); x++)
+                        {
+                            for (int y = intPointY - (intMousePixel / 2 + 1); y < intPointY + (intMousePixel / 2 + 1); y++)
+                            {
+                                DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(DataSaver.nowRGBA);
+                                PartedReDrawing(x, y);
+                            }
+                        }
+                    }
                     int intNewY = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intPointY;
                     if (intNewY >= 0 && intNewY < DataSaver.intHeight)
                     {
                         DataSaver.btmRGBA[intPointX, intNewY, intNowLayer] = new RGBA(DataSaver.nowRGBA);
                         PartedReDrawing(intPointX, intNewY);
+                        if (intMousePixel > 1)
+                        {
+                            for (int x = intPointX - (intMousePixel / 2 + 1); x < intPointX + (intMousePixel / 2 + 1); x++)
+                            {
+                                for (int y = intNewY - (intMousePixel / 2 + 1); y < intNewY + (intMousePixel / 2 + 1); y++)
+                                {
+                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(DataSaver.nowRGBA);
+                                    PartedReDrawing(x, y);
+                                }
+                            }
+                        }
                     }
 
                 }
@@ -557,19 +601,52 @@ namespace Dotpia
                 {
                     DataSaver.btmRGBA[intPointX, intPointY, intNowLayer] = new RGBA(DataSaver.nowRGBA);
                     PartedReDrawing(intPointX, intPointY);
+                    if (intMousePixel > 1)
+                    {
+                        for (int x = intPointX - (intMousePixel / 2 + 1); x < intPointX + (intMousePixel / 2 + 1); x++)
+                        {
+                            for (int y = intPointY - (intMousePixel / 2 + 1); y < intPointY + (intMousePixel / 2 + 1); y++)
+                            {
+                                DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(DataSaver.nowRGBA);
+                                PartedReDrawing(x, y);
+                            }
+                        }
+                    }
                     int intNewX = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intPointX;
                     if (intNewX >= 0 && intNewX < DataSaver.intWidth)
                     {
                         DataSaver.btmRGBA[intNewX, intPointY, intNowLayer] = new RGBA(DataSaver.nowRGBA);
                         PartedReDrawing(intNewX, intPointY);
+                        if (intMousePixel > 1)
+                        {
+                            for (int x = intNewX - (intMousePixel / 2 + 1); x < intNewX + (intMousePixel / 2 + 1); x++)
+                            {
+                                for (int y = intPointY - (intMousePixel / 2 + 1); y < intPointY + (intMousePixel / 2 + 1); y++)
+                                {
+                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(DataSaver.nowRGBA);
+                                    PartedReDrawing(x, y);
+                                }
+                            }
+                        }
                     }
                 }
                 else
                 {
                     DataSaver.btmRGBA[intPointX, intPointY, intNowLayer] = new RGBA(DataSaver.nowRGBA);
                     PartedReDrawing(intPointX, intPointY);
+                    if (intMousePixel > 1)
+                    {
+                        for (int x = intPointX - (intMousePixel / 2 + 1); x < intPointX + (intMousePixel / 2 + 1); x++)
+                        {
+                            for (int y = intPointY - (intMousePixel / 2 + 1); y < intPointY + (intMousePixel / 2 + 1); y++)
+                            {
+                                DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(DataSaver.nowRGBA);
+                                PartedReDrawing(x, y);
+                            }
+                        }
+                    }
                 }
-                if (bolBorder&&!bolMouseDown&&!bolMouseDClick)
+                if (bolBorder && !bolMouseDown && !bolMouseDClick)
                 {
                     Pen pen = new Pen(Color.Green, 1);
                     for (int i = 0, j = 0; i < grpGrid.Length; i++)
@@ -740,6 +817,26 @@ namespace Dotpia
                     }
                 }
             }
+        }
+
+        private void BitMapMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control)
+            {
+                bolCtrlPress = true;
+            }
+            if (e.KeyCode == Keys.Z)
+            {
+                if (bolCtrlPress)
+                {
+                    DataSaver.pclNow.BtnZ_Click(sender, e);
+                }
+            }
+        }
+
+        private void BitMapMain_KeyUp(object sender, KeyEventArgs e)
+        {
+            bolCtrlPress = false;
         }
     }
 }
