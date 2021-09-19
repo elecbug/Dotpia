@@ -17,6 +17,8 @@ namespace Dotpia
             InitializeComponent();
         }
 
+        private bool bolUDClick = false;
+
         private void Layer_Load(object sender, EventArgs e)
         {
             if (DataSaver.intLayerTP[0] != 100)
@@ -55,8 +57,11 @@ namespace Dotpia
         {
             try
             {
-                DataSaver.intLayerTP[int.Parse($"{ ((RichTextBox)sender).Name[3]}")] = int.Parse(((RichTextBox)sender).Text);
-                DataSaver.bmmNow.ReDrawing();
+                if (!bolUDClick)
+                {
+                    DataSaver.intLayerTP[int.Parse($"{ ((RichTextBox)sender).Name[3]}")] = int.Parse(((RichTextBox)sender).Text);
+                    DataSaver.bmmNow.ReDrawing();
+                }
             }
             catch
             {
@@ -74,6 +79,7 @@ namespace Dotpia
 
         private void BtnUD_Click(object sender, EventArgs e)
         {
+            bolUDClick = true;
             RGBA[,] uRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight];
             RGBA[,] dRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight];
             switch (((Button)sender).Name[3])
@@ -283,6 +289,7 @@ namespace Dotpia
             Rtb3.Text = DataSaver.intLayerTP[3].ToString();
             Rtb4.Text = DataSaver.intLayerTP[4].ToString();
             DataSaver.bmmNow.ReDrawing();
+            bolUDClick = false;
         }
     }
 }

@@ -104,7 +104,7 @@ namespace Dotpia
                 if (e.Delta / 120 < 0)
                 {
                     intMousePixel -= 2;
-                    if(intMousePixel<1)
+                    if (intMousePixel < 1)
                     {
                         intMousePixel = 1;
                     }
@@ -225,11 +225,18 @@ namespace Dotpia
                     grpBitMap[x, y] = Pnl.CreateGraphics();
                 }
             }
-            for (int y = Math.Max(-(DataSaver.intSize + Pnl.Location.Y) / DataSaver.intSize, 0);
-                     y < Math.Min((this.Height - Pnl.Location.Y) / DataSaver.intSize, DataSaver.intHeight); y++)
+            //for (int y = Math.Max(-(DataSaver.intSize + Pnl.Location.Y) / DataSaver.intSize, 0);
+            //         y < Math.Min((this.Height - Pnl.Location.Y) / DataSaver.intSize, DataSaver.intHeight); y++)
+            //{
+            //    for (int x = Math.Max(-(DataSaver.intSize + Pnl.Location.X) / DataSaver.intSize, 0);
+            //             x < Math.Min((this.Width - Pnl.Location.X) / DataSaver.intSize, DataSaver.intWidth); x++)
+            //    {
+            //        PartedReDrawing(x, y);
+            //    }
+            //}
+            for (int y = 0; y < DataSaver.intHeight; y++)
             {
-                for (int x = Math.Max(-(DataSaver.intSize + Pnl.Location.X) / DataSaver.intSize, 0);
-                         x < Math.Min((this.Width - Pnl.Location.X) / DataSaver.intSize, DataSaver.intWidth); x++)
+                for (int x = 0; x < DataSaver.intWidth; x++)
                 {
                     PartedReDrawing(x, y);
                 }
@@ -467,31 +474,48 @@ namespace Dotpia
 
         private RGBA[,] BitSave()
         {
-            RGBA[,] bitmap = new RGBA[DataSaver.intWidth, DataSaver.intHeight];
-            for (int x = 0; x < DataSaver.intWidth; x++)
+            try
             {
-                for (int y = 0; y < DataSaver.intHeight; y++)
+                RGBA[,,] bitmapRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight, DataSaver.HIGH_RAYER];
+                RGBA[,] returnBitmap = new RGBA[DataSaver.intWidth, DataSaver.intHeight];
+                for (int x = 0; x < DataSaver.intWidth; x++)
                 {
-                    RGBA nowRGBA = DataSaver.btmRGBA[x, y, 0];
-                    for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
+                    for (int y = 0; y < DataSaver.intHeight; y++)
                     {
-                        nowRGBA = Combine(nowRGBA, DataSaver.btmRGBA[x, y, r + 1], r);
+                        for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
+                        {
+                            bitmapRGBA[x, y, r] = new RGBA(DataSaver.btmRGBA[x, y, r]);
+                            bitmapRGBA[x, y, r].A = (int)(bitmapRGBA[x, y, r].A * DataSaver.intLayerTP[r] / 100m);
+                        }
                     }
-                    nowRGBA.A *= 2;
-                    if (nowRGBA.A > 255)
-                    {
-                        nowRGBA.A = 255;
-                    }
-                    bitmap[x, y] = nowRGBA;
                 }
+                for (int x = 0; x < DataSaver.intWidth; x++)
+                {
+                    for (int y = 0; y < DataSaver.intHeight; y++)
+                    {
+                        RGBA nowRGBA = new RGBA(bitmapRGBA[x, y, 0]);
+                        for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
+                        {
+                            nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r]), r));
+                        }
+                        //nowRGBA.A *= 2;
+                        //if (nowRGBA.A > 255)
+                        //{
+                        //    nowRGBA.A = 255;
+                        //}
+                        returnBitmap[x, y] = nowRGBA;
+                    }
+                }
+                return returnBitmap;
             }
-            return bitmap;
+            catch
+            {
+                return new RGBA[1, 1];
+            }
         }
 
-        private RGBA Combine(RGBA ibg, RGBA ifg, int intRayer)
+        private RGBA Combine(RGBA ibg, RGBA ifg, int intLayer)
         {
-            ibg.A = (int)(ibg.A * DataSaver.intLayerTP[intRayer] / 100m);
-            ifg.A = (int)(ifg.A * DataSaver.intLayerTP[intRayer + 1] / 100m);
             RGBAby1 r = new RGBAby1();
             RGBAby1 bg = new RGBAby1(ibg.R / 255m, ibg.G / 255m, ibg.B / 255m, ibg.A / 255m);
             RGBAby1 fg = new RGBAby1(ifg.R / 255m, ifg.G / 255m, ifg.B / 255m, ifg.A / 255m);
@@ -708,7 +732,7 @@ namespace Dotpia
                 pntMouseWithForm = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
                 dcmMouseLocationWithPnl[0] = pntMouseWithPnl.X / (decimal)DataSaver.intSize;
                 dcmMouseLocationWithPnl[1] = pntMouseWithPnl.Y / (decimal)DataSaver.intSize;
-                string strPositionX = dcmMouseLocationWithPnl[0].ToString("F2"), 
+                string strPositionX = dcmMouseLocationWithPnl[0].ToString("F2"),
                        strPositionY = dcmMouseLocationWithPnl[1].ToString("F2");
                 if (dcmMouseLocationWithPnl[0] < 0)
                 {
@@ -728,7 +752,7 @@ namespace Dotpia
                 }
                 if (DataSaver.pclNow != null)
                 {
-                    DataSaver.pclNow.LblMouse.Text = "Mouse Position(" + strPositionX +", "+ strPositionY + ")";
+                    DataSaver.pclNow.LblMouse.Text = "Mouse Position(" + strPositionX + ", " + strPositionY + ")";
                 }
             }
             catch
@@ -741,8 +765,8 @@ namespace Dotpia
         {
             if (bolMouseDClick || bolMouseDown)
             {
-                if (pntMouseWithPnl.X >= 0 
-                 && pntMouseWithPnl.Y >= 0 
+                if (pntMouseWithPnl.X >= 0
+                 && pntMouseWithPnl.Y >= 0
                  && pntMouseWithPnl.X <= Pnl.Width
                  && pntMouseWithPnl.Y <= Pnl.Height)
                 {
@@ -795,7 +819,7 @@ namespace Dotpia
 
         private void BitMapMain_MouseMove(object sender, MouseEventArgs e)
         {
-            if (intTimer < 500 && !bolNewFile)
+            if (intTimer < 50 && !bolNewFile)
             {
                 //ZeroLineDraw();
                 ReDrawing();

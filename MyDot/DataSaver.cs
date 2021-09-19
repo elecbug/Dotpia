@@ -31,9 +31,4 @@ namespace Dotpia
         public static CtrlZ ctrlZ;
         public static RGBA paintRGBA = new RGBA();
     }
-
-    public class HelperJson
-    {
-        public string[] HelperValue { get; set; }
-    }
 }

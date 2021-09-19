@@ -67,20 +67,32 @@ namespace Dotpia
         private void BitSave(string strPath)
         {
             Bitmap bitmap = new Bitmap(DataSaver.intWidth, DataSaver.intHeight);
+            RGBA[,,] bitmapRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight, DataSaver.HIGH_RAYER];
             for (int x = 0; x < DataSaver.intWidth; x++)
             {
                 for (int y = 0; y < DataSaver.intHeight; y++)
                 {
-                    RGBA nowRGBA = DataSaver.btmRGBA[x, y, 0];
                     for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
                     {
-                        nowRGBA = Combine(nowRGBA, DataSaver.btmRGBA[x, y, r + 1], r);
+                        bitmapRGBA[x, y, r] = new RGBA(DataSaver.btmRGBA[x, y, r]);
+                        bitmapRGBA[x, y, r].A = (int)(bitmapRGBA[x, y, r].A * DataSaver.intLayerTP[r] / 100m);
                     }
-                    nowRGBA.A *= 2;
-                    if (nowRGBA.A > 255)
+                }
+            }
+            for (int x = 0; x < DataSaver.intWidth; x++)
+            {
+                for (int y = 0; y < DataSaver.intHeight; y++)
+                {
+                    RGBA nowRGBA = new RGBA(bitmapRGBA[x, y, 0]);
+                    for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
                     {
-                        nowRGBA.A = 255;
+                        nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r]), r));
                     }
+                    //nowRGBA.A *= 2;
+                    //if (nowRGBA.A > 255)
+                    //{
+                    //    nowRGBA.A = 255;
+                    //}
                     bitmap.SetPixel(x, y, nowRGBA.ColorReturn());
                 }
             }
