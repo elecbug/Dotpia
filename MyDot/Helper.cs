@@ -65,7 +65,8 @@ namespace Dotpia
                                      "Mouse Position 라벨: 마우스의 현재 위치를 나타냅니다.",
                                      " ",
                                      "Layer 화면",
-                                     "숫자 체크 박스는 현재 선택된 레이어, 그 옆의 숫자는 옆의 레이어의 불투명도입니다."};
+                                     "숫자 체크 박스는 현재 선택된 레이어, 그 옆의 숫자는 옆의 레이어의 불투명도입니다.",
+                                     "U/D 버튼: U 버튼은 해당 레이어를 상승 시키고, D 버튼은 해당 레이어를 하강 시킵니다."};
 
         private void Helper_Load(object sender, EventArgs e)
         {

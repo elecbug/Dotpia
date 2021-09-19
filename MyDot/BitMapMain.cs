@@ -341,7 +341,7 @@ namespace Dotpia
             {
                 for (int h = 0; h < intBitMap.GetLength(1); h++)
                 {
-                    if (combineLayerRGBA[w, h] == clickRGBA)
+                    if (RGBA.Paint(combineLayerRGBA[w, h], clickRGBA))
                     {
                         intBitMap[w, h] = 1;
                     }

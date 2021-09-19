@@ -41,6 +41,14 @@ namespace Dotpia
             this.Cbx2 = new System.Windows.Forms.RadioButton();
             this.Cbx3 = new System.Windows.Forms.RadioButton();
             this.Cbx4 = new System.Windows.Forms.RadioButton();
+            this.BtnD4 = new System.Windows.Forms.Button();
+            this.BtnD3 = new System.Windows.Forms.Button();
+            this.BtnD2 = new System.Windows.Forms.Button();
+            this.BtnD1 = new System.Windows.Forms.Button();
+            this.BtnU0 = new System.Windows.Forms.Button();
+            this.BtnU1 = new System.Windows.Forms.Button();
+            this.BtnU2 = new System.Windows.Forms.Button();
+            this.BtnU3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,19 +181,107 @@ namespace Dotpia
             this.Cbx4.UseVisualStyleBackColor = true;
             this.Cbx4.CheckedChanged += new System.EventHandler(this.Cbx_CheckedChanged);
             // 
+            // BtnD4
+            // 
+            this.BtnD4.Location = new System.Drawing.Point(182, 40);
+            this.BtnD4.Name = "BtnD4";
+            this.BtnD4.Size = new System.Drawing.Size(23, 23);
+            this.BtnD4.TabIndex = 1;
+            this.BtnD4.Text = "D";
+            this.BtnD4.UseVisualStyleBackColor = true;
+            this.BtnD4.Click += new System.EventHandler(this.BtnUD_Click);
+            // 
+            // BtnD3
+            // 
+            this.BtnD3.Location = new System.Drawing.Point(182, 68);
+            this.BtnD3.Name = "BtnD3";
+            this.BtnD3.Size = new System.Drawing.Size(23, 23);
+            this.BtnD3.TabIndex = 1;
+            this.BtnD3.Text = "D";
+            this.BtnD3.UseVisualStyleBackColor = true;
+            this.BtnD3.Click += new System.EventHandler(this.BtnUD_Click);
+            // 
+            // BtnD2
+            // 
+            this.BtnD2.Location = new System.Drawing.Point(182, 97);
+            this.BtnD2.Name = "BtnD2";
+            this.BtnD2.Size = new System.Drawing.Size(23, 23);
+            this.BtnD2.TabIndex = 1;
+            this.BtnD2.Text = "D";
+            this.BtnD2.UseVisualStyleBackColor = true;
+            this.BtnD2.Click += new System.EventHandler(this.BtnUD_Click);
+            // 
+            // BtnD1
+            // 
+            this.BtnD1.Location = new System.Drawing.Point(182, 125);
+            this.BtnD1.Name = "BtnD1";
+            this.BtnD1.Size = new System.Drawing.Size(23, 23);
+            this.BtnD1.TabIndex = 1;
+            this.BtnD1.Text = "D";
+            this.BtnD1.UseVisualStyleBackColor = true;
+            this.BtnD1.Click += new System.EventHandler(this.BtnUD_Click);
+            // 
+            // BtnU0
+            // 
+            this.BtnU0.Location = new System.Drawing.Point(153, 155);
+            this.BtnU0.Name = "BtnU0";
+            this.BtnU0.Size = new System.Drawing.Size(23, 23);
+            this.BtnU0.TabIndex = 1;
+            this.BtnU0.Text = "U";
+            this.BtnU0.UseVisualStyleBackColor = true;
+            this.BtnU0.Click += new System.EventHandler(this.BtnUD_Click);
+            // 
+            // BtnU1
+            // 
+            this.BtnU1.Location = new System.Drawing.Point(153, 126);
+            this.BtnU1.Name = "BtnU1";
+            this.BtnU1.Size = new System.Drawing.Size(23, 23);
+            this.BtnU1.TabIndex = 1;
+            this.BtnU1.Text = "U";
+            this.BtnU1.UseVisualStyleBackColor = true;
+            this.BtnU1.Click += new System.EventHandler(this.BtnUD_Click);
+            // 
+            // BtnU2
+            // 
+            this.BtnU2.Location = new System.Drawing.Point(153, 97);
+            this.BtnU2.Name = "BtnU2";
+            this.BtnU2.Size = new System.Drawing.Size(23, 23);
+            this.BtnU2.TabIndex = 1;
+            this.BtnU2.Text = "U";
+            this.BtnU2.UseVisualStyleBackColor = true;
+            this.BtnU2.Click += new System.EventHandler(this.BtnUD_Click);
+            // 
+            // BtnU3
+            // 
+            this.BtnU3.Location = new System.Drawing.Point(153, 68);
+            this.BtnU3.Name = "BtnU3";
+            this.BtnU3.Size = new System.Drawing.Size(23, 23);
+            this.BtnU3.TabIndex = 1;
+            this.BtnU3.Text = "U";
+            this.BtnU3.UseVisualStyleBackColor = true;
+            this.BtnU3.Click += new System.EventHandler(this.BtnUD_Click);
+            // 
             // Layer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(159, 196);
+            this.ClientSize = new System.Drawing.Size(214, 196);
+            this.Controls.Add(this.BtnU3);
+            this.Controls.Add(this.BtnU2);
+            this.Controls.Add(this.BtnU1);
+            this.Controls.Add(this.BtnU0);
+            this.Controls.Add(this.BtnD1);
+            this.Controls.Add(this.BtnD2);
+            this.Controls.Add(this.BtnD3);
+            this.Controls.Add(this.BtnD4);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("휴먼편지체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MaximizeBox = false;
             this.Name = "Layer";
-            this.Text = "Rayer";
+            this.Text = "Layer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Layer_FormClosed);
             this.Load += new System.EventHandler(this.Layer_Load);
             this.groupBox1.ResumeLayout(false);
@@ -207,5 +303,13 @@ namespace Dotpia
         public System.Windows.Forms.RichTextBox Rtb2;
         public System.Windows.Forms.RichTextBox Rtb3;
         public System.Windows.Forms.RichTextBox Rtb4;
+        private System.Windows.Forms.Button BtnD4;
+        private System.Windows.Forms.Button BtnD3;
+        private System.Windows.Forms.Button BtnD2;
+        private System.Windows.Forms.Button BtnD1;
+        private System.Windows.Forms.Button BtnU0;
+        private System.Windows.Forms.Button BtnU1;
+        private System.Windows.Forms.Button BtnU2;
+        private System.Windows.Forms.Button BtnU3;
     }
 }

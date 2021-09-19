@@ -101,6 +101,12 @@
     </Compile>
     <Compile Include="MyColor.cs" />
     <Compile Include="MyPaint.cs" />
+    <Compile Include="PaintSetter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaintSetter.Designer.cs">
+      <DependentUpon>PaintSetter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pencil.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaintSetter.resx">
+      <DependentUpon>PaintSetter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pencil.resx">
       <DependentUpon>Pencil.cs</DependentUpon>

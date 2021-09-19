@@ -20,6 +20,7 @@ namespace Dotpia
 
         private bool bolColorDialog = false;
         private bool bolSaveColorClick = false;
+        public bool bolEsterEgg = false;
 
         private void Pencil_Load(object sender, EventArgs e)
         {
@@ -253,6 +254,64 @@ namespace Dotpia
 
         private void BtnPaint_Click(object sender, EventArgs e)
         {
+            switch (DataSaver.bmmNow.intNowLayer)
+            {
+                case 0:
+                    if (DataSaver.intLayerTP[4] == 19 && DataSaver.intLayerTP[3] == 72 && DataSaver.intLayerTP[2] == 11 && DataSaver.intLayerTP[1] == 21)
+                    {
+                        if (!bolEsterEgg)
+                        {
+                            PaintSetter paintSetter = new PaintSetter();
+                            paintSetter.Show();
+                            bolEsterEgg = true;
+                        }
+                    }
+                    break;
+                case 1:
+                    if (DataSaver.intLayerTP[4] == 19 && DataSaver.intLayerTP[3] == 72 && DataSaver.intLayerTP[2] == 11 && DataSaver.intLayerTP[0] == 21)
+                    {
+                        if (!bolEsterEgg)
+                        {
+                            PaintSetter paintSetter = new PaintSetter();
+                            paintSetter.Show();
+                            bolEsterEgg = true;
+                        }
+                    }
+                    break;
+                case 2:
+                    if (DataSaver.intLayerTP[4] == 19 && DataSaver.intLayerTP[3] == 72 && DataSaver.intLayerTP[1] == 11 && DataSaver.intLayerTP[0] == 21)
+                    {
+                        if (!bolEsterEgg)
+                        {
+                            PaintSetter paintSetter = new PaintSetter();
+                            paintSetter.Show();
+                            bolEsterEgg = true;
+                        }
+                    }
+                    break;
+                case 3:
+                    if (DataSaver.intLayerTP[4] == 19 && DataSaver.intLayerTP[2] == 72 && DataSaver.intLayerTP[1] == 11 && DataSaver.intLayerTP[0] == 21)
+                    {
+                        if (!bolEsterEgg)
+                        {
+                            PaintSetter paintSetter = new PaintSetter();
+                            paintSetter.Show();
+                            bolEsterEgg = true;
+                        }
+                    }
+                    break;
+                case 4:
+                    if (DataSaver.intLayerTP[3] == 19 && DataSaver.intLayerTP[2] == 72 && DataSaver.intLayerTP[1] == 11 && DataSaver.intLayerTP[0] == 21)
+                    {
+                        if (!bolEsterEgg)
+                        {
+                            PaintSetter paintSetter = new PaintSetter();
+                            paintSetter.Show();
+                            bolEsterEgg = true;
+                        }
+                    }
+                    break;
+            }
             if (!DataSaver.bolPaint)
             {
                 DataSaver.bolPaint = true;

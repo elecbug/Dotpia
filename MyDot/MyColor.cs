@@ -107,6 +107,27 @@ namespace Dotpia
             returner = B + A;
             return returner;
         }
+
+        public static bool Paint(RGBA a, RGBA b)
+        {
+            if (Math.Abs(a.R - b.R) <= DataSaver.paintRGBA.R)
+            {
+                return true;
+            }
+            if (Math.Abs(a.G - b.G) <= DataSaver.paintRGBA.G)
+            {
+                return true;
+            }
+            if (Math.Abs(a.B - b.B) <= DataSaver.paintRGBA.B)
+            {
+                return true;
+            }
+            if (Math.Abs(a.A - b.A) <= DataSaver.paintRGBA.A)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
     public class RGBAby1

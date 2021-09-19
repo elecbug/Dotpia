@@ -29,6 +29,7 @@ namespace Dotpia
         public static Layer lyeNow;
         public static int[] intLayerTP;
         public static CtrlZ ctrlZ;
+        public static RGBA paintRGBA = new RGBA();
     }
 
     public class HelperJson
