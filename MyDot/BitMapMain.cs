@@ -29,6 +29,7 @@ namespace Dotpia
         private int intScale = 0;
         private int intDefaultSize;
         private decimal[] dcmMouseLocationWithPnl = new decimal[2];
+        private decimal[] dcmMousePastWithPnl = new decimal[2];
         private bool bolNewFile;
         private bool bolCtrlPress = false;
         private int intMousePixel = 1;
@@ -55,6 +56,10 @@ namespace Dotpia
                 int intControlWidth = Pnl.Width / grpBitMap.GetLength(0);
                 int intControlHeight = Pnl.Height / grpBitMap.GetLength(1);
                 int intSize = Math.Min(intControlWidth, intControlHeight);
+                if (intSize < 1)
+                {
+                    intSize = 1;
+                }
                 Pnl.Width = intSize * DataSaver.intWidth;
                 Pnl.Height = intSize * DataSaver.intHeight;
                 DataSaver.intSize = intSize;
@@ -225,22 +230,22 @@ namespace Dotpia
                     grpBitMap[x, y] = Pnl.CreateGraphics();
                 }
             }
-            //for (int y = Math.Max(-(DataSaver.intSize + Pnl.Location.Y) / DataSaver.intSize, 0);
-            //         y < Math.Min((this.Height - Pnl.Location.Y) / DataSaver.intSize, DataSaver.intHeight); y++)
-            //{
-            //    for (int x = Math.Max(-(DataSaver.intSize + Pnl.Location.X) / DataSaver.intSize, 0);
-            //             x < Math.Min((this.Width - Pnl.Location.X) / DataSaver.intSize, DataSaver.intWidth); x++)
-            //    {
-            //        PartedReDrawing(x, y);
-            //    }
-            //}
-            for (int y = 0; y < DataSaver.intHeight; y++)
+            for (int y = Math.Max(-(DataSaver.intSize + Pnl.Location.Y) / DataSaver.intSize, 0);
+                     y < Math.Min((this.Height - Pnl.Location.Y) / DataSaver.intSize, DataSaver.intHeight); y++)
             {
-                for (int x = 0; x < DataSaver.intWidth; x++)
+                for (int x = Math.Max(-(DataSaver.intSize + Pnl.Location.X) / DataSaver.intSize, 0);
+                         x < Math.Min((this.Width - Pnl.Location.X) / DataSaver.intSize, DataSaver.intWidth); x++)
                 {
                     PartedReDrawing(x, y);
                 }
             }
+            //for (int y = 0; y < DataSaver.intHeight; y++)
+            //{
+            //    for (int x = 0; x < DataSaver.intWidth; x++)
+            //    {
+            //        PartedReDrawing(x, y);
+            //    }
+            //}
             if (bolBorder)
             {
                 Pen pen = new Pen(Color.Green, 1);
@@ -298,6 +303,7 @@ namespace Dotpia
             if (!bolMouseDClick)
             {
                 bolMouseDClick = true;
+                dcmMousePastWithPnl = (decimal[])dcmMouseLocationWithPnl.Clone();
             }
             else
             {
@@ -323,43 +329,41 @@ namespace Dotpia
             }
         }
 
-        /*
-        private void OldPaintTool(int x, int y, RGBA clickRGBA)
-        {
-            DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(DataSaver.nowRGBA);
-            for (int j = 0; j < 4; j++)
-            {
-                if (y < DataSaver.btmRGBA.GetLength(1) - 1)
-                {
-                    if (DataSaver.btmRGBA[x, y + 1, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x, y + 1, intNowLayer].A == 0 && clickRGBA.A == 0))
-                    {
-                        PaintTool(x, y + 1, clickRGBA);
-                    }
-                }
-                if (y >= 1)
-                {
-                    if (DataSaver.btmRGBA[x, y - 1, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x, y - 1, intNowLayer].A == 0 && clickRGBA.A == 0))
-                    {
-                        PaintTool(x, y - 1, clickRGBA);
-                    }
-                }
-                if (x < DataSaver.btmRGBA.GetLength(0) - 1)
-                {
-                    if (DataSaver.btmRGBA[x + 1, y, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x + 1, y, intNowLayer].A == 0 && clickRGBA.A == 0))
-                    {
-                        PaintTool(x + 1, y, clickRGBA);
-                    }
-                }
-                if (x >= 1)
-                {
-                    if (DataSaver.btmRGBA[x - 1, y, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x - 1, y, intNowLayer].A == 0 && clickRGBA.A == 0))
-                    {
-                        PaintTool(x - 1, y, clickRGBA);
-                    }
-                }
-            }
-        }
-        */
+        //private void OldPaintTool(int x, int y, RGBA clickRGBA)
+        //{
+        //    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(DataSaver.nowRGBA);
+        //    for (int j = 0; j < 4; j++)
+        //    {
+        //        if (y < DataSaver.btmRGBA.GetLength(1) - 1)
+        //        {
+        //            if (DataSaver.btmRGBA[x, y + 1, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x, y + 1, intNowLayer].A == 0 && clickRGBA.A == 0))
+        //            {
+        //                PaintTool(x, y + 1, clickRGBA);
+        //            }
+        //        }
+        //        if (y >= 1)
+        //        {
+        //            if (DataSaver.btmRGBA[x, y - 1, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x, y - 1, intNowLayer].A == 0 && clickRGBA.A == 0))
+        //            {
+        //                PaintTool(x, y - 1, clickRGBA);
+        //            }
+        //        }
+        //        if (x < DataSaver.btmRGBA.GetLength(0) - 1)
+        //        {
+        //            if (DataSaver.btmRGBA[x + 1, y, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x + 1, y, intNowLayer].A == 0 && clickRGBA.A == 0))
+        //            {
+        //                PaintTool(x + 1, y, clickRGBA);
+        //            }
+        //        }
+        //        if (x >= 1)
+        //        {
+        //            if (DataSaver.btmRGBA[x - 1, y, intNowLayer] == clickRGBA || (DataSaver.btmRGBA[x - 1, y, intNowLayer].A == 0 && clickRGBA.A == 0))
+        //            {
+        //                PaintTool(x - 1, y, clickRGBA);
+        //            }
+        //        }
+        //    }
+        //}
 
         private void PaintTool(int x, int y)
         {
@@ -569,7 +573,24 @@ namespace Dotpia
                     DataSaver.nowRGBA = new RGBA(0, 0, 0, 0);
                 }
                 int intPointX = pntMouseWithPnl.X / DataSaver.intSize, intPointY = pntMouseWithPnl.Y / DataSaver.intSize;
-                if (DataSaver.bolExtraction)
+
+                if (!DataSaver.bolExtraction && !DataSaver.bolPaint && DataSaver.intMirror == 0)
+                {
+                    DataSaver.btmRGBA[intPointX, intPointY, intNowLayer] = new RGBA(DataSaver.nowRGBA);
+                    PartedReDrawing(intPointX, intPointY);
+                    if (intMousePixel > 1)
+                    {
+                        for (int x = intPointX - (intMousePixel / 2 + 1); x < intPointX + (intMousePixel / 2 + 1); x++)
+                        {
+                            for (int y = intPointY - (intMousePixel / 2 + 1); y < intPointY + (intMousePixel / 2 + 1); y++)
+                            {
+                                DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(DataSaver.nowRGBA);
+                                PartedReDrawing(x, y);
+                            }
+                        }
+                    }
+                }
+                else if (DataSaver.bolExtraction)
                 {
                     DataSaver.nowRGBA = new RGBA(DataSaver.btmRGBA[intPointX, intPointY, intNowLayer]);
                     DataSaver.pclNow.PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
@@ -619,7 +640,6 @@ namespace Dotpia
                             }
                         }
                     }
-
                 }
                 else if (DataSaver.intMirror == 2)
                 {
@@ -650,22 +670,6 @@ namespace Dotpia
                                     DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(DataSaver.nowRGBA);
                                     PartedReDrawing(x, y);
                                 }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    DataSaver.btmRGBA[intPointX, intPointY, intNowLayer] = new RGBA(DataSaver.nowRGBA);
-                    PartedReDrawing(intPointX, intPointY);
-                    if (intMousePixel > 1)
-                    {
-                        for (int x = intPointX - (intMousePixel / 2 + 1); x < intPointX + (intMousePixel / 2 + 1); x++)
-                        {
-                            for (int y = intPointY - (intMousePixel / 2 + 1); y < intPointY + (intMousePixel / 2 + 1); y++)
-                            {
-                                DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(DataSaver.nowRGBA);
-                                PartedReDrawing(x, y);
                             }
                         }
                     }
@@ -771,6 +775,7 @@ namespace Dotpia
                  && pntMouseWithPnl.Y <= Pnl.Height)
                 {
                     BtnClick(sender, e);
+                    dcmMousePastWithPnl = (decimal[])dcmMouseLocationWithPnl.Clone();
                 }
             }
         }
@@ -778,6 +783,7 @@ namespace Dotpia
         private void Pnl_MouseDown(object sender, MouseEventArgs e)
         {
             bolMouseDown = true;
+            dcmMousePastWithPnl = (decimal[])dcmMouseLocationWithPnl.Clone();
         }
 
         private void Pnl_MouseUp(object sender, MouseEventArgs e)
