@@ -832,11 +832,23 @@ namespace Dotpia
                     DataSaver.pclNow.BtnZ_Click(sender, e);
                 }
             }
+            if (e.KeyCode == Keys.V)
+            {
+                if (bolCtrlPress)
+                {
+                    DataSaver.pclNow.BtnV_Click(sender, e);
+                }
+            }
         }
 
         private void BitMapMain_KeyUp(object sender, KeyEventArgs e)
         {
             bolCtrlPress = false;
+        }
+
+        private void BitMapMain_Scroll(object sender, ScrollEventArgs e)
+        {
+            ReDrawing();
         }
     }
 }

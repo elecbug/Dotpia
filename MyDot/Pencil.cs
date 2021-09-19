@@ -505,5 +505,29 @@ namespace Dotpia
 
             }
         }
+
+        public void BtnV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Bitmap ctrlV = (Bitmap)Clipboard.GetImage();
+                if (ctrlV == null)
+                {
+                    return;
+                }
+                for (int x = 0; x < Math.Min(DataSaver.intWidth, ctrlV.Width); x++)
+                {
+                    for (int y = 0; y < Math.Min(DataSaver.intHeight, ctrlV.Height); y++)
+                    {
+                        DataSaver.btmRGBA[x, y, DataSaver.bmmNow.intNowLayer] = new RGBA(ctrlV.GetPixel(x, y));
+                    }
+                }
+                DataSaver.bmmNow.ReDrawing();
+            }
+            catch
+            {
+
+            }
+        }
     }
 }

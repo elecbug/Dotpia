@@ -66,6 +66,7 @@ namespace Dotpia
             this.Pbx2 = new System.Windows.Forms.PictureBox();
             this.Pbx1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BtnV = new System.Windows.Forms.Button();
             this.BtnZ = new System.Windows.Forms.Button();
             this.BtnRayer = new System.Windows.Forms.Button();
             this.BtnZoom = new System.Windows.Forms.Button();
@@ -73,10 +74,10 @@ namespace Dotpia
             this.RtbMirror = new System.Windows.Forms.RichTextBox();
             this.SfdNewSave = new System.Windows.Forms.SaveFileDialog();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.LblPx = new System.Windows.Forms.Label();
             this.LblMouse = new System.Windows.Forms.Label();
             this.LblHeight = new System.Windows.Forms.Label();
             this.LblWidth = new System.Windows.Forms.Label();
-            this.LblPx = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -461,6 +462,7 @@ namespace Dotpia
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.BtnV);
             this.groupBox3.Controls.Add(this.BtnZ);
             this.groupBox3.Controls.Add(this.BtnRayer);
             this.groupBox3.Controls.Add(this.BtnZoom);
@@ -475,6 +477,17 @@ namespace Dotpia
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tool";
+            // 
+            // BtnV
+            // 
+            this.BtnV.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnV.Location = new System.Drawing.Point(157, 121);
+            this.BtnV.Name = "BtnV";
+            this.BtnV.Size = new System.Drawing.Size(69, 42);
+            this.BtnV.TabIndex = 3;
+            this.BtnV.Text = "Ctrl+V";
+            this.BtnV.UseVisualStyleBackColor = false;
+            this.BtnV.Click += new System.EventHandler(this.BtnV_Click);
             // 
             // BtnZ
             // 
@@ -547,6 +560,15 @@ namespace Dotpia
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Data";
             // 
+            // LblPx
+            // 
+            this.LblPx.AutoSize = true;
+            this.LblPx.Location = new System.Drawing.Point(100, 46);
+            this.LblPx.Name = "LblPx";
+            this.LblPx.Size = new System.Drawing.Size(42, 19);
+            this.LblPx.TabIndex = 1;
+            this.LblPx.Text = "Px: 1";
+            // 
             // LblMouse
             // 
             this.LblMouse.AutoSize = true;
@@ -570,15 +592,6 @@ namespace Dotpia
             this.LblWidth.Name = "LblWidth";
             this.LblWidth.Size = new System.Drawing.Size(0, 19);
             this.LblWidth.TabIndex = 0;
-            // 
-            // LblPx
-            // 
-            this.LblPx.AutoSize = true;
-            this.LblPx.Location = new System.Drawing.Point(100, 46);
-            this.LblPx.Name = "LblPx";
-            this.LblPx.Size = new System.Drawing.Size(42, 19);
-            this.LblPx.TabIndex = 1;
-            this.LblPx.Text = "Px: 1";
             // 
             // Pencil
             // 
@@ -663,5 +676,6 @@ namespace Dotpia
         public System.Windows.Forms.Label LblHeight;
         private System.Windows.Forms.Button BtnZ;
         public System.Windows.Forms.Label LblPx;
+        private System.Windows.Forms.Button BtnV;
     }
 }

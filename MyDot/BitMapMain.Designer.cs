@@ -57,6 +57,7 @@ namespace Dotpia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(824, 624);
@@ -68,6 +69,7 @@ namespace Dotpia
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BitMapMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BitMapMain_FormClosed);
             this.Load += new System.EventHandler(this.BitMapMain_Load);
+            this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.BitMapMain_Scroll);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BitMapMain_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BitMapMain_KeyUp);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BitMapMain_MouseMove);
