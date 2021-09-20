@@ -926,7 +926,10 @@ namespace Dotpia
                 grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[0].Y);
                 bolDragOn = true;
             }
-            CtrlZPush();
+            if (!bolDragOn)
+            {
+                CtrlZPush();
+            }
             if (bolBorder)
             {
                 Pen pen = new Pen(Color.Green, 1);
