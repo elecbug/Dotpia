@@ -77,6 +77,7 @@ namespace Dotpia
             this.LblMouse = new System.Windows.Forms.Label();
             this.LblHeight = new System.Windows.Forms.Label();
             this.LblWidth = new System.Windows.Forms.Label();
+            this.BtnCut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -461,6 +462,7 @@ namespace Dotpia
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.BtnCut);
             this.groupBox3.Controls.Add(this.BtnV);
             this.groupBox3.Controls.Add(this.BtnZ);
             this.groupBox3.Controls.Add(this.BtnZoom);
@@ -580,6 +582,17 @@ namespace Dotpia
             this.LblWidth.Size = new System.Drawing.Size(0, 19);
             this.LblWidth.TabIndex = 0;
             // 
+            // BtnCut
+            // 
+            this.BtnCut.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnCut.Location = new System.Drawing.Point(157, 121);
+            this.BtnCut.Name = "BtnCut";
+            this.BtnCut.Size = new System.Drawing.Size(69, 42);
+            this.BtnCut.TabIndex = 3;
+            this.BtnCut.Text = "Cut";
+            this.BtnCut.UseVisualStyleBackColor = false;
+            this.BtnCut.Click += new System.EventHandler(this.BtnCut_Click);
+            // 
             // Pencil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -664,5 +677,6 @@ namespace Dotpia
         private System.Windows.Forms.Button BtnZ;
         public System.Windows.Forms.Label LblPx;
         private System.Windows.Forms.Button BtnV;
+        private System.Windows.Forms.Button BtnCut;
     }
 }

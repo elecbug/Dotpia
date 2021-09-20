@@ -33,6 +33,10 @@ namespace Dotpia
         private bool bolNewFile;
         private bool bolCtrlPress = false;
         private int intMousePixel = 1;
+        private Point[] pntDrag = new Point[2];
+        private Point[] pntNewLocation = new Point[2];
+        private Graphics grpDrag;
+        public bool bolDragOn = false;
         //private Graphics grpZeroLine;
 
         private void BitMapMain_Load(object sender, EventArgs e)
@@ -85,6 +89,7 @@ namespace Dotpia
                 DataSaver.ctrlZ.Push(DataSaver.btmRGBA);
                 DataSaver.startRGBA = (RGBA[,,])DataSaver.btmRGBA.Clone();
                 ReDrawing();
+                grpDrag = Pnl.CreateGraphics();
             }
             catch
             {
@@ -130,6 +135,13 @@ namespace Dotpia
                         nowMouse.Y = (int)(nowMouse.Y * dcmHeight);
                         Pnl.Location = new Point(pntMouseWithForm.X - nowMouse.X, pntMouseWithForm.Y - nowMouse.Y);
                         pntMouseWithPnl = new Point(pntMouseWithPnl.X * 2, pntMouseWithPnl.Y * 2);
+                        if(bolDragOn)
+                        {
+                            pntDrag[0].X = (int)(pntDrag[0].X * dcmWidth);
+                            pntDrag[0].Y = (int)(pntDrag[0].Y * dcmHeight);
+                            pntDrag[1].X = (int)(pntDrag[1].X * dcmWidth);
+                            pntDrag[1].Y = (int)(pntDrag[1].Y * dcmHeight);
+                        }
                     }
                 }
                 if (e.Delta / 120 < 0)
@@ -149,6 +161,13 @@ namespace Dotpia
                         nowMouse.Y = (int)(nowMouse.Y * dcmHeight);
                         Pnl.Location = new Point(pntMouseWithForm.X - nowMouse.X, pntMouseWithForm.Y - nowMouse.Y);
                         pntMouseWithPnl = new Point(pntMouseWithPnl.X / 2, pntMouseWithPnl.Y / 2);
+                        if (bolDragOn)
+                        {
+                            pntDrag[0].X = (int)(pntDrag[0].X * dcmWidth);
+                            pntDrag[0].Y = (int)(pntDrag[0].Y * dcmHeight);
+                            pntDrag[1].X = (int)(pntDrag[1].X * dcmWidth);
+                            pntDrag[1].Y = (int)(pntDrag[1].Y * dcmHeight);
+                        }
                     }
                 }
                 try
@@ -179,12 +198,23 @@ namespace Dotpia
 
         public void ZoomReset()
         {
+            int nowWidth = Pnl.Width;
+            int nowHeight = Pnl.Height;
             Pnl.Location = new Point(12, 12);
             Pnl.Width = 800;
             Pnl.Height = 600;
             DataSaver.intSize = Math.Min(Pnl.Width / grpBitMap.GetLength(0), Pnl.Height / grpBitMap.GetLength(1));
             Pnl.Width = DataSaver.intSize * DataSaver.intWidth;
             Pnl.Height = DataSaver.intSize * DataSaver.intHeight;
+            decimal dcmWidth = Pnl.Width / (decimal)nowWidth;
+            decimal dcmHeight = Pnl.Height / (decimal)nowHeight;
+            if (bolDragOn)
+            {
+                pntDrag[0].X = (int)(pntDrag[0].X * dcmWidth);
+                pntDrag[0].Y = (int)(pntDrag[0].Y * dcmHeight);
+                pntDrag[1].X = (int)(pntDrag[1].X * dcmWidth);
+                pntDrag[1].Y = (int)(pntDrag[1].Y * dcmHeight);
+            }
             ReDrawing();
             try
             {
@@ -237,6 +267,15 @@ namespace Dotpia
                         j++;
                     }
                 }
+            }
+            if (bolDragOn)
+            {
+                Pen pen = new Pen(Color.White, 1);
+                grpDrag = Pnl.CreateGraphics();
+                grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[0].Y);
+                grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[1].Y);
+                grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[1].Y);
+                grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[0].Y);
             }
         }
 
@@ -556,7 +595,7 @@ namespace Dotpia
                 }
                 int intPointX = pntMouseWithPnl.X / DataSaver.intSize, intPointY = pntMouseWithPnl.Y / DataSaver.intSize;
 
-                if (!DataSaver.bolExtraction && !DataSaver.bolPaint && DataSaver.intMirror == 0)
+                if (!DataSaver.bolExtraction && !DataSaver.bolPaint && DataSaver.intMirror == 0 && !DataSaver.bolCut)
                 {
                     DataSaver.btmRGBA[intPointX, intPointY, intNowLayer] = new RGBA(DataSaver.nowRGBA);
                     PartedReDrawing(intPointX, intPointY);
@@ -673,6 +712,15 @@ namespace Dotpia
                         }
                     }
                 }
+                if (bolDragOn)
+                {
+                    Pen pen = new Pen(Color.White, 1);
+                    grpDrag = Pnl.CreateGraphics();
+                    grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[0].Y);
+                    grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[1].Y);
+                    grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[1].Y);
+                    grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[0].Y);
+                }
                 DataSaver.nowRGBA = new RGBA(color);
                 CtrlZPush();
             }
@@ -703,6 +751,7 @@ namespace Dotpia
             DataSaver.bolPaint = false;
             DataSaver.intMirror = 0;
             DataSaver.paintRGBA = new RGBA();
+            DataSaver.bolCut = false;
         }
 
         private void BitMapMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -757,26 +806,126 @@ namespace Dotpia
 
         private void Pnl_MouseMove(object sender, MouseEventArgs e)
         {
-            if (bolMouseDClick || bolMouseDown)
+            if (!DataSaver.bolCut)
             {
-                if (pntMouseWithPnl.X >= 0
-                 && pntMouseWithPnl.Y >= 0
-                 && pntMouseWithPnl.X <= Pnl.Width
-                 && pntMouseWithPnl.Y <= Pnl.Height)
+                if (bolMouseDClick || bolMouseDown)
                 {
-                    BtnClick(sender, e);
+                    if (pntMouseWithPnl.X >= 0
+                     && pntMouseWithPnl.Y >= 0
+                     && pntMouseWithPnl.X <= Pnl.Width
+                     && pntMouseWithPnl.Y <= Pnl.Height)
+                    {
+                        BtnClick(sender, e);
+                    }
                 }
             }
         }
 
         private void Pnl_MouseDown(object sender, MouseEventArgs e)
         {
+            if (DataSaver.bolCut
+            && (pntMouseWithPnl.X < Math.Min(pntDrag[0].X, pntDrag[1].X)
+             || pntMouseWithPnl.Y < Math.Min(pntDrag[0].Y, pntDrag[1].Y)
+             || pntMouseWithPnl.X > Math.Max(pntDrag[0].X, pntDrag[1].X)
+             || pntMouseWithPnl.Y > Math.Max(pntDrag[0].Y, pntDrag[1].Y))) 
+            {
+                pntDrag[0] = new Point(pntMouseWithPnl.X, pntMouseWithPnl.Y);
+            }
+            else if(DataSaver.bolCut)
+            {
+                pntNewLocation[0] = new Point(pntMouseWithPnl.X, pntMouseWithPnl.Y);
+            }
             bolMouseDown = true;
         }
 
         private void Pnl_MouseUp(object sender, MouseEventArgs e)
         {
             bolMouseDown = false;
+            if (bolDragOn)
+            {
+                pntNewLocation[1] = new Point(pntMouseWithPnl.X, pntMouseWithPnl.Y);
+                int xMove = (pntNewLocation[0].X - pntNewLocation[1].X) / DataSaver.intSize;
+                int yMove = (pntNewLocation[0].Y - pntNewLocation[1].Y) / DataSaver.intSize;
+                if (xMove >= 0)
+                {
+                    if (yMove >= 0)
+                    {
+                        for (int x = Math.Min(pntDrag[0].X, pntDrag[1].X) / DataSaver.intSize; x < Math.Max(pntDrag[0].X, pntDrag[1].X) / DataSaver.intSize + 1; x++)
+                        {
+                            for (int y = Math.Min(pntDrag[0].Y, pntDrag[1].Y) / DataSaver.intSize; y < Math.Max(pntDrag[0].Y, pntDrag[1].Y) / DataSaver.intSize + 1; y++)
+                            {
+                                if (x - xMove >= 0 && x - xMove < DataSaver.intWidth && y - yMove >= 0 && y - yMove < DataSaver.intHeight)
+                                {
+                                    DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
+                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                }
+                            }
+                        }
+                    }
+                    else if (yMove < 0)
+                    {
+                        for (int x = Math.Min(pntDrag[0].X, pntDrag[1].X) / DataSaver.intSize; x < Math.Max(pntDrag[0].X, pntDrag[1].X) / DataSaver.intSize + 1; x++)
+                        {
+                            for (int y = Math.Max(pntDrag[0].Y, pntDrag[1].Y) / DataSaver.intSize; y >= Math.Min(pntDrag[0].Y, pntDrag[1].Y) / DataSaver.intSize; y--)
+                            {
+                                if (x - xMove >= 0 && x - xMove < DataSaver.intWidth && y - yMove >= 0 && y - yMove < DataSaver.intHeight)
+                                {
+                                    DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
+                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (xMove < 0)
+                {
+                    if (yMove >= 0)
+                    {
+                        for (int x = Math.Max(pntDrag[0].X, pntDrag[1].X) / DataSaver.intSize; x >= Math.Min(pntDrag[0].X, pntDrag[1].X) / DataSaver.intSize; x--)
+                        {
+                            for (int y = Math.Min(pntDrag[0].Y, pntDrag[1].Y) / DataSaver.intSize; y < Math.Max(pntDrag[0].Y, pntDrag[1].Y) / DataSaver.intSize + 1; y++)
+                            {
+                                if (x - xMove >= 0 && x - xMove < DataSaver.intWidth && y - yMove >= 0 && y - yMove < DataSaver.intHeight)
+                                {
+                                    DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
+                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                }
+                            }
+                        }
+                    }
+                    else if (yMove < 0)
+                    {
+                        for (int x = Math.Max(pntDrag[0].X, pntDrag[1].X) / DataSaver.intSize; x >= Math.Min(pntDrag[0].X, pntDrag[1].X) / DataSaver.intSize; x--)
+                        {
+                            for (int y = Math.Max(pntDrag[0].Y, pntDrag[1].Y) / DataSaver.intSize; y >= Math.Min(pntDrag[0].Y, pntDrag[1].Y) / DataSaver.intSize; y--)
+                            {
+                                if (x - xMove >= 0 && x - xMove < DataSaver.intWidth && y - yMove >= 0 && y - yMove < DataSaver.intHeight)
+                                {
+                                    DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
+                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                }
+                            }
+                        }
+                    }
+                }           
+                bolDragOn = false;
+                ReDrawing();
+                pntDrag = new Point[2];
+                pntNewLocation = new Point[2];
+            }
+            else if (DataSaver.bolCut)
+            {
+                pntDrag[1] = new Point(pntMouseWithPnl.X, pntMouseWithPnl.Y);
+                grpDrag.Clear(Pnl.BackColor);
+                ReDrawing();
+                grpDrag = Pnl.CreateGraphics();
+                Pen pen = new Pen(Color.White, 1);
+                grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[0].Y);
+                grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[1].Y);
+                grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[1].Y);
+                grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[0].Y);
+                bolDragOn = true;
+            }
             CtrlZPush();
             if (bolBorder)
             {
@@ -861,7 +1010,14 @@ namespace Dotpia
 
         private void BitMapMain_KeyUp(object sender, KeyEventArgs e)
         {
-            bolCtrlPress = false;
+            if (e.Control)
+            {
+                bolCtrlPress = true;
+            }
+            else
+            {
+                bolCtrlPress = false;
+            }
         }
 
         private void BitMapMain_Scroll(object sender, ScrollEventArgs e)

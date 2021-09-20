@@ -30,5 +30,7 @@ namespace Dotpia
         public static int[] intLayerTP;
         public static CtrlZ ctrlZ;
         public static RGBA paintRGBA = new RGBA();
+        public static bool bolCut;
+        public static RGBA[,] dragRGBA;
     }
 }
