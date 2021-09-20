@@ -534,6 +534,7 @@ namespace Dotpia
                         DataSaver.btmRGBA[x, y, DataSaver.bmmNow.intNowLayer] = new RGBA(ctrlV.GetPixel(x, y));
                     }
                 }
+                DataSaver.ctrlZ.Push(DataSaver.btmRGBA);
                 DataSaver.bmmNow.ReDrawing();
             }
             catch
