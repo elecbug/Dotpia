@@ -34,14 +34,13 @@ namespace Dotpia
                     BitMapMain BmmForm = new BitMapMain();
                     DataSaver.bmmNow = BmmForm;
                     BmmForm.Show();
-
-                }
-                if (DataSaver.pclNow == null)
-                {
                     Pencil pclForm = new Pencil();
                     DataSaver.pclNow = pclForm;
                     pclForm.Show();
-                }
+                    Layer lyeForm = new Layer();
+                    DataSaver.lyeNow = lyeForm;
+                    lyeForm.Show();
+                }           
             }
             catch
             {
@@ -80,12 +79,12 @@ namespace Dotpia
                     BitMapMain BmmForm = new BitMapMain();
                     DataSaver.bmmNow = BmmForm;
                     BmmForm.Show();
-                }
-                if (DataSaver.pclNow == null)
-                {
                     Pencil pclForm = new Pencil();
                     DataSaver.pclNow = pclForm;
                     pclForm.Show();
+                    Layer lyeForm = new Layer();
+                    DataSaver.lyeNow = lyeForm;
+                    lyeForm.Show();
                 }
             }
         }
@@ -206,12 +205,12 @@ namespace Dotpia
                     BitMapMain BmmForm = new BitMapMain();
                     DataSaver.bmmNow = BmmForm;
                     BmmForm.Show();
-                }
-                if (DataSaver.pclNow == null)
-                {
                     Pencil pclForm = new Pencil();
                     DataSaver.pclNow = pclForm;
                     pclForm.Show();
+                    Layer lyeForm = new Layer();
+                    DataSaver.lyeNow = lyeForm;
+                    lyeForm.Show();
                 }
             }
         }

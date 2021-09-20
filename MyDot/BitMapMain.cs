@@ -692,6 +692,10 @@ namespace Dotpia
 
         private void BitMapMain_FormClosed(object sender, FormClosedEventArgs e)
         {
+            DataSaver.pclNow.Close();
+            DataSaver.lyeNow.Close();
+            DataSaver.pclNow = null;
+            DataSaver.lyeNow = null;
             DataSaver.bmmNow = null;
             DataSaver.btmRGBA = null;
             DataSaver.intLayerTP = null;

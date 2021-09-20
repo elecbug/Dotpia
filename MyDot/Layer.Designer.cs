@@ -267,6 +267,7 @@ namespace Dotpia
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(214, 196);
+            this.ControlBox = false;
             this.Controls.Add(this.BtnU3);
             this.Controls.Add(this.BtnU2);
             this.Controls.Add(this.BtnU1);

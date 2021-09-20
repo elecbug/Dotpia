@@ -38,7 +38,6 @@ namespace Dotpia
             this.RtbHeight = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.OfdOpen = new System.Windows.Forms.OpenFileDialog();
-            this.BtnPencil = new System.Windows.Forms.Button();
             this.BtnHelp = new System.Windows.Forms.Button();
             this.BtnNewLoad = new System.Windows.Forms.Button();
             this.OfdNewOpen = new System.Windows.Forms.OpenFileDialog();
@@ -121,16 +120,6 @@ namespace Dotpia
             // 
             this.OfdOpen.Filter = "|*.png";
             // 
-            // BtnPencil
-            // 
-            this.BtnPencil.Location = new System.Drawing.Point(227, 12);
-            this.BtnPencil.Name = "BtnPencil";
-            this.BtnPencil.Size = new System.Drawing.Size(145, 43);
-            this.BtnPencil.TabIndex = 5;
-            this.BtnPencil.Text = "Pencil Case";
-            this.BtnPencil.UseVisualStyleBackColor = true;
-            this.BtnPencil.Click += new System.EventHandler(this.BtnPencil_Click);
-            // 
             // BtnHelp
             // 
             this.BtnHelp.Location = new System.Drawing.Point(12, 12);
@@ -164,7 +153,6 @@ namespace Dotpia
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(384, 561);
             this.Controls.Add(this.BtnHelp);
-            this.Controls.Add(this.BtnPencil);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BtnNewLoad);
             this.Controls.Add(this.BtnLoad);
@@ -192,7 +180,6 @@ namespace Dotpia
         private System.Windows.Forms.RichTextBox RtbHeight;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.OpenFileDialog OfdOpen;
-        private System.Windows.Forms.Button BtnPencil;
         private System.Windows.Forms.Button BtnHelp;
         private System.Windows.Forms.Button BtnNewLoad;
         private System.Windows.Forms.OpenFileDialog OfdNewOpen;
