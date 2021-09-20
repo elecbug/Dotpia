@@ -21,6 +21,7 @@ namespace Dotpia
 
         private void Layer_Load(object sender, EventArgs e)
         {
+            this.Location = new Point(DataSaver.bmmNow.Location.X + DataSaver.bmmNow.Width, DataSaver.pclNow.Location.Y + DataSaver.pclNow.Height);
             if (DataSaver.intLayerTP[0] != 100)
             {
                 Rtb0.Text = DataSaver.intLayerTP[0].ToString();

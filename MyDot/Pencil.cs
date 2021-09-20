@@ -24,6 +24,7 @@ namespace Dotpia
 
         private void Pencil_Load(object sender, EventArgs e)
         {
+            this.Location = new Point(DataSaver.bmmNow.Location.X + DataSaver.bmmNow.Width, DataSaver.bmmNow.Location.Y);
             DataSaver.pclNow = this;
             for (int i = 0; i < 7; i++)
             {
@@ -374,14 +375,14 @@ namespace Dotpia
         {
             try
             {
-                DataSaver.intStrMirror = int.Parse(RtbMirror.Text);
+                DataSaver.intMirrorValue = int.Parse(RtbMirror.Text);
                 DataSaver.grpMirror = DataSaver.bmmNow.CreateGraphics();
                 DataSaver.grpMirror.Clear(DataSaver.bmmNow.BackColor);
                 if (DataSaver.intMirror == 1)
                 {
                     DataSaver.grpMirror.DrawLine(new Pen(Color.White),
-                                        new Point(0, DataSaver.intSize * DataSaver.intStrMirror + DataSaver.bmmNow.Pnl.Location.Y),
-                                        new Point(DataSaver.bmmNow.Width, DataSaver.intSize * DataSaver.intStrMirror + DataSaver.bmmNow.Pnl.Location.Y));
+                                        new Point(0, DataSaver.intSize * DataSaver.intMirrorValue + DataSaver.bmmNow.Pnl.Location.Y),
+                                        new Point(DataSaver.bmmNow.Width, DataSaver.intSize * DataSaver.intMirrorValue + DataSaver.bmmNow.Pnl.Location.Y));
                 }
                 else if (DataSaver.intMirror == 2)
                 {

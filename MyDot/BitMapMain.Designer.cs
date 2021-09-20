@@ -72,6 +72,7 @@ namespace Dotpia
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BitMapMain_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BitMapMain_KeyUp);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BitMapMain_MouseMove);
+            this.Resize += new System.EventHandler(this.BitMapMain_Resize);
             this.ResumeLayout(false);
 
         }

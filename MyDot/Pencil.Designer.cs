@@ -68,7 +68,6 @@ namespace Dotpia
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.BtnV = new System.Windows.Forms.Button();
             this.BtnZ = new System.Windows.Forms.Button();
-            this.BtnRayer = new System.Windows.Forms.Button();
             this.BtnZoom = new System.Windows.Forms.Button();
             this.BtnMIrror = new System.Windows.Forms.Button();
             this.RtbMirror = new System.Windows.Forms.RichTextBox();
@@ -464,7 +463,6 @@ namespace Dotpia
             // 
             this.groupBox3.Controls.Add(this.BtnV);
             this.groupBox3.Controls.Add(this.BtnZ);
-            this.groupBox3.Controls.Add(this.BtnRayer);
             this.groupBox3.Controls.Add(this.BtnZoom);
             this.groupBox3.Controls.Add(this.BtnMIrror);
             this.groupBox3.Controls.Add(this.BtnBorder);
@@ -481,7 +479,7 @@ namespace Dotpia
             // BtnV
             // 
             this.BtnV.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnV.Location = new System.Drawing.Point(157, 121);
+            this.BtnV.Location = new System.Drawing.Point(82, 121);
             this.BtnV.Name = "BtnV";
             this.BtnV.Size = new System.Drawing.Size(69, 42);
             this.BtnV.TabIndex = 3;
@@ -492,24 +490,13 @@ namespace Dotpia
             // BtnZ
             // 
             this.BtnZ.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnZ.Location = new System.Drawing.Point(82, 121);
+            this.BtnZ.Location = new System.Drawing.Point(7, 121);
             this.BtnZ.Name = "BtnZ";
             this.BtnZ.Size = new System.Drawing.Size(69, 42);
             this.BtnZ.TabIndex = 3;
             this.BtnZ.Text = "Ctrl+Z";
             this.BtnZ.UseVisualStyleBackColor = false;
             this.BtnZ.Click += new System.EventHandler(this.BtnZ_Click);
-            // 
-            // BtnRayer
-            // 
-            this.BtnRayer.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnRayer.Location = new System.Drawing.Point(7, 121);
-            this.BtnRayer.Name = "BtnRayer";
-            this.BtnRayer.Size = new System.Drawing.Size(69, 42);
-            this.BtnRayer.TabIndex = 3;
-            this.BtnRayer.Text = "Layer";
-            this.BtnRayer.UseVisualStyleBackColor = false;
-            this.BtnRayer.Click += new System.EventHandler(this.BtnLayer_Click);
             // 
             // BtnZoom
             // 
@@ -667,7 +654,6 @@ namespace Dotpia
         private System.Windows.Forms.Button Btn2;
         private System.Windows.Forms.Button Btn1;
         private System.Windows.Forms.Button BtnZoom;
-        private System.Windows.Forms.Button BtnRayer;
         private System.Windows.Forms.Button BtnNewSave;
         private System.Windows.Forms.SaveFileDialog SfdNewSave;
         public System.Windows.Forms.Button BtnBorder;

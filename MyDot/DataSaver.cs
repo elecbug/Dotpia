@@ -22,7 +22,7 @@ namespace Dotpia
         public static bool bolExtraction;
         public static bool bolPaint;
         public static int intMirror;
-        public static int intStrMirror;
+        public static int intMirrorValue;
         public static Graphics grpMirror;
         public static int intSize;
         public static RGBA[] saveRGBA = new RGBA[7];

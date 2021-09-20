@@ -158,14 +158,14 @@ namespace Dotpia
                     if (DataSaver.intMirror == 1)
                     {
                         DataSaver.grpMirror.DrawLine(new Pen(Color.White),
-                                             new Point(0, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y),
-                                             new Point(DataSaver.bmmNow.Width, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y));
+                                             new Point(0, DataSaver.intSize * DataSaver.intMirrorValue + Pnl.Location.Y),
+                                             new Point(DataSaver.bmmNow.Width, DataSaver.intSize * DataSaver.intMirrorValue + Pnl.Location.Y));
                     }
                     else if (DataSaver.intMirror == 2)
                     {
                         DataSaver.grpMirror.DrawLine(new Pen(Color.White),
-                                             new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, 0),
-                                             new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, DataSaver.bmmNow.Height));
+                                             new Point(DataSaver.intSize * DataSaver.intMirrorValue + Pnl.Location.X, 0),
+                                             new Point(DataSaver.intSize * DataSaver.intMirrorValue + Pnl.Location.X, DataSaver.bmmNow.Height));
                     }
                     //ZeroLineDraw();
                 }
@@ -193,14 +193,14 @@ namespace Dotpia
                 if (DataSaver.intMirror == 1)
                 {
                     DataSaver.grpMirror.DrawLine(new Pen(Color.White),
-                                         new Point(0, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y),
-                                         new Point(DataSaver.bmmNow.Width, DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.Y));
+                                         new Point(0, DataSaver.intSize * DataSaver.intMirrorValue + Pnl.Location.Y),
+                                         new Point(DataSaver.bmmNow.Width, DataSaver.intSize * DataSaver.intMirrorValue + Pnl.Location.Y));
                 }
                 else if (DataSaver.intMirror == 2)
                 {
                     DataSaver.grpMirror.DrawLine(new Pen(Color.White),
-                                         new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, 0),
-                                         new Point(DataSaver.intSize * DataSaver.intStrMirror + Pnl.Location.X, DataSaver.bmmNow.Height));
+                                         new Point(DataSaver.intSize * DataSaver.intMirrorValue + Pnl.Location.X, 0),
+                                         new Point(DataSaver.intSize * DataSaver.intMirrorValue + Pnl.Location.X, DataSaver.bmmNow.Height));
                 }
                 //ZeroLineDraw();
             }
@@ -605,7 +605,7 @@ namespace Dotpia
                             }
                         }
                     }
-                    int intNewY = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intPointY;
+                    int intNewY = (int)((DataSaver.intMirrorValue - 0.5m) * 2) - intPointY;
                     if (intNewY >= 0 && intNewY < DataSaver.intHeight)
                     {
                         DataSaver.btmRGBA[intPointX, intNewY, intNowLayer] = new RGBA(DataSaver.nowRGBA);
@@ -638,7 +638,7 @@ namespace Dotpia
                             }
                         }
                     }
-                    int intNewX = (int)((DataSaver.intStrMirror - 0.5m) * 2) - intPointX;
+                    int intNewX = (int)((DataSaver.intMirrorValue - 0.5m) * 2) - intPointX;
                     if (intNewX >= 0 && intNewX < DataSaver.intWidth)
                     {
                         DataSaver.btmRGBA[intNewX, intPointY, intNowLayer] = new RGBA(DataSaver.nowRGBA);
@@ -699,6 +699,10 @@ namespace Dotpia
             DataSaver.bmmNow = null;
             DataSaver.btmRGBA = null;
             DataSaver.intLayerTP = null;
+            DataSaver.bolExtraction = false;
+            DataSaver.bolPaint = false;
+            DataSaver.intMirror = 0;
+            DataSaver.paintRGBA = new RGBA();
         }
 
         private void BitMapMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -863,6 +867,20 @@ namespace Dotpia
         private void BitMapMain_Scroll(object sender, ScrollEventArgs e)
         {
             ReDrawing();
+        }
+
+        private void BitMapMain_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                DataSaver.pclNow.Show();
+                DataSaver.lyeNow.Show();
+            }
+            else if (this.WindowState == FormWindowState.Minimized)
+            {
+                DataSaver.pclNow.Hide();
+                DataSaver.lyeNow.Hide();
+            }
         }
     }
 }
