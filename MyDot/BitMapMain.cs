@@ -30,7 +30,6 @@ namespace Dotpia
         private int intScale = 0;
         private int intDefaultSize;
         private decimal[] dcmMouseLocationWithPnl = new decimal[2];
-        private decimal[] dcmMousePastWithPnl = new decimal[2];
         private bool bolNewFile;
         private bool bolCtrlPress = false;
         private int intMousePixel = 1;
@@ -279,7 +278,6 @@ namespace Dotpia
             if (!bolMouseDClick)
             {
                 bolMouseDClick = true;
-                dcmMousePastWithPnl = (decimal[])dcmMouseLocationWithPnl.Clone();
             }
             else
             {
@@ -523,6 +521,11 @@ namespace Dotpia
 
         private void PartedReDrawing(int x, int y)
         {
+            //combineLayerRGBA[x, y] = new RGBA(DataSaver.btmRGBA[x, y, 0]);
+            //for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
+            //{
+            //    combineLayerRGBA[x, y] = Combine(new RGBA(combineLayerRGBA[x, y]), new RGBA(DataSaver.btmRGBA[x, y, r + 1]), r);
+            //}
             Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
             Brush brush = new SolidBrush(Pnl.BackColor);
             grpBitMap[x, y].FillRectangle(brush, rect);
@@ -537,6 +540,9 @@ namespace Dotpia
                     grpBitMap[x, y].FillRectangle(pen, rect);
                 }
             }
+            //RGBA newRGBA = new RGBA(combineLayerRGBA[x, y]);
+            //Brush pen = new SolidBrush(newRGBA.ColorReturn());
+            //grpBitMap[x, y].FillRectangle(pen, rect);
         }
 
         private void BtnClick(object sender, EventArgs e)
@@ -751,7 +757,6 @@ namespace Dotpia
                  && pntMouseWithPnl.Y <= Pnl.Height)
                 {
                     BtnClick(sender, e);
-                    dcmMousePastWithPnl = (decimal[])dcmMouseLocationWithPnl.Clone();
                 }
             }
         }
@@ -759,7 +764,6 @@ namespace Dotpia
         private void Pnl_MouseDown(object sender, MouseEventArgs e)
         {
             bolMouseDown = true;
-            dcmMousePastWithPnl = (decimal[])dcmMouseLocationWithPnl.Clone();
         }
 
         private void Pnl_MouseUp(object sender, MouseEventArgs e)
