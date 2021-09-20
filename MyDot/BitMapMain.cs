@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -59,8 +60,6 @@ namespace Dotpia
                 Pnl.Width = intSize * DataSaver.intWidth;
                 Pnl.Height = intSize * DataSaver.intHeight;
                 DataSaver.intSize = intSize;
-                //intPnlDefaultWidth = Pnl.Width;
-                //intPnlDefaultHeight = Pnl.Height;
                 intDefaultSize = intSize;
                 for (int y = 0; y < grpBitMap.GetLength(1); y++)
                 {
@@ -117,45 +116,41 @@ namespace Dotpia
             {
                 if (e.Delta / 120 > 0)
                 {
-                    intScale++;
-                    //Point pntNow = Pnl.Location;
-                    //pntNow.X -= pntMouse.X;
-                    //pntNow.Y -= pntMouse.Y;
-                    //Pnl.Location = pntNow; 
-                    //Pnl.Width = (int)Math.Ceiling(intPnlDefaultWidth * Math.Pow(2, intScale));
-                    //Pnl.Height = (int)Math.Ceiling(intPnlDefaultHeight * Math.Pow(2, intScale));
-                    int intTempWidth = Pnl.Width;
-                    int intTempHeight = Pnl.Height;
-                    Point nowMouse = pntMouseWithPnl;
-                    DataSaver.intSize = (int)Math.Ceiling(intDefaultSize * Math.Pow(2, intScale));
-                    Pnl.Width = DataSaver.intWidth * DataSaver.intSize;
-                    Pnl.Height = DataSaver.intHeight * DataSaver.intSize;
-                    decimal dcmWidth = (Pnl.Width / (decimal)intTempWidth);
-                    decimal dcmHeight = (Pnl.Height / (decimal)intTempHeight);
-                    nowMouse.X = (int)(nowMouse.X * dcmWidth);
-                    nowMouse.Y = (int)(nowMouse.Y * dcmHeight);
-                    Pnl.Location = new Point(pntMouseWithForm.X - nowMouse.X, pntMouseWithForm.Y - nowMouse.Y);
+                    if (DataSaver.intSize < 300)
+                    {
+                        intScale++;
+                        int intTempWidth = Pnl.Width;
+                        int intTempHeight = Pnl.Height;
+                        Point nowMouse = pntMouseWithPnl;
+                        DataSaver.intSize = (int)Math.Ceiling(intDefaultSize * Math.Pow(2, intScale));
+                        Pnl.Width = DataSaver.intWidth * DataSaver.intSize;
+                        Pnl.Height = DataSaver.intHeight * DataSaver.intSize;
+                        decimal dcmWidth = (Pnl.Width / (decimal)intTempWidth);
+                        decimal dcmHeight = (Pnl.Height / (decimal)intTempHeight);
+                        nowMouse.X = (int)(nowMouse.X * dcmWidth);
+                        nowMouse.Y = (int)(nowMouse.Y * dcmHeight);
+                        Pnl.Location = new Point(pntMouseWithForm.X - nowMouse.X, pntMouseWithForm.Y - nowMouse.Y);
+                        pntMouseWithPnl = new Point(pntMouseWithPnl.X * 2, pntMouseWithPnl.Y * 2);
+                    }
                 }
                 if (e.Delta / 120 < 0)
                 {
-                    intScale--;
-                    //Point pntNow = Pnl.Location;
-                    //pntNow.X += pntMouse.X / 2;
-                    //pntNow.Y += pntMouse.Y / 2;
-                    //Pnl.Location = pntNow;
-                    //Pnl.Width = (int)Math.Ceiling(intPnlDefaultWidth * Math.Pow(2, intScale));
-                    //Pnl.Height = (int)Math.Ceiling(intPnlDefaultHeight * Math.Pow(2, intScale));
-                    int intTempWidth = Pnl.Width;
-                    int intTempHeight = Pnl.Height;
-                    Point nowMouse = pntMouseWithPnl;
-                    DataSaver.intSize = (int)Math.Ceiling(intDefaultSize * Math.Pow(2, intScale));
-                    Pnl.Width = DataSaver.intWidth * DataSaver.intSize;
-                    Pnl.Height = DataSaver.intHeight * DataSaver.intSize;
-                    decimal dcmWidth = (Pnl.Width / (decimal)intTempWidth);
-                    decimal dcmHeight = (Pnl.Height / (decimal)intTempHeight);
-                    nowMouse.X = (int)(nowMouse.X * dcmWidth);
-                    nowMouse.Y = (int)(nowMouse.Y * dcmHeight);
-                    Pnl.Location = new Point(pntMouseWithForm.X - nowMouse.X, pntMouseWithForm.Y - nowMouse.Y);
+                    if (DataSaver.intSize > 1)
+                    {
+                        intScale--;
+                        int intTempWidth = Pnl.Width;
+                        int intTempHeight = Pnl.Height;
+                        Point nowMouse = pntMouseWithPnl;
+                        DataSaver.intSize = (int)Math.Ceiling(intDefaultSize * Math.Pow(2, intScale));
+                        Pnl.Width = DataSaver.intWidth * DataSaver.intSize;
+                        Pnl.Height = DataSaver.intHeight * DataSaver.intSize;
+                        decimal dcmWidth = (Pnl.Width / (decimal)intTempWidth);
+                        decimal dcmHeight = (Pnl.Height / (decimal)intTempHeight);
+                        nowMouse.X = (int)(nowMouse.X * dcmWidth);
+                        nowMouse.Y = (int)(nowMouse.Y * dcmHeight);
+                        Pnl.Location = new Point(pntMouseWithForm.X - nowMouse.X, pntMouseWithForm.Y - nowMouse.Y);
+                        pntMouseWithPnl = new Point(pntMouseWithPnl.X / 2, pntMouseWithPnl.Y / 2);
+                    }
                 }
                 try
                 {
@@ -218,14 +213,6 @@ namespace Dotpia
 
         public void ReDrawing()
         {
-            for (int y = 0; y < grpBitMap.GetLength(1); y++)
-            {
-                for (int x = 0; x < grpBitMap.GetLength(0); x++)
-                {
-                    grpBitMap[x, y].Clear(Pnl.BackColor);
-                    grpBitMap[x, y] = Pnl.CreateGraphics();
-                }
-            }
             for (int y = Math.Max(-(DataSaver.intSize + Pnl.Location.Y) / DataSaver.intSize, 0);
                      y < Math.Min((this.Height - Pnl.Location.Y) / DataSaver.intSize, DataSaver.intHeight); y++)
             {
@@ -235,13 +222,6 @@ namespace Dotpia
                     PartedReDrawing(x, y);
                 }
             }
-            //for (int y = 0; y < DataSaver.intHeight; y++)
-            //{
-            //    for (int x = 0; x < DataSaver.intWidth; x++)
-            //    {
-            //        PartedReDrawing(x, y);
-            //    }
-            //}
             if (bolBorder)
             {
                 Pen pen = new Pen(Color.Green, 1);
@@ -546,12 +526,12 @@ namespace Dotpia
             Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
             Brush brush = new SolidBrush(Pnl.BackColor);
             grpBitMap[x, y].FillRectangle(brush, rect);
+            grpBitMap[x, y] = Pnl.CreateGraphics();
             for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
             {
                 if (DataSaver.btmRGBA[x, y, r].A != 0)
                 {
-                    RGBA newRGBA;
-                    newRGBA = new RGBA(DataSaver.btmRGBA[x, y, r]);
+                    RGBA newRGBA = new RGBA(DataSaver.btmRGBA[x, y, r]);
                     newRGBA.A = (int)(DataSaver.btmRGBA[x, y, r].A * (DataSaver.intLayerTP[r] / 100d));
                     Brush pen = new SolidBrush(newRGBA.ColorReturn());
                     grpBitMap[x, y].FillRectangle(pen, rect);
