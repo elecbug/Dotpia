@@ -844,8 +844,8 @@ namespace Dotpia
             if (bolDragOn)
             {
                 pntNewLocation[1] = new Point(pntMouseWithPnl.X, pntMouseWithPnl.Y);
-                int xMove = (pntNewLocation[0].X - pntNewLocation[1].X) / DataSaver.intSize;
-                int yMove = (pntNewLocation[0].Y - pntNewLocation[1].Y) / DataSaver.intSize;
+                int xMove = pntNewLocation[0].X / DataSaver.intSize - pntNewLocation[1].X / DataSaver.intSize;
+                int yMove = pntNewLocation[0].Y / DataSaver.intSize - pntNewLocation[1].Y / DataSaver.intSize;
                 if (xMove >= 0)
                 {
                     if (yMove >= 0)
