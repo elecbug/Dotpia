@@ -1077,7 +1077,7 @@ namespace Dotpia
                     }
                 }
             }
-            if(e.KeyCode == Keys.H)
+            if (e.KeyCode == Keys.H)
             {
                 if (bolShiftPress)
                 {
@@ -1129,8 +1129,50 @@ namespace Dotpia
                     }
                 }
             }
+            if (e.KeyCode == Keys.X)
+            {
+                if (bolCtrlPress)
+                {
+                    if (bolDragOn)
+                    {
+                        Clipboard.Clear();
+                        DataSaver.bolCopyMod = true;
+                        int minX = Math.Min((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize));
+                        int minY = Math.Min((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize));
+                        int maxX = Math.Max((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize)) + 1;
+                        int maxY = Math.Max((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize)) + 1;
+                        DataSaver.copyRGBA = new RGBA[maxX - minX, maxY - minY];
+                        for (int x = minX; x < maxX; x++)
+                        {
+                            for (int y = minY; y < maxY; y++)
+                            {
+                                DataSaver.copyRGBA[x - minX, y - minY] = new RGBA(DataSaver.btmRGBA[x, y, intNowLayer]);
+                                DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                            }
+                        }
+                        ReDrawing();
+                    }
+                }
+            }
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (bolDragOn)
+                {
+                    int minX = Math.Min((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize));
+                    int minY = Math.Min((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize));
+                    int maxX = Math.Max((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize)) + 1;
+                    int maxY = Math.Max((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize)) + 1;
+                    for (int x = minX; x < maxX; x++)
+                    {
+                        for (int y = minY; y < maxY; y++)
+                        {
+                            DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                        }
+                    }
+                    ReDrawing();
+                }
+            }
         }
-
         private void BitMapMain_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Control)
