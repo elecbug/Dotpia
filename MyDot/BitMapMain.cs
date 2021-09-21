@@ -867,8 +867,14 @@ namespace Dotpia
                             {
                                 if (x - xMove >= 0 && x - xMove < DataSaver.intWidth && y - yMove >= 0 && y - yMove < DataSaver.intHeight)
                                 {
-                                    DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
-                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                    if (DataSaver.btmRGBA[x, y, intNowLayer] != new RGBA())
+                                    {
+                                        DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
+                                    }
+                                    if (!bolCtrlPress)
+                                    {
+                                        DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                    }
                                 }
                             }
                         }
@@ -881,8 +887,14 @@ namespace Dotpia
                             {
                                 if (x - xMove >= 0 && x - xMove < DataSaver.intWidth && y - yMove >= 0 && y - yMove < DataSaver.intHeight)
                                 {
-                                    DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
-                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                    if (DataSaver.btmRGBA[x, y, intNowLayer] != new RGBA())
+                                    {
+                                        DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
+                                    }
+                                    if (!bolCtrlPress)
+                                    {
+                                        DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                    }
                                 }
                             }
                         }
@@ -898,8 +910,14 @@ namespace Dotpia
                             {
                                 if (x - xMove >= 0 && x - xMove < DataSaver.intWidth && y - yMove >= 0 && y - yMove < DataSaver.intHeight)
                                 {
-                                    DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
-                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                    if (DataSaver.btmRGBA[x, y, intNowLayer] != new RGBA())
+                                    {
+                                        DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
+                                    }
+                                    if (!bolCtrlPress)
+                                    {
+                                        DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                    }
                                 }
                             }
                         }
@@ -912,8 +930,14 @@ namespace Dotpia
                             {
                                 if (x - xMove >= 0 && x - xMove < DataSaver.intWidth && y - yMove >= 0 && y - yMove < DataSaver.intHeight)
                                 {
-                                    DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
-                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                    if (DataSaver.btmRGBA[x, y, intNowLayer] != new RGBA())
+                                    {
+                                        DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
+                                    }
+                                    if (!bolCtrlPress)
+                                    {
+                                        DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
+                                    }
                                 }
                             }
                         }
