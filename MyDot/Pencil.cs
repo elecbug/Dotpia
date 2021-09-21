@@ -85,9 +85,9 @@ namespace Dotpia
                 for (int y = 0; y < DataSaver.intHeight; y++)
                 {
                     RGBA nowRGBA = new RGBA(bitmapRGBA[x, y, 0]);
-                    for (int r = 1; r < DataSaver.HIGH_RAYER - 1; r++)
+                    for (int r = 1; r < DataSaver.HIGH_RAYER; r++)
                     {
-                        nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r + 1]), r));
+                        nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r])));
                     }
                     //nowRGBA.A *= 2;
                     //if (nowRGBA.A > 255)
@@ -105,7 +105,7 @@ namespace Dotpia
             bitmap.Dispose();
         }
 
-        private RGBA Combine(RGBA ibg, RGBA ifg, int intLayer)
+        private RGBA Combine(RGBA ibg, RGBA ifg)
         {
             RGBAby1 r = new RGBAby1();
             RGBAby1 bg = new RGBAby1(ibg.R / 255m, ibg.G / 255m, ibg.B / 255m, ibg.A / 255m);
@@ -181,9 +181,9 @@ namespace Dotpia
                         for (int y = 0; y < DataSaver.intHeight; y++)
                         {
                             RGBA nowRGBA = new RGBA(bitmapRGBA[x, y, 0]);
-                            for (int r = 1; r < DataSaver.HIGH_RAYER - 1; r++)
+                            for (int r = 1; r < DataSaver.HIGH_RAYER; r++)
                             {
-                                nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r + 1]), r));
+                                nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r ])));
                             }
                             //nowRGBA.A *= 2;
                             //if (nowRGBA.A > 255)
@@ -533,6 +533,7 @@ namespace Dotpia
                     }
                 }
                 w.Write($"|{intReNum}:" + strTemp);
+                w.Write("|");
                 w.Close();
                 //File.WriteAllText(strPath, strSaveTxt, Encoding.Default);
                 //Writer(strPath, strSaveTxt);

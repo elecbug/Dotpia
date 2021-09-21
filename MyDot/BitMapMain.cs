@@ -517,9 +517,9 @@ namespace Dotpia
                     for (int y = 0; y < DataSaver.intHeight; y++)
                     {
                         RGBA nowRGBA = new RGBA(bitmapRGBA[x, y, 0]);
-                        for (int r = 1; r < DataSaver.HIGH_RAYER - 1; r++)
+                        for (int r = 1; r < DataSaver.HIGH_RAYER; r++)
                         {
-                            nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r + 1]), r));
+                            nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r])));
                         }
                         //nowRGBA.A *= 2;
                         //if (nowRGBA.A > 255)
@@ -537,7 +537,7 @@ namespace Dotpia
             }
         }
 
-        private RGBA Combine(RGBA ibg, RGBA ifg, int intLayer)
+        private RGBA Combine(RGBA ibg, RGBA ifg)
         {
             RGBAby1 r = new RGBAby1();
             RGBAby1 bg = new RGBAby1(ibg.R / 255m, ibg.G / 255m, ibg.B / 255m, ibg.A / 255m);
@@ -566,28 +566,23 @@ namespace Dotpia
 
         private void PartedReDrawing(int x, int y)
         {
-            //combineLayerRGBA[x, y] = new RGBA(DataSaver.btmRGBA[x, y, 0]);
-            //for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
-            //{
-            //    combineLayerRGBA[x, y] = Combine(new RGBA(combineLayerRGBA[x, y]), new RGBA(DataSaver.btmRGBA[x, y, r + 1]), r);
-            //}
+            RGBA newRGBA = new RGBA(DataSaver.btmRGBA[x, y, 0])
+            {
+                A = (int)(DataSaver.btmRGBA[x, y, 0].A * (DataSaver.intLayerTP[0] / 100d))
+            };
             Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
             Brush brush = new SolidBrush(Pnl.BackColor);
             grpBitMap[x, y].FillRectangle(brush, rect);
             grpBitMap[x, y] = Pnl.CreateGraphics();
-            for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
+            for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
             {
-                if (DataSaver.btmRGBA[x, y, r].A != 0)
+                newRGBA = Combine(new RGBA(newRGBA), new RGBA(DataSaver.btmRGBA[x, y, r + 1])
                 {
-                    RGBA newRGBA = new RGBA(DataSaver.btmRGBA[x, y, r]);
-                    newRGBA.A = (int)(DataSaver.btmRGBA[x, y, r].A * (DataSaver.intLayerTP[r] / 100d));
-                    Brush pen = new SolidBrush(newRGBA.ColorReturn());
-                    grpBitMap[x, y].FillRectangle(pen, rect);
-                }
+                    A = (int)(DataSaver.btmRGBA[x, y, r + 1].A * (DataSaver.intLayerTP[r + 1] / 100d))
+                });
             }
-            //RGBA newRGBA = new RGBA(combineLayerRGBA[x, y]);
-            //Brush pen = new SolidBrush(newRGBA.ColorReturn());
-            //grpBitMap[x, y].FillRectangle(pen, rect);
+            Brush pen = new SolidBrush(newRGBA.ColorReturn());
+            grpBitMap[x, y].FillRectangle(pen, rect);
         }
 
         private void BtnClick(object sender, EventArgs e)
