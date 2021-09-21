@@ -504,7 +504,7 @@ namespace Dotpia
                 {
                     for (int y = 0; y < DataSaver.intHeight; y++)
                     {
-                        for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
+                        for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
                         {
                             bitmapRGBA[x, y, r] = new RGBA(DataSaver.btmRGBA[x, y, r]);
                             bitmapRGBA[x, y, r].A = (int)(bitmapRGBA[x, y, r].A * DataSaver.intLayerTP[r] / 100m);
@@ -516,9 +516,9 @@ namespace Dotpia
                     for (int y = 0; y < DataSaver.intHeight; y++)
                     {
                         RGBA nowRGBA = new RGBA(bitmapRGBA[x, y, 0]);
-                        for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
+                        for (int r = 1; r < DataSaver.HIGH_RAYER - 1; r++)
                         {
-                            nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r]), r));
+                            nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r + 1]), r));
                         }
                         //nowRGBA.A *= 2;
                         //if (nowRGBA.A > 255)

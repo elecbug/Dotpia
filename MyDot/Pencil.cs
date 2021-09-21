@@ -73,7 +73,7 @@ namespace Dotpia
             {
                 for (int y = 0; y < DataSaver.intHeight; y++)
                 {
-                    for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
+                    for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
                     {
                         bitmapRGBA[x, y, r] = new RGBA(DataSaver.btmRGBA[x, y, r]);
                         bitmapRGBA[x, y, r].A = (int)(bitmapRGBA[x, y, r].A * DataSaver.intLayerTP[r] / 100m);
@@ -85,9 +85,9 @@ namespace Dotpia
                 for (int y = 0; y < DataSaver.intHeight; y++)
                 {
                     RGBA nowRGBA = new RGBA(bitmapRGBA[x, y, 0]);
-                    for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
+                    for (int r = 1; r < DataSaver.HIGH_RAYER - 1; r++)
                     {
-                        nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r]), r));
+                        nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r + 1]), r));
                     }
                     //nowRGBA.A *= 2;
                     //if (nowRGBA.A > 255)
@@ -105,10 +105,8 @@ namespace Dotpia
             bitmap.Dispose();
         }
 
-        private RGBA Combine(RGBA ibg, RGBA ifg, int intRayer)
+        private RGBA Combine(RGBA ibg, RGBA ifg, int intLayer)
         {
-            ibg.A = (int)(ibg.A * DataSaver.intLayerTP[intRayer] / 100m);
-            ifg.A = (int)(ifg.A * DataSaver.intLayerTP[intRayer + 1] / 100m);
             RGBAby1 r = new RGBAby1();
             RGBAby1 bg = new RGBAby1(ibg.R / 255m, ibg.G / 255m, ibg.B / 255m, ibg.A / 255m);
             RGBAby1 fg = new RGBAby1(ifg.R / 255m, ifg.G / 255m, ifg.B / 255m, ifg.A / 255m);
@@ -165,20 +163,45 @@ namespace Dotpia
                 {
                     string strPath = SfdSave.FileName.ToString();
                     Bitmap bitmap = new Bitmap(DataSaver.intWidth * intExport, DataSaver.intHeight * intExport);
-                    for (int x = 0; x < bitmap.Width; x += intExport)
+                    RGBA[,,] bitmapRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight, DataSaver.HIGH_RAYER];
+                    RGBA[,] combineRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight];
+                    for (int x = 0; x < DataSaver.intWidth; x++)
                     {
-                        for (int y = 0; y < bitmap.Height; y += intExport)
+                        for (int y = 0; y < DataSaver.intHeight; y++)
+                        {
+                            for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
+                            {
+                                bitmapRGBA[x, y, r] = new RGBA(DataSaver.btmRGBA[x, y, r]);
+                                bitmapRGBA[x, y, r].A = (int)(bitmapRGBA[x, y, r].A * DataSaver.intLayerTP[r] / 100m);
+                            }
+                        }
+                    }
+                    for (int x = 0; x < DataSaver.intWidth; x++)
+                    {
+                        for (int y = 0; y < DataSaver.intHeight; y++)
+                        {
+                            RGBA nowRGBA = new RGBA(bitmapRGBA[x, y, 0]);
+                            for (int r = 1; r < DataSaver.HIGH_RAYER - 1; r++)
+                            {
+                                nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r + 1]), r));
+                            }
+                            //nowRGBA.A *= 2;
+                            //if (nowRGBA.A > 255)
+                            //{
+                            //    nowRGBA.A = 255;
+                            //}
+                            combineRGBA[x, y] = new RGBA(nowRGBA);
+                        }
+                    }
+                    for (int x = 0; x < DataSaver.intWidth; x++)
+                    {
+                        for (int y = 0; y < DataSaver.intHeight; y++)
                         {
                             for (int xx = 0; xx < intExport; xx++)
                             {
                                 for (int yy = 0; yy < intExport; yy++)
                                 {
-                                    RGBA nowRGBA = DataSaver.btmRGBA[x, y, 0];
-                                    for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
-                                    {
-                                        nowRGBA = Combine(nowRGBA, DataSaver.btmRGBA[x, y, r + 1], r);
-                                    }
-                                    bitmap.SetPixel(x + xx, y + yy, nowRGBA.ColorReturn());
+                                    bitmap.SetPixel(x * intExport + xx, y * intExport + yy, combineRGBA[x, y].ColorReturn());
                                 }
                             }
                         }
