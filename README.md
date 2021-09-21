@@ -1,2 +1,2 @@
-# My Dot
-A simple dot making program made with C#
+# Dotpia
+Dotpia is a bitmap editing program made in C#.
