@@ -78,6 +78,9 @@ namespace Dotpia
             this.LblMouse = new System.Windows.Forms.Label();
             this.LblHeight = new System.Windows.Forms.Label();
             this.LblWidth = new System.Windows.Forms.Label();
+            this.BtnResize = new System.Windows.Forms.Button();
+            this.RtbResizeW = new System.Windows.Forms.RichTextBox();
+            this.RtbResizeH = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -462,6 +465,9 @@ namespace Dotpia
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.RtbResizeH);
+            this.groupBox3.Controls.Add(this.RtbResizeW);
+            this.groupBox3.Controls.Add(this.BtnResize);
             this.groupBox3.Controls.Add(this.BtnCut);
             this.groupBox3.Controls.Add(this.BtnV);
             this.groupBox3.Controls.Add(this.BtnZ);
@@ -481,9 +487,9 @@ namespace Dotpia
             // BtnCut
             // 
             this.BtnCut.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnCut.Location = new System.Drawing.Point(157, 121);
+            this.BtnCut.Location = new System.Drawing.Point(180, 121);
             this.BtnCut.Name = "BtnCut";
-            this.BtnCut.Size = new System.Drawing.Size(69, 42);
+            this.BtnCut.Size = new System.Drawing.Size(85, 42);
             this.BtnCut.TabIndex = 3;
             this.BtnCut.Text = "Cut";
             this.BtnCut.UseVisualStyleBackColor = false;
@@ -492,9 +498,9 @@ namespace Dotpia
             // BtnV
             // 
             this.BtnV.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnV.Location = new System.Drawing.Point(82, 121);
+            this.BtnV.Location = new System.Drawing.Point(93, 121);
             this.BtnV.Name = "BtnV";
-            this.BtnV.Size = new System.Drawing.Size(69, 42);
+            this.BtnV.Size = new System.Drawing.Size(81, 42);
             this.BtnV.TabIndex = 3;
             this.BtnV.Text = "Ctrl+V";
             this.BtnV.UseVisualStyleBackColor = false;
@@ -503,9 +509,9 @@ namespace Dotpia
             // BtnZ
             // 
             this.BtnZ.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnZ.Location = new System.Drawing.Point(7, 121);
+            this.BtnZ.Location = new System.Drawing.Point(6, 121);
             this.BtnZ.Name = "BtnZ";
-            this.BtnZ.Size = new System.Drawing.Size(69, 42);
+            this.BtnZ.Size = new System.Drawing.Size(81, 42);
             this.BtnZ.TabIndex = 3;
             this.BtnZ.Text = "Ctrl+Z";
             this.BtnZ.UseVisualStyleBackColor = false;
@@ -593,6 +599,35 @@ namespace Dotpia
             this.LblWidth.Size = new System.Drawing.Size(0, 19);
             this.LblWidth.TabIndex = 0;
             // 
+            // BtnResize
+            // 
+            this.BtnResize.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnResize.Location = new System.Drawing.Point(98, 169);
+            this.BtnResize.Name = "BtnResize";
+            this.BtnResize.Size = new System.Drawing.Size(85, 42);
+            this.BtnResize.TabIndex = 3;
+            this.BtnResize.Text = "Resize";
+            this.BtnResize.UseVisualStyleBackColor = false;
+            this.BtnResize.Click += new System.EventHandler(this.BtnResize_Click);
+            // 
+            // RtbResizeW
+            // 
+            this.RtbResizeW.Location = new System.Drawing.Point(6, 170);
+            this.RtbResizeW.Name = "RtbResizeW";
+            this.RtbResizeW.Size = new System.Drawing.Size(40, 41);
+            this.RtbResizeW.TabIndex = 4;
+            this.RtbResizeW.Text = "";
+            this.RtbResizeW.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
+            // 
+            // RtbResizeH
+            // 
+            this.RtbResizeH.Location = new System.Drawing.Point(52, 170);
+            this.RtbResizeH.Name = "RtbResizeH";
+            this.RtbResizeH.Size = new System.Drawing.Size(40, 41);
+            this.RtbResizeH.TabIndex = 4;
+            this.RtbResizeH.Text = "";
+            this.RtbResizeH.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
+            // 
             // Pencil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -678,5 +713,8 @@ namespace Dotpia
         public System.Windows.Forms.Label LblPx;
         private System.Windows.Forms.Button BtnV;
         private System.Windows.Forms.Button BtnCut;
+        private System.Windows.Forms.RichTextBox RtbResizeH;
+        private System.Windows.Forms.RichTextBox RtbResizeW;
+        private System.Windows.Forms.Button BtnResize;
     }
 }

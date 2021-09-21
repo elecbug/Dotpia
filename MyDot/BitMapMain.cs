@@ -21,14 +21,14 @@ namespace Dotpia
         private Point pntMouseWithPnl;
         private Point pntMouseWithForm;
         public Graphics[,] grpBitMap;
-        private Graphics[] grpGrid;
+        public Graphics[] grpGrid;
         private bool bolMouseDClick;
         private bool bolBorder;
         private bool bolMouseDown;
         private int intTimer = 0;
         public int intNowLayer = 0;
         private int intScale = 0;
-        private int intDefaultSize;
+        public int intDefaultSize;
         private decimal[] dcmMouseLocationWithPnl = new decimal[2];
         private bool bolNewFile;
         private bool bolCtrlPress = false;
@@ -40,7 +40,7 @@ namespace Dotpia
         private bool bolShiftPress = false;
         //private Graphics grpZeroLine;
 
-        private void BitMapMain_Load(object sender, EventArgs e)
+        public void BitMapMain_Load(object sender, EventArgs e)
         {
             try
             {

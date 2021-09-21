@@ -620,5 +620,59 @@ namespace Dotpia
                 DataSaver.bmmNow.ReDrawing();
             }
         }
+
+        private void BtnResize_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataSaver.intWidth = int.Parse(RtbResizeW.Text);
+                DataSaver.intHeight = int.Parse(RtbResizeH.Text);
+                RGBA[,,] resizeRGBA = new RGBA[DataSaver.intWidth, DataSaver.intHeight, DataSaver.HIGH_RAYER];
+                for (int x = 0; x < DataSaver.intWidth; x++)
+                {
+                    for (int y = 0; y < DataSaver.intHeight; y++)
+                    {
+                        for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
+                        {
+                            if (DataSaver.btmRGBA.GetLength(0) > x && DataSaver.btmRGBA.GetLength(1) > y)
+                            {
+                                resizeRGBA[x, y, r] = new RGBA(DataSaver.btmRGBA[x, y, r]);
+                            }
+                            else
+                            {
+                                resizeRGBA[x, y, r] = new RGBA();
+                            }
+                        }
+                    }
+                }
+                DataSaver.btmRGBA = resizeRGBA;
+                DataSaver.ctrlZ = new CtrlZ();
+                DataSaver.bmmNow.grpGrid = new Graphics[DataSaver.intWidth + 1 + DataSaver.intHeight + 1 + 1];
+                DataSaver.bmmNow.grpBitMap = new Graphics[DataSaver.intWidth, DataSaver.intHeight];
+                DataSaver.bmmNow.Pnl.Width = 800;
+                DataSaver.bmmNow.Pnl.Height = 600;
+                int intControlWidth = DataSaver.bmmNow.Pnl.Width / DataSaver.intWidth;
+                int intControlHeight = DataSaver.bmmNow.Pnl.Height / DataSaver.intHeight;
+                int intSize = Math.Min(intControlWidth, intControlHeight);
+                DataSaver.bmmNow.Pnl.Width = intSize * DataSaver.intWidth;
+                DataSaver.bmmNow.Pnl.Height = intSize * DataSaver.intHeight;
+                DataSaver.intSize = intSize;
+                DataSaver.bmmNow.intDefaultSize = intSize;
+                for (int y = 0; y < DataSaver.intHeight; y++)
+                {
+                    for (int x = 0; x < DataSaver.intWidth; x++)
+                    {
+                        DataSaver.bmmNow.grpBitMap[x, y] = DataSaver.bmmNow.Pnl.CreateGraphics();
+                    }
+                }
+                DataSaver.ctrlZ.Push(DataSaver.btmRGBA);
+                DataSaver.startRGBA = (RGBA[,,])DataSaver.btmRGBA.Clone();
+                DataSaver.bmmNow.ReDrawing();
+            }
+            catch
+            {
+
+            }
+        }
     }
 }
