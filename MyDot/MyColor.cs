@@ -112,21 +112,28 @@ namespace Dotpia
         {
             if (Math.Abs(a.R - b.R) <= DataSaver.paintRGBA.R)
             {
-                return true;
-            }
-            if (Math.Abs(a.G - b.G) <= DataSaver.paintRGBA.G)
-            {
-                return true;
-            }
-            if (Math.Abs(a.B - b.B) <= DataSaver.paintRGBA.B)
-            {
-                return true;
-            }
-            if (Math.Abs(a.A - b.A) <= DataSaver.paintRGBA.A)
-            {
-                return true;
+                if (Math.Abs(a.G - b.G) <= DataSaver.paintRGBA.G)
+                {
+                    if (Math.Abs(a.B - b.B) <= DataSaver.paintRGBA.B)
+                    {
+                        if (Math.Abs(a.A - b.A) <= DataSaver.paintRGBA.A)
+                        {
+                            return true;
+                        }
+                    }
+                }
             }
             return false;
+        }
+
+        public string RGBAtoUni16()
+        {
+            string returner = "";
+            returner += R.ToString("X2");
+            returner += G.ToString("X2");
+            returner += B.ToString("X2");
+            returner += A.ToString("X2");
+            return returner;
         }
     }
 

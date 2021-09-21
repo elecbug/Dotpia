@@ -624,15 +624,13 @@ namespace Dotpia
                     DataSaver.pclNow.RtbG.Text = DataSaver.nowRGBA.G.ToString();
                     DataSaver.pclNow.RtbB.Text = DataSaver.nowRGBA.B.ToString();
                     DataSaver.pclNow.RtbA.Text = DataSaver.nowRGBA.A.ToString();
+                    color = new RGBA(DataSaver.nowRGBA);
                 }
                 else if (DataSaver.bolPaint)
                 {
-                    if (DataSaver.btmRGBA[intPointX, intPointY, intNowLayer] != DataSaver.nowRGBA)
-                    {
-                        RGBA clickRGBA = DataSaver.btmRGBA[intPointX, intPointY, intNowLayer];
-                        PaintTool(intPointX, intPointY);
-                        ReDrawing();
-                    }
+                    RGBA clickRGBA = DataSaver.btmRGBA[intPointX, intPointY, intNowLayer];
+                    PaintTool(intPointX, intPointY);
+                    ReDrawing();
                 }
                 else if (DataSaver.intMirror == 1)
                 {

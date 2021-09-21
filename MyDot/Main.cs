@@ -40,7 +40,7 @@ namespace Dotpia
                     Layer lyeForm = new Layer();
                     DataSaver.lyeNow = lyeForm;
                     lyeForm.Show();
-                }           
+                }
             }
             catch
             {
@@ -114,20 +114,28 @@ namespace Dotpia
 
         private void BtnNewLoad_Click(object sender, EventArgs e)
         {
+            int intMagicNum = "WTD".Length;
             if (OfdNewOpen.ShowDialog() == DialogResult.OK)
             {
                 string strValue = File.ReadAllText(OfdNewOpen.FileName.ToString());
-                int intWidth = int.Parse(strValue[0].ToString() + strValue[1].ToString() + strValue[2].ToString() + strValue[3].ToString());
-                int intHeight = int.Parse(strValue[4].ToString() + strValue[5].ToString() + strValue[6].ToString() + strValue[7].ToString());
-                int intLayer = int.Parse(strValue[8].ToString());
+                for (int i = 0; i < "WTD".Length; i++)
+                {
+                    if (strValue[i] != "WTD"[i])
+                    {
+                        return;
+                    }
+                }
+                int intWidth = int.Parse(strValue[0 + intMagicNum].ToString() + strValue[1 + intMagicNum].ToString() + strValue[2 + intMagicNum].ToString() + strValue[3 + intMagicNum].ToString());
+                int intHeight = int.Parse(strValue[4 + intMagicNum].ToString() + strValue[5 + intMagicNum].ToString() + strValue[6 + intMagicNum].ToString() + strValue[7 + intMagicNum].ToString());
+                int intLayer = int.Parse(strValue[8 + intMagicNum].ToString());
                 DataSaver.intLayerTP = new int[DataSaver.HIGH_RAYER];
                 for (int r = 0; r < DataSaver.HIGH_RAYER; r++)
                 {
-                    DataSaver.intLayerTP[r] = int.Parse(strValue[r * 3 + 9].ToString() + strValue[r * 3 + 10].ToString() + strValue[r * 3 + 11].ToString());
+                    DataSaver.intLayerTP[r] = int.Parse(strValue[r * 3 + 9 + intMagicNum].ToString() + strValue[r * 3 + 10 + intMagicNum].ToString() + strValue[r * 3 + 11 + intMagicNum].ToString());
                 }
                 DataSaver.intWidth = intWidth;
                 DataSaver.intHeight = intHeight;
-                int intReader = 24 + 1;
+                int intReader = 24 + 1 + intMagicNum;
                 DataSaver.btmRGBA = new RGBA[intWidth, intHeight, intLayer];
                 for (int r = 0; r < intLayer; r++)
                 {
@@ -136,7 +144,7 @@ namespace Dotpia
                         for (int x = 0; x < intWidth; x++)
                         {
                             int intNum = 0;
-                            if (strValue[intReader] == '(')
+                            if (strValue[intReader] == '|')
                             {
                                 string strNum = "";
                                 for (intReader++; strValue[intReader] != ':'; intReader++)
@@ -146,20 +154,10 @@ namespace Dotpia
                                 intNum = int.Parse(strNum);
                                 intReader++;
                             }
-                            int intUnicode1 = int.Parse(strValue[intReader].ToString()
-                                                      + strValue[intReader + 1].ToString()
-                                                      + strValue[intReader + 2].ToString()
-                                                      + strValue[intReader + 3].ToString()
-                                                      + strValue[intReader + 4].ToString());
-                            int R = intUnicode1 / 256;
-                            int G = intUnicode1 - R * 256;
-                            int intUnicode2 = int.Parse(strValue[intReader + 5].ToString()
-                                                      + strValue[intReader + 6].ToString()
-                                                      + strValue[intReader + 7].ToString()
-                                                      + strValue[intReader + 8].ToString()
-                                                      + strValue[intReader + 9].ToString());
-                            int B = intUnicode2 / 256;
-                            int A = intUnicode2 - B * 256;
+                            int R = Int32.Parse(strValue[intReader].ToString() + strValue[intReader + 1].ToString(), System.Globalization.NumberStyles.HexNumber);
+                            int G = Int32.Parse(strValue[intReader + 2].ToString() + strValue[intReader + 3].ToString(), System.Globalization.NumberStyles.HexNumber);
+                            int B = Int32.Parse(strValue[intReader + 4].ToString() + strValue[intReader + 5].ToString(), System.Globalization.NumberStyles.HexNumber);
+                            int A = Int32.Parse(strValue[intReader + 6].ToString() + strValue[intReader + 7].ToString(), System.Globalization.NumberStyles.HexNumber);
                             for (int i = 0; i < intNum; i++)
                             {
                                 DataSaver.btmRGBA[x, y, r] = new RGBA(R, G, B, A);
@@ -195,8 +193,7 @@ namespace Dotpia
                                     r--;
                                 }
                             }
-                            intReader += 10;
-                            intReader++;
+                            intReader += 8;
                         }
                     }
                 }

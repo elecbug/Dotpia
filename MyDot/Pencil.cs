@@ -469,6 +469,7 @@ namespace Dotpia
                     File.Delete(strPath);
                 }
                 string strSaveTxt = "";
+                strSaveTxt += "WTD";
                 strSaveTxt += DataSaver.intWidth.ToString("D4");
                 strSaveTxt += DataSaver.intHeight.ToString("D4");
                 strSaveTxt += DataSaver.HIGH_RAYER;
@@ -488,28 +489,27 @@ namespace Dotpia
                     {
                         for (int x = 0; x < DataSaver.intWidth; x++)
                         {
-                            string strUnicode1 = DataSaver.btmRGBA[x, y, r].RGBAtoUni1().ToString("D5");
-                            string strUnicode2 = DataSaver.btmRGBA[x, y, r].RGBAtoUni2().ToString("D5");
+                            string strUnicode = DataSaver.btmRGBA[x, y, r].RGBAtoUni16();
                             if (!bolFirst)
                             {
                                 bolFirst = true;
                             }
-                            else if (strTemp != strUnicode1 + strUnicode2)
+                            else if (strTemp != strUnicode)
                             {
-                                w.Write($"({intReNum}:" + strTemp + ")");
+                                w.Write($"|{intReNum}:" + strTemp);
                                 intReNum = 1;
                             }
                             else
                             {
                                 intReNum++;
                             }
-                            strTemp = strUnicode1 + strUnicode2;
+                            strTemp = strUnicode;
                             //strSaveTxt += strUnicode1;
                             //strSaveTxt += strUnicode2;
                         }
                     }
                 }
-                w.Write($"({intReNum}:" + strTemp + ")");
+                w.Write($"|{intReNum}:" + strTemp);
                 w.Close();
                 //File.WriteAllText(strPath, strSaveTxt, Encoding.Default);
                 //Writer(strPath, strSaveTxt);

@@ -118,7 +118,7 @@ namespace Dotpia
             // 
             // OfdOpen
             // 
-            this.OfdOpen.Filter = "|*.png";
+            this.OfdOpen.Filter = "|*.png;*.jpg";
             // 
             // BtnHelp
             // 

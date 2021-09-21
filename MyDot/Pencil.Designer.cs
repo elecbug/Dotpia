@@ -66,6 +66,7 @@ namespace Dotpia
             this.Pbx2 = new System.Windows.Forms.PictureBox();
             this.Pbx1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BtnCut = new System.Windows.Forms.Button();
             this.BtnV = new System.Windows.Forms.Button();
             this.BtnZ = new System.Windows.Forms.Button();
             this.BtnZoom = new System.Windows.Forms.Button();
@@ -77,7 +78,6 @@ namespace Dotpia
             this.LblMouse = new System.Windows.Forms.Label();
             this.LblHeight = new System.Windows.Forms.Label();
             this.LblWidth = new System.Windows.Forms.Label();
-            this.BtnCut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -159,7 +159,7 @@ namespace Dotpia
             // 
             // SfdSave
             // 
-            this.SfdSave.Filter = "|*.png";
+            this.SfdSave.Filter = "|*.png;*.jpg";
             // 
             // BtnSmart
             // 
@@ -236,7 +236,7 @@ namespace Dotpia
             // 
             // OfdOpen
             // 
-            this.OfdOpen.Filter = "|*.png";
+            this.OfdOpen.Filter = "|*.png;*.jpg";
             // 
             // BtnExtraction
             // 
@@ -478,6 +478,17 @@ namespace Dotpia
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tool";
             // 
+            // BtnCut
+            // 
+            this.BtnCut.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnCut.Location = new System.Drawing.Point(157, 121);
+            this.BtnCut.Name = "BtnCut";
+            this.BtnCut.Size = new System.Drawing.Size(69, 42);
+            this.BtnCut.TabIndex = 3;
+            this.BtnCut.Text = "Cut";
+            this.BtnCut.UseVisualStyleBackColor = false;
+            this.BtnCut.Click += new System.EventHandler(this.BtnCut_Click);
+            // 
             // BtnV
             // 
             this.BtnV.BackColor = System.Drawing.SystemColors.Control;
@@ -581,17 +592,6 @@ namespace Dotpia
             this.LblWidth.Name = "LblWidth";
             this.LblWidth.Size = new System.Drawing.Size(0, 19);
             this.LblWidth.TabIndex = 0;
-            // 
-            // BtnCut
-            // 
-            this.BtnCut.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnCut.Location = new System.Drawing.Point(157, 121);
-            this.BtnCut.Name = "BtnCut";
-            this.BtnCut.Size = new System.Drawing.Size(69, 42);
-            this.BtnCut.TabIndex = 3;
-            this.BtnCut.Text = "Cut";
-            this.BtnCut.UseVisualStyleBackColor = false;
-            this.BtnCut.Click += new System.EventHandler(this.BtnCut_Click);
             // 
             // Pencil
             // 
