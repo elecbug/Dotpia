@@ -876,10 +876,10 @@ namespace Dotpia
                                     {
                                         DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
                                     }
-                                    if (!bolCtrlPress)
-                                    {
-                                        DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
-                                    }
+                                }
+                                if (!bolCtrlPress)
+                                {
+                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
                                 }
                             }
                         }
@@ -896,10 +896,10 @@ namespace Dotpia
                                     {
                                         DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
                                     }
-                                    if (!bolCtrlPress)
-                                    {
-                                        DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
-                                    }
+                                }
+                                if (!bolCtrlPress)
+                                {
+                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
                                 }
                             }
                         }
@@ -919,10 +919,10 @@ namespace Dotpia
                                     {
                                         DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
                                     }
-                                    if (!bolCtrlPress)
-                                    {
-                                        DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
-                                    }
+                                }
+                                if (!bolCtrlPress)
+                                {
+                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
                                 }
                             }
                         }
@@ -939,10 +939,10 @@ namespace Dotpia
                                     {
                                         DataSaver.btmRGBA[x - xMove, y - yMove, intNowLayer] = DataSaver.btmRGBA[x, y, intNowLayer];
                                     }
-                                    if (!bolCtrlPress)
-                                    {
-                                        DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
-                                    }
+                                }
+                                if (!bolCtrlPress)
+                                {
+                                    DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
                                 }
                             }
                         }
