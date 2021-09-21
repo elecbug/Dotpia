@@ -37,6 +37,7 @@ namespace Dotpia
         private Point[] pntNewLocation = new Point[2];
         private Graphics grpDrag;
         public bool bolDragOn = false;
+        private bool bolShiftPress = false;
         //private Graphics grpZeroLine;
 
         private void BitMapMain_Load(object sender, EventArgs e)
@@ -1037,6 +1038,10 @@ namespace Dotpia
             {
                 bolCtrlPress = true;
             }
+            if (e.Shift)
+            {
+                bolShiftPress = true;
+            }
             if (e.KeyCode == Keys.Z)
             {
                 if (bolCtrlPress)
@@ -1049,6 +1054,61 @@ namespace Dotpia
                 if (bolCtrlPress)
                 {
                     DataSaver.pclNow.BtnV_Click(sender, e);
+                }
+                if (bolShiftPress)
+                {
+                    if (bolDragOn)
+                    {
+                        int minX = Math.Min((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize));
+                        int minY = Math.Min((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize));
+                        int maxX = Math.Max((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize)) + 1;
+                        int maxY = Math.Max((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize)) + 1;
+                        RGBA[,] returnRGBA = new RGBA[maxX - minX, maxY - minY];
+                        for (int x = minX; x < maxX; x++)
+                        {
+                            for (int y = minY; y < maxY; y++)
+                            {
+                                returnRGBA[x - minX, maxY - (y + 1)] = new RGBA(DataSaver.btmRGBA[x, y, intNowLayer]);
+                            }
+                        }
+                        for (int x = minX; x < maxX; x++)
+                        {
+                            for (int y = minY; y < maxY; y++)
+                            {
+                                DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(returnRGBA[x - minX, y - minY]);
+                            }
+                        }
+                        ReDrawing();
+                    }
+                }
+            }
+            if(e.KeyCode == Keys.H)
+            {
+                if (bolShiftPress)
+                {
+                    if (bolDragOn)
+                    {
+                        int minX = Math.Min((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize));
+                        int minY = Math.Min((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize));
+                        int maxX = Math.Max((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize)) + 1;
+                        int maxY = Math.Max((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize)) + 1;
+                        RGBA[,] returnRGBA = new RGBA[maxX - minX, maxY - minY];
+                        for (int x = minX; x < maxX; x++)
+                        {
+                            for (int y = minY; y < maxY; y++)
+                            {
+                                returnRGBA[maxX - (x + 1), y - minY] = new RGBA(DataSaver.btmRGBA[x, y, intNowLayer]);
+                            }
+                        }
+                        for (int x = minX; x < maxX; x++)
+                        {
+                            for (int y = minY; y < maxY; y++)
+                            {
+                                DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA(returnRGBA[x - minX, y - minY]);
+                            }
+                        }
+                        ReDrawing();
+                    }
                 }
             }
             if (e.KeyCode == Keys.C)
@@ -1082,9 +1142,17 @@ namespace Dotpia
             {
                 bolCtrlPress = true;
             }
-            else
+            else if (!e.Control)
             {
                 bolCtrlPress = false;
+            }
+            if (e.Shift)
+            {
+                bolShiftPress = true;
+            }
+            else if (!e.Shift)
+            {
+                bolShiftPress = false;
             }
         }
 
