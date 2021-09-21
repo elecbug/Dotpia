@@ -270,12 +270,17 @@ namespace Dotpia
             }
             if (bolDragOn)
             {
-                Pen pen = new Pen(Color.White, 1);
+                int minX = Math.Min((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize));
+                int minY = Math.Min((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize));
+                int maxX = Math.Max((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize)) + 1;
+                int maxY = Math.Max((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize)) + 1;
+                Pen pen = new Pen(Color.White, 5);
                 grpDrag = Pnl.CreateGraphics();
-                grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[0].Y);
-                grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[1].Y);
-                grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[1].Y);
-                grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[0].Y);
+                grpDrag.DrawLine(pen, minX * DataSaver.intSize, minY * DataSaver.intSize, maxX * DataSaver.intSize, minY * DataSaver.intSize);
+                grpDrag.DrawLine(pen, maxX * DataSaver.intSize, minY * DataSaver.intSize, maxX * DataSaver.intSize, maxY * DataSaver.intSize);
+                grpDrag.DrawLine(pen, maxX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, maxY * DataSaver.intSize);
+                grpDrag.DrawLine(pen, minX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, minY * DataSaver.intSize);
+
             }
         }
 
@@ -714,12 +719,16 @@ namespace Dotpia
                 }
                 if (bolDragOn)
                 {
-                    Pen pen = new Pen(Color.White, 1);
+                    int minX = Math.Min((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize));
+                    int minY = Math.Min((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize));
+                    int maxX = Math.Max((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize)) + 1;
+                    int maxY = Math.Max((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize)) + 1;
+                    Pen pen = new Pen(Color.White, 5);
                     grpDrag = Pnl.CreateGraphics();
-                    grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[0].Y);
-                    grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[1].Y);
-                    grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[1].Y);
-                    grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[0].Y);
+                    grpDrag.DrawLine(pen, minX * DataSaver.intSize, minY * DataSaver.intSize, maxX * DataSaver.intSize, minY * DataSaver.intSize);
+                    grpDrag.DrawLine(pen, maxX * DataSaver.intSize, minY * DataSaver.intSize, maxX * DataSaver.intSize, maxY * DataSaver.intSize);
+                    grpDrag.DrawLine(pen, maxX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, maxY * DataSaver.intSize);
+                    grpDrag.DrawLine(pen, minX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, minY * DataSaver.intSize);
                 }
                 DataSaver.nowRGBA = new RGBA(color);
                 CtrlZPush();
@@ -823,11 +832,13 @@ namespace Dotpia
 
         private void Pnl_MouseDown(object sender, MouseEventArgs e)
         {
+            int minX = Math.Min((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize));
+            int minY = Math.Min((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize));
+            int maxX = Math.Max((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize)) + 1;
+            int maxY = Math.Max((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize)) + 1;
             if (DataSaver.bolCut
-            && (pntMouseWithPnl.X < Math.Min(pntDrag[0].X, pntDrag[1].X)
-             || pntMouseWithPnl.Y < Math.Min(pntDrag[0].Y, pntDrag[1].Y)
-             || pntMouseWithPnl.X > Math.Max(pntDrag[0].X, pntDrag[1].X)
-             || pntMouseWithPnl.Y > Math.Max(pntDrag[0].Y, pntDrag[1].Y))) 
+            && (pntMouseWithPnl.X < minX * DataSaver.intSize || pntMouseWithPnl.Y < minY * DataSaver.intSize 
+             || pntMouseWithPnl.X > maxX * DataSaver.intSize || pntMouseWithPnl.Y > maxY * DataSaver.intSize)) 
             {
                 pntDrag[0] = new Point(pntMouseWithPnl.X, pntMouseWithPnl.Y);
             }
@@ -918,12 +929,16 @@ namespace Dotpia
                 pntDrag[1] = new Point(pntMouseWithPnl.X, pntMouseWithPnl.Y);
                 grpDrag.Clear(Pnl.BackColor);
                 ReDrawing();
+                int minX = Math.Min((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize));
+                int minY = Math.Min((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize));
+                int maxX = Math.Max((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize)) + 1;
+                int maxY = Math.Max((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize)) + 1;
+                Pen pen = new Pen(Color.White, 5);
                 grpDrag = Pnl.CreateGraphics();
-                Pen pen = new Pen(Color.White, 1);
-                grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[0].Y);
-                grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[0].Y, pntDrag[1].X, pntDrag[1].Y);
-                grpDrag.DrawLine(pen, pntDrag[1].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[1].Y);
-                grpDrag.DrawLine(pen, pntDrag[0].X, pntDrag[1].Y, pntDrag[0].X, pntDrag[0].Y);
+                grpDrag.DrawLine(pen, minX * DataSaver.intSize, minY * DataSaver.intSize, maxX * DataSaver.intSize, minY * DataSaver.intSize);
+                grpDrag.DrawLine(pen, maxX * DataSaver.intSize, minY * DataSaver.intSize, maxX * DataSaver.intSize, maxY * DataSaver.intSize);
+                grpDrag.DrawLine(pen, maxX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, maxY * DataSaver.intSize);
+                grpDrag.DrawLine(pen, minX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, minY * DataSaver.intSize);
                 bolDragOn = true;
             }
             if (!bolDragOn)
