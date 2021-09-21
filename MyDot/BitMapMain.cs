@@ -243,10 +243,10 @@ namespace Dotpia
         public void ReDrawing()
         {
             for (int y = Math.Max(-(DataSaver.intSize + Pnl.Location.Y) / DataSaver.intSize, 0);
-                     y < Math.Min((this.Height - Pnl.Location.Y) / DataSaver.intSize, DataSaver.intHeight); y++)
+                     y < Math.Min((this.Height - Pnl.Location.Y) / DataSaver.intSize + 1, DataSaver.intHeight); y++)
             {
                 for (int x = Math.Max(-(DataSaver.intSize + Pnl.Location.X) / DataSaver.intSize, 0);
-                         x < Math.Min((this.Width - Pnl.Location.X) / DataSaver.intSize, DataSaver.intWidth); x++)
+                         x < Math.Min((this.Width - Pnl.Location.X) / DataSaver.intSize + 1, DataSaver.intWidth); x++)
                 {
                     PartedReDrawing(x, y);
                 }
