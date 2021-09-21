@@ -535,20 +535,38 @@ namespace Dotpia
         {
             try
             {
-                Bitmap ctrlV = (Bitmap)Clipboard.GetImage();
-                if (ctrlV == null)
+                if (DataSaver.bolCopyMod)
                 {
-                    return;
-                }
-                for (int x = 0; x < Math.Min(DataSaver.intWidth, ctrlV.Width); x++)
-                {
-                    for (int y = 0; y < Math.Min(DataSaver.intHeight, ctrlV.Height); y++)
+                    for (int x = 0; x < Math.Min(DataSaver.intWidth, DataSaver.copyRGBA.GetLength(0)); x++)
                     {
-                        DataSaver.btmRGBA[x, y, DataSaver.bmmNow.intNowLayer] = new RGBA(ctrlV.GetPixel(x, y));
+                        for (int y = 0; y < Math.Min(DataSaver.intHeight, DataSaver.copyRGBA.GetLength(1)); y++)
+                        {
+                            if (DataSaver.copyRGBA[x, y] != new RGBA())
+                            {
+                                DataSaver.btmRGBA[x, y, DataSaver.bmmNow.intNowLayer] = new RGBA(DataSaver.copyRGBA[x, y]);
+                            }
+                        }
                     }
+                    DataSaver.ctrlZ.Push(DataSaver.btmRGBA);
+                    DataSaver.bmmNow.ReDrawing();
                 }
-                DataSaver.ctrlZ.Push(DataSaver.btmRGBA);
-                DataSaver.bmmNow.ReDrawing();
+                else
+                {
+                    Bitmap ctrlV = (Bitmap)Clipboard.GetImage();
+                    if (ctrlV == null)
+                    {
+                        return;
+                    }
+                    for (int x = 0; x < Math.Min(DataSaver.intWidth, ctrlV.Width); x++)
+                    {
+                        for (int y = 0; y < Math.Min(DataSaver.intHeight, ctrlV.Height); y++)
+                        {
+                            DataSaver.btmRGBA[x, y, DataSaver.bmmNow.intNowLayer] = new RGBA(ctrlV.GetPixel(x, y));
+                        }
+                    }
+                    DataSaver.ctrlZ.Push(DataSaver.btmRGBA);
+                    DataSaver.bmmNow.ReDrawing();
+                }
             }
             catch
             {

@@ -32,5 +32,7 @@ namespace Dotpia
         public static RGBA paintRGBA = new RGBA();
         public static bool bolCut;
         public static RGBA[,] dragRGBA;
+        public static bool bolCopyMod;
+        public static RGBA[,] copyRGBA;
     }
 }
