@@ -595,7 +595,6 @@ namespace Dotpia
                     DataSaver.nowRGBA = new RGBA(0, 0, 0, 0);
                 }
                 int intPointX = pntMouseWithPnl.X / DataSaver.intSize, intPointY = pntMouseWithPnl.Y / DataSaver.intSize;
-
                 if (!DataSaver.bolExtraction && !DataSaver.bolPaint && DataSaver.intMirror == 0 && !DataSaver.bolCut)
                 {
                     DataSaver.btmRGBA[intPointX, intPointY, intNowLayer] = new RGBA(DataSaver.nowRGBA);
@@ -773,7 +772,7 @@ namespace Dotpia
         {
             try
             {
-                if(Clipboard.GetImage()!=null)
+                if (Clipboard.GetImage() != null)
                 {
                     DataSaver.bolCopyMod = false;
                 }
