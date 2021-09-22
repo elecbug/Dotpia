@@ -38,6 +38,8 @@ namespace Dotpia
         private Graphics grpDrag;
         public bool bolDragOn = false;
         private bool bolShiftPress = false;
+        //private Point[] pntMoveSaver;
+        //private int intMoveSaver = 0;
         //private Graphics grpZeroLine;
 
         public void BitMapMain_Load(object sender, EventArgs e)
@@ -91,6 +93,7 @@ namespace Dotpia
                 DataSaver.startRGBA = (RGBA[,,])DataSaver.btmRGBA.Clone();
                 ReDrawing();
                 grpDrag = Pnl.CreateGraphics();
+                //pntMoveSaver = new Point[DataSaver.intWidth * DataSaver.intHeight];
             }
             catch
             {
@@ -821,6 +824,7 @@ namespace Dotpia
                      && pntMouseWithPnl.X <= Pnl.Width
                      && pntMouseWithPnl.Y <= Pnl.Height)
                     {
+                        //pntMoveSaver[intMoveSaver++] = pntMouseWithPnl;
                         BtnClick(sender, e);
                     }
                 }
@@ -849,6 +853,8 @@ namespace Dotpia
 
         private void Pnl_MouseUp(object sender, MouseEventArgs e)
         {
+            //intMoveSaver = 0;
+            //pntMoveSaver = new Point[DataSaver.intWidth * DataSaver.intHeight];
             bolMouseDown = false;
             if (bolDragOn)
             {
@@ -1002,7 +1008,7 @@ namespace Dotpia
 
         private void BitMapMain_MouseMove(object sender, MouseEventArgs e)
         {
-            if (intTimer < 50 && !bolNewFile)
+            if (intTimer < 500 && !bolNewFile)
             {
                 //ZeroLineDraw();
                 ReDrawing();
