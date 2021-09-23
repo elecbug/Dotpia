@@ -276,6 +276,7 @@ namespace Dotpia
                                 DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
                             }
                         }
+                        bolDragOn = false;
                         ReDrawing();
                     }
                 }
@@ -295,6 +296,7 @@ namespace Dotpia
                             DataSaver.btmRGBA[x, y, intNowLayer] = new RGBA();
                         }
                     }
+                    bolDragOn = false;
                     ReDrawing();
                 }
             }
