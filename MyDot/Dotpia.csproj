@@ -177,7 +177,6 @@
   <ItemGroup>
     <Content Include="Mana.ico" />
     <Content Include="Resources\Empty.png" />
-    <Content Include="TestIdea.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
