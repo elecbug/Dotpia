@@ -42,8 +42,8 @@ namespace Dotpia
             this.Pnl.Name = "Pnl";
             this.Pnl.Size = new System.Drawing.Size(800, 600);
             this.Pnl.TabIndex = 0;
-            this.Pnl.Click += new System.EventHandler(this.BtnClick);
-            this.Pnl.DoubleClick += new System.EventHandler(this.MouseDClick);
+            this.Pnl.Click += new System.EventHandler(this.Pnl_Click);
+            this.Pnl.DoubleClick += new System.EventHandler(this.Pnl_DClick);
             this.Pnl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Pnl_MouseDown);
             this.Pnl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Pnl_MouseMove);
             this.Pnl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Pnl_MouseUp);
@@ -70,7 +70,7 @@ namespace Dotpia
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BitMapMain_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BitMapMain_KeyUp);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BitMapMain_MouseMove);
-            this.Resize += new System.EventHandler(this.BitMapMain_Resize);
+            this.Resize += new System.EventHandler(this.BitMapResize);
             this.ResumeLayout(false);
 
         }

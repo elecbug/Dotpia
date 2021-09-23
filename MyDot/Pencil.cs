@@ -89,11 +89,6 @@ namespace Dotpia
                     {
                         nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r])));
                     }
-                    //nowRGBA.A *= 2;
-                    //if (nowRGBA.A > 255)
-                    //{
-                    //    nowRGBA.A = 255;
-                    //}
                     bitmap.SetPixel(x, y, nowRGBA.ColorReturn());
                 }
             }
@@ -132,8 +127,6 @@ namespace Dotpia
             return new RGBA((int)(r.R * 255), (int)(r.G * 255), (int)(r.B * 255), (int)(r.A * 255));
         }
 
-
-
         private void BtnSmart_Click(object sender, EventArgs e)
         {
             bolColorDialog = true;
@@ -151,7 +144,7 @@ namespace Dotpia
 
         private void BtnBorder_Click(object sender, EventArgs e)
         {
-            DataSaver.bmmNow.PbxBorder();
+            DataSaver.bmmNow.BorderMaking();
         }
 
         private void BtnExport_Click(object sender, EventArgs e)
@@ -185,11 +178,6 @@ namespace Dotpia
                             {
                                 nowRGBA = new RGBA(Combine(new RGBA(nowRGBA), new RGBA(bitmapRGBA[x, y, r ])));
                             }
-                            //nowRGBA.A *= 2;
-                            //if (nowRGBA.A > 255)
-                            //{
-                            //    nowRGBA.A = 255;
-                            //}
                             combineRGBA[x, y] = new RGBA(nowRGBA);
                         }
                     }
@@ -440,7 +428,7 @@ namespace Dotpia
             }
         }
 
-        private void Pbx_Click(object sender, EventArgs e)
+        private void PbxColor_Click(object sender, EventArgs e)
         {
             bolSaveColorClick = true;
             DataSaver.nowRGBA = new RGBA(DataSaver.saveRGBA[((PictureBox)sender).Name[3] - 48 - 1]);
@@ -452,7 +440,7 @@ namespace Dotpia
             bolSaveColorClick = false;
         }
 
-        private void Btn_Click(object sender, EventArgs e)
+        private void BtnColor_Click(object sender, EventArgs e)
         {
             DataSaver.saveRGBA[((Button)sender).Name[3] - 48 - 1] = new RGBA(DataSaver.nowRGBA);
             switch (((Button)sender).Name[3] - 48 - 1)
@@ -470,16 +458,6 @@ namespace Dotpia
         private void BtnZoom_Click(object sender, EventArgs e)
         {
             DataSaver.bmmNow.ZoomReset();
-        }
-
-        private void BtnLayer_Click(object sender, EventArgs e)
-        {
-            if (DataSaver.lyeNow == null)
-            {
-                Layer rayer = new Layer();
-                DataSaver.lyeNow = rayer;
-                rayer.Show();
-            }
         }
 
         private void BtnNewSave_Click(object sender, EventArgs e)
@@ -527,16 +505,12 @@ namespace Dotpia
                                 intReNum++;
                             }
                             strTemp = strUnicode;
-                            //strSaveTxt += strUnicode1;
-                            //strSaveTxt += strUnicode2;
                         }
                     }
                 }
                 w.Write($"|{intReNum}:" + strTemp);
                 w.Write("|");
                 w.Close();
-                //File.WriteAllText(strPath, strSaveTxt, Encoding.Default);
-                //Writer(strPath, strSaveTxt);
             }
         }
 

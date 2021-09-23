@@ -333,7 +333,7 @@ namespace Dotpia
             this.Btn7.Size = new System.Drawing.Size(36, 10);
             this.Btn7.TabIndex = 4;
             this.Btn7.UseVisualStyleBackColor = true;
-            this.Btn7.Click += new System.EventHandler(this.Btn_Click);
+            this.Btn7.Click += new System.EventHandler(this.BtnColor_Click);
             // 
             // Btn6
             // 
@@ -342,7 +342,7 @@ namespace Dotpia
             this.Btn6.Size = new System.Drawing.Size(36, 10);
             this.Btn6.TabIndex = 4;
             this.Btn6.UseVisualStyleBackColor = true;
-            this.Btn6.Click += new System.EventHandler(this.Btn_Click);
+            this.Btn6.Click += new System.EventHandler(this.BtnColor_Click);
             // 
             // Btn5
             // 
@@ -351,7 +351,7 @@ namespace Dotpia
             this.Btn5.Size = new System.Drawing.Size(36, 10);
             this.Btn5.TabIndex = 4;
             this.Btn5.UseVisualStyleBackColor = true;
-            this.Btn5.Click += new System.EventHandler(this.Btn_Click);
+            this.Btn5.Click += new System.EventHandler(this.BtnColor_Click);
             // 
             // Btn4
             // 
@@ -360,7 +360,7 @@ namespace Dotpia
             this.Btn4.Size = new System.Drawing.Size(36, 10);
             this.Btn4.TabIndex = 4;
             this.Btn4.UseVisualStyleBackColor = true;
-            this.Btn4.Click += new System.EventHandler(this.Btn_Click);
+            this.Btn4.Click += new System.EventHandler(this.BtnColor_Click);
             // 
             // Btn3
             // 
@@ -369,7 +369,7 @@ namespace Dotpia
             this.Btn3.Size = new System.Drawing.Size(36, 10);
             this.Btn3.TabIndex = 4;
             this.Btn3.UseVisualStyleBackColor = true;
-            this.Btn3.Click += new System.EventHandler(this.Btn_Click);
+            this.Btn3.Click += new System.EventHandler(this.BtnColor_Click);
             // 
             // Btn2
             // 
@@ -378,7 +378,7 @@ namespace Dotpia
             this.Btn2.Size = new System.Drawing.Size(36, 10);
             this.Btn2.TabIndex = 4;
             this.Btn2.UseVisualStyleBackColor = true;
-            this.Btn2.Click += new System.EventHandler(this.Btn_Click);
+            this.Btn2.Click += new System.EventHandler(this.BtnColor_Click);
             // 
             // Btn1
             // 
@@ -387,7 +387,7 @@ namespace Dotpia
             this.Btn1.Size = new System.Drawing.Size(36, 10);
             this.Btn1.TabIndex = 4;
             this.Btn1.UseVisualStyleBackColor = true;
-            this.Btn1.Click += new System.EventHandler(this.Btn_Click);
+            this.Btn1.Click += new System.EventHandler(this.BtnColor_Click);
             // 
             // Pbx7
             // 
@@ -398,7 +398,7 @@ namespace Dotpia
             this.Pbx7.Size = new System.Drawing.Size(36, 36);
             this.Pbx7.TabIndex = 3;
             this.Pbx7.TabStop = false;
-            this.Pbx7.Click += new System.EventHandler(this.Pbx_Click);
+            this.Pbx7.Click += new System.EventHandler(this.PbxColor_Click);
             // 
             // Pbx6
             // 
@@ -409,7 +409,7 @@ namespace Dotpia
             this.Pbx6.Size = new System.Drawing.Size(36, 36);
             this.Pbx6.TabIndex = 3;
             this.Pbx6.TabStop = false;
-            this.Pbx6.Click += new System.EventHandler(this.Pbx_Click);
+            this.Pbx6.Click += new System.EventHandler(this.PbxColor_Click);
             // 
             // Pbx5
             // 
@@ -420,7 +420,7 @@ namespace Dotpia
             this.Pbx5.Size = new System.Drawing.Size(36, 36);
             this.Pbx5.TabIndex = 3;
             this.Pbx5.TabStop = false;
-            this.Pbx5.Click += new System.EventHandler(this.Pbx_Click);
+            this.Pbx5.Click += new System.EventHandler(this.PbxColor_Click);
             // 
             // Pbx4
             // 
@@ -431,7 +431,7 @@ namespace Dotpia
             this.Pbx4.Size = new System.Drawing.Size(36, 36);
             this.Pbx4.TabIndex = 3;
             this.Pbx4.TabStop = false;
-            this.Pbx4.Click += new System.EventHandler(this.Pbx_Click);
+            this.Pbx4.Click += new System.EventHandler(this.PbxColor_Click);
             // 
             // Pbx3
             // 
@@ -442,7 +442,7 @@ namespace Dotpia
             this.Pbx3.Size = new System.Drawing.Size(36, 36);
             this.Pbx3.TabIndex = 3;
             this.Pbx3.TabStop = false;
-            this.Pbx3.Click += new System.EventHandler(this.Pbx_Click);
+            this.Pbx3.Click += new System.EventHandler(this.PbxColor_Click);
             // 
             // Pbx2
             // 
@@ -453,7 +453,7 @@ namespace Dotpia
             this.Pbx2.Size = new System.Drawing.Size(36, 36);
             this.Pbx2.TabIndex = 3;
             this.Pbx2.TabStop = false;
-            this.Pbx2.Click += new System.EventHandler(this.Pbx_Click);
+            this.Pbx2.Click += new System.EventHandler(this.PbxColor_Click);
             // 
             // Pbx1
             // 
@@ -464,7 +464,7 @@ namespace Dotpia
             this.Pbx1.Size = new System.Drawing.Size(36, 36);
             this.Pbx1.TabIndex = 3;
             this.Pbx1.TabStop = false;
-            this.Pbx1.Click += new System.EventHandler(this.Pbx_Click);
+            this.Pbx1.Click += new System.EventHandler(this.PbxColor_Click);
             // 
             // groupBox3
             // 

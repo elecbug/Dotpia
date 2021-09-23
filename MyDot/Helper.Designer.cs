@@ -35,6 +35,7 @@ namespace Dotpia
             // 
             // Rtb
             // 
+            this.Rtb.Font = new System.Drawing.Font("휴먼편지체", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Rtb.Location = new System.Drawing.Point(12, 12);
             this.Rtb.Name = "Rtb";
             this.Rtb.ReadOnly = true;
