@@ -31,10 +31,6 @@ namespace Dotpia
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pencil));
             this.PbxColor = new System.Windows.Forms.PictureBox();
-            this.RtbR = new System.Windows.Forms.RichTextBox();
-            this.RtbG = new System.Windows.Forms.RichTextBox();
-            this.RtbB = new System.Windows.Forms.RichTextBox();
-            this.RtbA = new System.Windows.Forms.RichTextBox();
             this.BtnSave = new System.Windows.Forms.Button();
             this.SfdSave = new System.Windows.Forms.SaveFileDialog();
             this.CldColor = new System.Windows.Forms.ColorDialog();
@@ -81,6 +77,10 @@ namespace Dotpia
             this.LblMouse = new System.Windows.Forms.Label();
             this.LblHeight = new System.Windows.Forms.Label();
             this.LblWidth = new System.Windows.Forms.Label();
+            this.TrbR = new System.Windows.Forms.TrackBar();
+            this.TrbG = new System.Windows.Forms.TrackBar();
+            this.TrbB = new System.Windows.Forms.TrackBar();
+            this.TrbA = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -93,6 +93,10 @@ namespace Dotpia
             ((System.ComponentModel.ISupportInitialize)(this.Pbx1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbA)).BeginInit();
             this.SuspendLayout();
             // 
             // PbxColor
@@ -101,53 +105,9 @@ namespace Dotpia
             this.PbxColor.Location = new System.Drawing.Point(6, 27);
             this.PbxColor.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.PbxColor.Name = "PbxColor";
-            this.PbxColor.Size = new System.Drawing.Size(154, 154);
+            this.PbxColor.Size = new System.Drawing.Size(123, 124);
             this.PbxColor.TabIndex = 0;
             this.PbxColor.TabStop = false;
-            // 
-            // RtbR
-            // 
-            this.RtbR.Location = new System.Drawing.Point(166, 27);
-            this.RtbR.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.RtbR.Name = "RtbR";
-            this.RtbR.Size = new System.Drawing.Size(154, 31);
-            this.RtbR.TabIndex = 1;
-            this.RtbR.Text = "255";
-            this.RtbR.TextChanged += new System.EventHandler(this.RtbColor_TextChanged);
-            this.RtbR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
-            // 
-            // RtbG
-            // 
-            this.RtbG.Location = new System.Drawing.Point(166, 68);
-            this.RtbG.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.RtbG.Name = "RtbG";
-            this.RtbG.Size = new System.Drawing.Size(154, 31);
-            this.RtbG.TabIndex = 1;
-            this.RtbG.Text = "255";
-            this.RtbG.TextChanged += new System.EventHandler(this.RtbColor_TextChanged);
-            this.RtbG.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
-            // 
-            // RtbB
-            // 
-            this.RtbB.Location = new System.Drawing.Point(166, 109);
-            this.RtbB.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.RtbB.Name = "RtbB";
-            this.RtbB.Size = new System.Drawing.Size(154, 31);
-            this.RtbB.TabIndex = 1;
-            this.RtbB.Text = "255";
-            this.RtbB.TextChanged += new System.EventHandler(this.RtbColor_TextChanged);
-            this.RtbB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
-            // 
-            // RtbA
-            // 
-            this.RtbA.Location = new System.Drawing.Point(166, 150);
-            this.RtbA.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.RtbA.Name = "RtbA";
-            this.RtbA.Size = new System.Drawing.Size(154, 31);
-            this.RtbA.TabIndex = 1;
-            this.RtbA.Text = "255";
-            this.RtbA.TextChanged += new System.EventHandler(this.RtbColor_TextChanged);
-            this.RtbA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RtbKeyPress);
             // 
             // BtnSave
             // 
@@ -296,6 +256,10 @@ namespace Dotpia
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.TrbA);
+            this.groupBox2.Controls.Add(this.TrbB);
+            this.groupBox2.Controls.Add(this.TrbG);
+            this.groupBox2.Controls.Add(this.TrbR);
             this.groupBox2.Controls.Add(this.Btn7);
             this.groupBox2.Controls.Add(this.Btn6);
             this.groupBox2.Controls.Add(this.Btn5);
@@ -311,10 +275,6 @@ namespace Dotpia
             this.groupBox2.Controls.Add(this.Pbx2);
             this.groupBox2.Controls.Add(this.Pbx1);
             this.groupBox2.Controls.Add(this.PbxColor);
-            this.groupBox2.Controls.Add(this.RtbR);
-            this.groupBox2.Controls.Add(this.RtbG);
-            this.groupBox2.Controls.Add(this.RtbB);
-            this.groupBox2.Controls.Add(this.RtbA);
             this.groupBox2.Controls.Add(this.BtnSmart);
             this.groupBox2.Location = new System.Drawing.Point(289, 12);
             this.groupBox2.Name = "groupBox2";
@@ -628,6 +588,46 @@ namespace Dotpia
             this.LblWidth.Size = new System.Drawing.Size(0, 19);
             this.LblWidth.TabIndex = 0;
             // 
+            // TrbR
+            // 
+            this.TrbR.Location = new System.Drawing.Point(135, 27);
+            this.TrbR.Maximum = 255;
+            this.TrbR.Name = "TrbR";
+            this.TrbR.Size = new System.Drawing.Size(185, 45);
+            this.TrbR.TabIndex = 5;
+            this.TrbR.Value = 255;
+            this.TrbR.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
+            // 
+            // TrbG
+            // 
+            this.TrbG.Location = new System.Drawing.Point(135, 57);
+            this.TrbG.Maximum = 255;
+            this.TrbG.Name = "TrbG";
+            this.TrbG.Size = new System.Drawing.Size(185, 45);
+            this.TrbG.TabIndex = 5;
+            this.TrbG.Value = 255;
+            this.TrbG.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
+            // 
+            // TrbB
+            // 
+            this.TrbB.Location = new System.Drawing.Point(135, 90);
+            this.TrbB.Maximum = 255;
+            this.TrbB.Name = "TrbB";
+            this.TrbB.Size = new System.Drawing.Size(185, 45);
+            this.TrbB.TabIndex = 5;
+            this.TrbB.Value = 255;
+            this.TrbB.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
+            // 
+            // TrbA
+            // 
+            this.TrbA.Location = new System.Drawing.Point(135, 121);
+            this.TrbA.Maximum = 255;
+            this.TrbA.Name = "TrbA";
+            this.TrbA.Size = new System.Drawing.Size(185, 45);
+            this.TrbA.TabIndex = 5;
+            this.TrbA.Value = 255;
+            this.TrbA.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
+            // 
             // Pencil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -650,6 +650,7 @@ namespace Dotpia
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pbx7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pbx6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pbx5)).EndInit();
@@ -660,6 +661,10 @@ namespace Dotpia
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbA)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -677,10 +682,6 @@ namespace Dotpia
         private System.Windows.Forms.OpenFileDialog OfdOpen;
         private System.Windows.Forms.Button BtnExtraction;
         public System.Windows.Forms.PictureBox PbxColor;
-        public System.Windows.Forms.RichTextBox RtbR;
-        public System.Windows.Forms.RichTextBox RtbG;
-        public System.Windows.Forms.RichTextBox RtbB;
-        public System.Windows.Forms.RichTextBox RtbA;
         private System.Windows.Forms.Button BtnPaint;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -716,5 +717,9 @@ namespace Dotpia
         private System.Windows.Forms.RichTextBox RtbResizeH;
         private System.Windows.Forms.RichTextBox RtbResizeW;
         private System.Windows.Forms.Button BtnResize;
+        public System.Windows.Forms.TrackBar TrbA;
+        public System.Windows.Forms.TrackBar TrbB;
+        public System.Windows.Forms.TrackBar TrbG;
+        public System.Windows.Forms.TrackBar TrbR;
     }
 }

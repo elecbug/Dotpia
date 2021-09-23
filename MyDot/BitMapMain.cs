@@ -630,10 +630,10 @@ namespace Dotpia
                     {
                         DataSaver.nowRGBA = new RGBA(DataSaver.btmRGBA[intPointX, intPointY, intNowLayer]);
                         DataSaver.pclNow.PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
-                        DataSaver.pclNow.RtbR.Text = DataSaver.nowRGBA.R.ToString();
-                        DataSaver.pclNow.RtbG.Text = DataSaver.nowRGBA.G.ToString();
-                        DataSaver.pclNow.RtbB.Text = DataSaver.nowRGBA.B.ToString();
-                        DataSaver.pclNow.RtbA.Text = DataSaver.nowRGBA.A.ToString();
+                        DataSaver.pclNow.TrbR.Value = DataSaver.nowRGBA.R;
+                        DataSaver.pclNow.TrbG.Value = DataSaver.nowRGBA.G;
+                        DataSaver.pclNow.TrbB.Value = DataSaver.nowRGBA.B;
+                        DataSaver.pclNow.TrbA.Value = DataSaver.nowRGBA.A;
                         color = new RGBA(DataSaver.nowRGBA);
                     }
                     else if (DataSaver.bolPaint)

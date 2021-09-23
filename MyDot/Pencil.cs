@@ -48,7 +48,7 @@ namespace Dotpia
         {
             try
             {
-                DataSaver.nowRGBA = new RGBA(int.Parse(RtbR.Text), int.Parse(RtbG.Text), int.Parse(RtbB.Text), int.Parse(RtbA.Text));
+                DataSaver.nowRGBA = new RGBA(TrbR.Value, TrbG.Value, TrbB.Value, TrbA.Value);
                 PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
             }
             catch
@@ -141,10 +141,10 @@ namespace Dotpia
             {
                 DataSaver.nowRGBA = new RGBA(CldColor.Color);
                 PbxColor.BackColor = DataSaver.nowRGBA.ColorReturn();
-                RtbR.Text = DataSaver.nowRGBA.R.ToString();
-                RtbG.Text = DataSaver.nowRGBA.G.ToString();
-                RtbB.Text = DataSaver.nowRGBA.B.ToString();
-                RtbA.Text = DataSaver.nowRGBA.A.ToString();
+                TrbR.Value = DataSaver.nowRGBA.R;
+                TrbG.Value = DataSaver.nowRGBA.G;
+                TrbB.Value = DataSaver.nowRGBA.B;
+                TrbA.Value = DataSaver.nowRGBA.A;
             }
             bolColorDialog = false;
         }
@@ -432,7 +432,7 @@ namespace Dotpia
             }
         }
 
-        private void RtbColor_TextChanged(object sender, EventArgs e)
+        private void TrbColor_ValueChanged(object sender, EventArgs e)
         {
             if (!bolColorDialog && !DataSaver.bolExtraction && !bolSaveColorClick)
             {
@@ -444,10 +444,10 @@ namespace Dotpia
         {
             bolSaveColorClick = true;
             DataSaver.nowRGBA = new RGBA(DataSaver.saveRGBA[((PictureBox)sender).Name[3] - 48 - 1]);
-            RtbR.Text = DataSaver.nowRGBA.R.ToString();
-            RtbG.Text = DataSaver.nowRGBA.G.ToString();
-            RtbB.Text = DataSaver.nowRGBA.B.ToString();
-            RtbA.Text = DataSaver.nowRGBA.A.ToString();
+            TrbR.Value = DataSaver.nowRGBA.R;
+            TrbG.Value = DataSaver.nowRGBA.G;
+            TrbB.Value = DataSaver.nowRGBA.B;
+            TrbA.Value = DataSaver.nowRGBA.A;
             PbxColor.BackColor = DataSaver.saveRGBA[((PictureBox)sender).Name[3] - 48 - 1].ColorReturn();
             bolSaveColorClick = false;
         }
