@@ -47,6 +47,10 @@ namespace Dotpia
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BtnNewSave = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.TrbA = new System.Windows.Forms.TrackBar();
+            this.TrbB = new System.Windows.Forms.TrackBar();
+            this.TrbG = new System.Windows.Forms.TrackBar();
+            this.TrbR = new System.Windows.Forms.TrackBar();
             this.Btn7 = new System.Windows.Forms.Button();
             this.Btn6 = new System.Windows.Forms.Button();
             this.Btn5 = new System.Windows.Forms.Button();
@@ -77,13 +81,13 @@ namespace Dotpia
             this.LblMouse = new System.Windows.Forms.Label();
             this.LblHeight = new System.Windows.Forms.Label();
             this.LblWidth = new System.Windows.Forms.Label();
-            this.TrbR = new System.Windows.Forms.TrackBar();
-            this.TrbG = new System.Windows.Forms.TrackBar();
-            this.TrbB = new System.Windows.Forms.TrackBar();
-            this.TrbA = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.PbxColor)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pbx7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pbx6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pbx5)).BeginInit();
@@ -93,10 +97,6 @@ namespace Dotpia
             ((System.ComponentModel.ISupportInitialize)(this.Pbx1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TrbR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TrbG)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TrbB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TrbA)).BeginInit();
             this.SuspendLayout();
             // 
             // PbxColor
@@ -162,6 +162,7 @@ namespace Dotpia
             // RtbExport
             // 
             this.RtbExport.Location = new System.Drawing.Point(6, 73);
+            this.RtbExport.Multiline = false;
             this.RtbExport.Name = "RtbExport";
             this.RtbExport.Size = new System.Drawing.Size(86, 41);
             this.RtbExport.TabIndex = 4;
@@ -182,6 +183,7 @@ namespace Dotpia
             // RtbCWidth
             // 
             this.RtbCWidth.Location = new System.Drawing.Point(6, 25);
+            this.RtbCWidth.Multiline = false;
             this.RtbCWidth.Name = "RtbCWidth";
             this.RtbCWidth.Size = new System.Drawing.Size(40, 41);
             this.RtbCWidth.TabIndex = 4;
@@ -191,6 +193,7 @@ namespace Dotpia
             // RtbCHeight
             // 
             this.RtbCHeight.Location = new System.Drawing.Point(52, 25);
+            this.RtbCHeight.Multiline = false;
             this.RtbCHeight.Name = "RtbCHeight";
             this.RtbCHeight.Size = new System.Drawing.Size(40, 41);
             this.RtbCHeight.TabIndex = 4;
@@ -282,6 +285,46 @@ namespace Dotpia
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Color";
+            // 
+            // TrbA
+            // 
+            this.TrbA.Location = new System.Drawing.Point(135, 121);
+            this.TrbA.Maximum = 255;
+            this.TrbA.Name = "TrbA";
+            this.TrbA.Size = new System.Drawing.Size(185, 45);
+            this.TrbA.TabIndex = 5;
+            this.TrbA.Value = 255;
+            this.TrbA.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
+            // 
+            // TrbB
+            // 
+            this.TrbB.Location = new System.Drawing.Point(135, 90);
+            this.TrbB.Maximum = 255;
+            this.TrbB.Name = "TrbB";
+            this.TrbB.Size = new System.Drawing.Size(185, 45);
+            this.TrbB.TabIndex = 5;
+            this.TrbB.Value = 255;
+            this.TrbB.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
+            // 
+            // TrbG
+            // 
+            this.TrbG.Location = new System.Drawing.Point(135, 57);
+            this.TrbG.Maximum = 255;
+            this.TrbG.Name = "TrbG";
+            this.TrbG.Size = new System.Drawing.Size(185, 45);
+            this.TrbG.TabIndex = 5;
+            this.TrbG.Value = 255;
+            this.TrbG.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
+            // 
+            // TrbR
+            // 
+            this.TrbR.Location = new System.Drawing.Point(135, 27);
+            this.TrbR.Maximum = 255;
+            this.TrbR.Name = "TrbR";
+            this.TrbR.Size = new System.Drawing.Size(185, 45);
+            this.TrbR.TabIndex = 5;
+            this.TrbR.Value = 255;
+            this.TrbR.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
             // 
             // Btn7
             // 
@@ -447,6 +490,7 @@ namespace Dotpia
             // RtbResizeH
             // 
             this.RtbResizeH.Location = new System.Drawing.Point(52, 170);
+            this.RtbResizeH.Multiline = false;
             this.RtbResizeH.Name = "RtbResizeH";
             this.RtbResizeH.Size = new System.Drawing.Size(40, 41);
             this.RtbResizeH.TabIndex = 4;
@@ -456,6 +500,7 @@ namespace Dotpia
             // RtbResizeW
             // 
             this.RtbResizeW.Location = new System.Drawing.Point(6, 170);
+            this.RtbResizeW.Multiline = false;
             this.RtbResizeW.Name = "RtbResizeW";
             this.RtbResizeW.Size = new System.Drawing.Size(40, 41);
             this.RtbResizeW.TabIndex = 4;
@@ -531,6 +576,7 @@ namespace Dotpia
             // RtbMirror
             // 
             this.RtbMirror.Location = new System.Drawing.Point(6, 73);
+            this.RtbMirror.Multiline = false;
             this.RtbMirror.Name = "RtbMirror";
             this.RtbMirror.Size = new System.Drawing.Size(51, 41);
             this.RtbMirror.TabIndex = 4;
@@ -588,46 +634,6 @@ namespace Dotpia
             this.LblWidth.Size = new System.Drawing.Size(0, 19);
             this.LblWidth.TabIndex = 0;
             // 
-            // TrbR
-            // 
-            this.TrbR.Location = new System.Drawing.Point(135, 27);
-            this.TrbR.Maximum = 255;
-            this.TrbR.Name = "TrbR";
-            this.TrbR.Size = new System.Drawing.Size(185, 45);
-            this.TrbR.TabIndex = 5;
-            this.TrbR.Value = 255;
-            this.TrbR.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
-            // 
-            // TrbG
-            // 
-            this.TrbG.Location = new System.Drawing.Point(135, 57);
-            this.TrbG.Maximum = 255;
-            this.TrbG.Name = "TrbG";
-            this.TrbG.Size = new System.Drawing.Size(185, 45);
-            this.TrbG.TabIndex = 5;
-            this.TrbG.Value = 255;
-            this.TrbG.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
-            // 
-            // TrbB
-            // 
-            this.TrbB.Location = new System.Drawing.Point(135, 90);
-            this.TrbB.Maximum = 255;
-            this.TrbB.Name = "TrbB";
-            this.TrbB.Size = new System.Drawing.Size(185, 45);
-            this.TrbB.TabIndex = 5;
-            this.TrbB.Value = 255;
-            this.TrbB.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
-            // 
-            // TrbA
-            // 
-            this.TrbA.Location = new System.Drawing.Point(135, 121);
-            this.TrbA.Maximum = 255;
-            this.TrbA.Name = "TrbA";
-            this.TrbA.Size = new System.Drawing.Size(185, 45);
-            this.TrbA.TabIndex = 5;
-            this.TrbA.Value = 255;
-            this.TrbA.Scroll += new System.EventHandler(this.TrbColor_ValueChanged);
-            // 
             // Pencil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -651,6 +657,10 @@ namespace Dotpia
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrbR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pbx7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pbx6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pbx5)).EndInit();
@@ -661,10 +671,6 @@ namespace Dotpia
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TrbR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TrbG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TrbB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TrbA)).EndInit();
             this.ResumeLayout(false);
 
         }

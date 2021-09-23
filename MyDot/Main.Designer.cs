@@ -70,6 +70,7 @@ namespace Dotpia
             // RtbWidth
             // 
             this.RtbWidth.Location = new System.Drawing.Point(76, 25);
+            this.RtbWidth.Multiline = false;
             this.RtbWidth.Name = "RtbWidth";
             this.RtbWidth.Size = new System.Drawing.Size(114, 30);
             this.RtbWidth.TabIndex = 1;
@@ -97,6 +98,7 @@ namespace Dotpia
             // RtbHeight
             // 
             this.RtbHeight.Location = new System.Drawing.Point(76, 61);
+            this.RtbHeight.Multiline = false;
             this.RtbHeight.Name = "RtbHeight";
             this.RtbHeight.Size = new System.Drawing.Size(114, 30);
             this.RtbHeight.TabIndex = 2;

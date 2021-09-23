@@ -74,6 +74,7 @@ namespace Dotpia
             // Rtb0
             // 
             this.Rtb0.Location = new System.Drawing.Point(70, 140);
+            this.Rtb0.Multiline = false;
             this.Rtb0.Name = "Rtb0";
             this.Rtb0.Size = new System.Drawing.Size(62, 23);
             this.Rtb0.TabIndex = 2;
@@ -84,6 +85,7 @@ namespace Dotpia
             // Rtb1
             // 
             this.Rtb1.Location = new System.Drawing.Point(70, 111);
+            this.Rtb1.Multiline = false;
             this.Rtb1.Name = "Rtb1";
             this.Rtb1.Size = new System.Drawing.Size(62, 23);
             this.Rtb1.TabIndex = 2;
@@ -94,6 +96,7 @@ namespace Dotpia
             // Rtb2
             // 
             this.Rtb2.Location = new System.Drawing.Point(70, 82);
+            this.Rtb2.Multiline = false;
             this.Rtb2.Name = "Rtb2";
             this.Rtb2.Size = new System.Drawing.Size(62, 23);
             this.Rtb2.TabIndex = 2;
@@ -104,6 +107,7 @@ namespace Dotpia
             // Rtb3
             // 
             this.Rtb3.Location = new System.Drawing.Point(70, 53);
+            this.Rtb3.Multiline = false;
             this.Rtb3.Name = "Rtb3";
             this.Rtb3.Size = new System.Drawing.Size(62, 23);
             this.Rtb3.TabIndex = 2;
@@ -114,6 +118,7 @@ namespace Dotpia
             // Rtb4
             // 
             this.Rtb4.Location = new System.Drawing.Point(70, 25);
+            this.Rtb4.Multiline = false;
             this.Rtb4.Name = "Rtb4";
             this.Rtb4.Size = new System.Drawing.Size(62, 23);
             this.Rtb4.TabIndex = 2;
