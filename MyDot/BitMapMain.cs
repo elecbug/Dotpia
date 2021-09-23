@@ -216,7 +216,7 @@ namespace Dotpia
             DataSaver.intSize = Math.Min(Pnl.Width / grpBitMap.GetLength(0), Pnl.Height / grpBitMap.GetLength(1));
             if (DataSaver.intSize < 1)
             {
-                DataSaver.intSize = 1;
+                DataSaver.intSize = 1; 
             }
             Pnl.Width = DataSaver.intSize * DataSaver.intWidth;
             Pnl.Height = DataSaver.intSize * DataSaver.intHeight;
