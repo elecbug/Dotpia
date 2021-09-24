@@ -44,7 +44,7 @@ namespace Dotpia
             }
         }
 
-        private void BtnChoice_Click(object sender, EventArgs e)
+        private void ColorChoice(object sender, EventArgs e)
         {
             try
             {
@@ -422,9 +422,9 @@ namespace Dotpia
 
         private void TrbColor_ValueChanged(object sender, EventArgs e)
         {
-            if (!bolColorDialog && !DataSaver.bolExtraction && !bolSaveColorClick)
+            if (!bolColorDialog && !bolSaveColorClick)
             {
-                BtnChoice_Click(sender, e);
+                ColorChoice(sender, e);
             }
         }
 

@@ -100,7 +100,6 @@
       <DependentUpon>Start.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\MyColor.cs" />
-    <Compile Include="Classes\MyPaint.cs" />
     <Compile Include="PaintSetter.cs">
       <SubType>Form</SubType>
     </Compile>
