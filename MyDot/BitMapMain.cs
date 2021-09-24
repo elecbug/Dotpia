@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -91,8 +92,8 @@ namespace Dotpia
                 }
                 DataSaver.ctrlZ.Push(DataSaver.btmRGBA);
                 DataSaver.startRGBA = (RGBA[,,])DataSaver.btmRGBA.Clone();
-                ReDrawing();
                 grpDrag = Pnl.CreateGraphics();
+                ReDrawing();
             }
             catch
             {
@@ -891,7 +892,7 @@ namespace Dotpia
                 for (int x = Math.Max(-(DataSaver.intSize + Pnl.Location.X) / DataSaver.intSize, 0);
                          x < Math.Min((this.Width - Pnl.Location.X) / DataSaver.intSize + 1, DataSaver.intWidth); x++)
                 {
-                    PartedReDrawing(x, y);
+                    PartedReDrawing(x, y);   
                 }
             }
             if (bolBorder)
@@ -923,7 +924,6 @@ namespace Dotpia
                 grpDrag.DrawLine(pen, maxX * DataSaver.intSize, minY * DataSaver.intSize, maxX * DataSaver.intSize, maxY * DataSaver.intSize);
                 grpDrag.DrawLine(pen, maxX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, maxY * DataSaver.intSize);
                 grpDrag.DrawLine(pen, minX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, minY * DataSaver.intSize);
-
             }
         }
 
@@ -962,14 +962,14 @@ namespace Dotpia
 
         private void PaintTool(int x, int y)
         {
-            RGBA[,] combineLayerRGBA = BitSave();
+            RGBA[,] combineRGBA = BitSave();
             int[,] intBitMap = new int[DataSaver.intWidth, DataSaver.intHeight];    //if 0: Don't able to paint; if 1: Be able to paint; if 2: Real painting area; 
-            RGBA clickRGBA = combineLayerRGBA[x, y];
+            RGBA clickRGBA = combineRGBA[x, y];
             for (int w = 0; w < intBitMap.GetLength(0); w++)
             {
                 for (int h = 0; h < intBitMap.GetLength(1); h++)
                 {
-                    if (RGBA.Paint(combineLayerRGBA[w, h], clickRGBA))
+                    if (RGBA.Paint(combineRGBA[w, h], clickRGBA))
                     {
                         intBitMap[w, h] = 1;
                     }
@@ -1137,14 +1137,14 @@ namespace Dotpia
 
         private void PartedReDrawing(int x, int y)
         {
-            RGBA newRGBA = new RGBA(DataSaver.btmRGBA[x, y, 0])
-            {
-                A = (int)(DataSaver.btmRGBA[x, y, 0].A * (DataSaver.intLayerTP[0] / 100d))
-            };
             Rectangle rect = new Rectangle(x * DataSaver.intSize, y * DataSaver.intSize, DataSaver.intSize, DataSaver.intSize);
             Brush brush = new SolidBrush(Pnl.BackColor);
             grpBitMap[x, y].FillRectangle(brush, rect);
             grpBitMap[x, y] = Pnl.CreateGraphics();
+            RGBA newRGBA = new RGBA(DataSaver.btmRGBA[x, y, 0])
+            {
+                A = (int)(DataSaver.btmRGBA[x, y, 0].A * (DataSaver.intLayerTP[0] / 100d))
+            };
             for (int r = 0; r < DataSaver.HIGH_RAYER - 1; r++)
             {
                 newRGBA = Combine(new RGBA(newRGBA), new RGBA(DataSaver.btmRGBA[x, y, r + 1])
@@ -1177,5 +1177,6 @@ namespace Dotpia
                 DataSaver.lyeNow.Hide();
             }
         }
+
     }
 }
