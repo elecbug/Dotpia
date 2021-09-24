@@ -11,16 +11,16 @@ using System.Windows.Forms;
 
 namespace Dotpia
 {
-    public partial class Main : Form
+    public partial class Start : Form
     {
-        public Main()
+        public Start()
         {
             InitializeComponent();
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
-
+            DataSaver.nowStart = this;
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -40,6 +40,7 @@ namespace Dotpia
                     Layer lyeForm = new Layer();
                     DataSaver.lyeNow = lyeForm;
                     lyeForm.Show();
+                    this.Hide();
                 }
             }
             catch
@@ -85,6 +86,7 @@ namespace Dotpia
                     Layer lyeForm = new Layer();
                     DataSaver.lyeNow = lyeForm;
                     lyeForm.Show();
+                    this.Hide();
                 }
             }
         }
@@ -94,16 +96,6 @@ namespace Dotpia
             if (!Char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back))
             {
                 e.Handled = true;
-            }
-        }
-
-        private void BtnPencil_Click(object sender, EventArgs e)
-        {
-            if (DataSaver.pclNow == null)
-            {
-                Pencil pclForm = new Pencil();
-                DataSaver.pclNow = pclForm;
-                pclForm.Show();
             }
         }
 
@@ -208,6 +200,7 @@ namespace Dotpia
                     Layer lyeForm = new Layer();
                     DataSaver.lyeNow = lyeForm;
                     lyeForm.Show();
+                    this.Hide();
                 }
             }
         }

@@ -1,7 +1,7 @@
 ﻿
 namespace Dotpia
 {
-    partial class Main
+    partial class Start
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -29,7 +29,7 @@ namespace Dotpia
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Start));
             this.BtnNew = new System.Windows.Forms.Button();
             this.BtnLoad = new System.Windows.Forms.Button();
             this.RtbWidth = new System.Windows.Forms.RichTextBox();

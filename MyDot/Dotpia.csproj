@@ -64,7 +64,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Mana.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -86,21 +86,21 @@
     <Compile Include="BitMapMain.Designer.cs">
       <DependentUpon>BitMapMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataSaver.cs" />
+    <Compile Include="Classes\DataSaver.cs" />
     <Compile Include="Helper.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helper.Designer.cs">
       <DependentUpon>Helper.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs">
+    <Compile Include="Start.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
+    <Compile Include="Start.Designer.cs">
+      <DependentUpon>Start.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyColor.cs" />
-    <Compile Include="MyPaint.cs" />
+    <Compile Include="Classes\MyColor.cs" />
+    <Compile Include="Classes\MyPaint.cs" />
     <Compile Include="PaintSetter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,8 +127,8 @@
     <EmbeddedResource Include="Helper.resx">
       <DependentUpon>Helper.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
+    <EmbeddedResource Include="Start.resx">
+      <DependentUpon>Start.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaintSetter.resx">
       <DependentUpon>PaintSetter.cs</DependentUpon>
@@ -175,7 +175,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Mana.ico" />
+    <Content Include="Resources\Icon.ico" />
     <Content Include="Resources\Empty.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

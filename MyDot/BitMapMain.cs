@@ -39,7 +39,7 @@ namespace Dotpia
         private int intMousePixel = 1;
         private decimal[] dcmMouseLocationWithPnl = new decimal[2];
 
-        public void BitMapMain_Load(object sender, EventArgs e)
+        private void BitMapMain_Load(object sender, EventArgs e)
         {
             try
             {
@@ -114,6 +114,7 @@ namespace Dotpia
             DataSaver.intMirror = 0;
             DataSaver.paintRGBA = new RGBA();
             DataSaver.bolCut = false;
+            DataSaver.nowStart.Show();
         }
 
         private void BitMapMain_FormClosing(object sender, FormClosingEventArgs e)
