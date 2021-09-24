@@ -1152,7 +1152,10 @@ namespace Dotpia
                 });
             }
             Brush pen = new SolidBrush(newRGBA.ColorReturn());
-            grpBitMap[x, y].FillRectangle(pen, rect);
+            if (newRGBA.A != 0)
+            {
+                grpBitMap[x, y].FillRectangle(pen, rect);
+            }
         }
 
         private void CtrlZPush()
@@ -1176,6 +1179,5 @@ namespace Dotpia
                 DataSaver.lyeNow.Hide();
             }
         }
-
     }
 }

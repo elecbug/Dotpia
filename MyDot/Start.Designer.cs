@@ -156,7 +156,7 @@ namespace Dotpia
             this.LblVer.Name = "LblVer";
             this.LblVer.Size = new System.Drawing.Size(71, 19);
             this.LblVer.TabIndex = 7;
-            this.LblVer.Text = "ver 1.0.0a";
+            this.LblVer.Text = "ver 1.0.1a";
             // 
             // Start
             // 
