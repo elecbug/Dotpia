@@ -41,6 +41,7 @@ namespace Dotpia
             this.BtnHelp = new System.Windows.Forms.Button();
             this.BtnNewLoad = new System.Windows.Forms.Button();
             this.OfdNewOpen = new System.Windows.Forms.OpenFileDialog();
+            this.LblVer = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -148,12 +149,22 @@ namespace Dotpia
             // 
             this.OfdNewOpen.Filter = "|*.dotpia";
             // 
-            // Main
+            // LblVer
+            // 
+            this.LblVer.AutoSize = true;
+            this.LblVer.Location = new System.Drawing.Point(301, 9);
+            this.LblVer.Name = "LblVer";
+            this.LblVer.Size = new System.Drawing.Size(71, 19);
+            this.LblVer.TabIndex = 7;
+            this.LblVer.Text = "ver 1.0.0a";
+            // 
+            // Start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(384, 561);
+            this.Controls.Add(this.LblVer);
             this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BtnNewLoad);
@@ -163,12 +174,13 @@ namespace Dotpia
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.Name = "Main";
+            this.Name = "Start";
             this.Text = "Dotpia";
             this.Load += new System.EventHandler(this.Main_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -185,6 +197,7 @@ namespace Dotpia
         private System.Windows.Forms.Button BtnHelp;
         private System.Windows.Forms.Button BtnNewLoad;
         private System.Windows.Forms.OpenFileDialog OfdNewOpen;
+        private System.Windows.Forms.Label LblVer;
     }
 }
 

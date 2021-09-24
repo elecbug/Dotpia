@@ -463,7 +463,6 @@ namespace Dotpia
 
         private void Pnl_MouseMove(object sender, MouseEventArgs e)
         {
-
             if (!bolCtrlPress)
             {
                 if (!DataSaver.bolCut)
