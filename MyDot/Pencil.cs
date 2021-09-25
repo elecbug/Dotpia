@@ -144,7 +144,18 @@ namespace Dotpia
 
         private void BtnBorder_Click(object sender, EventArgs e)
         {
-            DataSaver.bmmNow.BorderMaking();
+            if (!DataSaver.bolBorder)
+            {
+                DataSaver.bolBorder = true;
+                DataSaver.bmmNow.ReDrawing();
+                BtnBorder.BackColor = Color.Green;
+            }
+            else
+            {
+                DataSaver.bolBorder = false;
+                DataSaver.bmmNow.ReDrawing();
+                BtnBorder.BackColor = SystemColors.Control;
+            }
         }
 
         private void BtnExport_Click(object sender, EventArgs e)

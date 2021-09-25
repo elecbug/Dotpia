@@ -36,6 +36,7 @@ namespace Dotpia
                                   "- Removed the delay that occurred when the button of the tool was pressed.",
                                   "   Fix...",
                                   "- Fixed a bug where the cut area went out of the main panel.",
+                                  "- Fixed a bug where the cut line came under the border.",
                                   "",
                                   "Scroll up to read the update history.",
                                   "Latest release is ver 1.0.2B." };

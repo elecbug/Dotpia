@@ -27,7 +27,6 @@ namespace Dotpia
         public Graphics[] grpGrid;
         private Graphics grpDrag;
         private bool bolMouseDClick;
-        private bool bolBorder;
         private bool bolNewFile;
         private bool bolCtrlPress = false;
         private bool bolMouseDown;
@@ -135,7 +134,7 @@ namespace Dotpia
             if (intTimer < 500 && !bolNewFile)
             {
                 ReDrawing();
-                if (bolBorder)
+                if (DataSaver.bolBorder)
                 {
                     Pen pen = new Pen(Color.Green, 1);
                     for (int i = 0, j = 0; i < grpGrid.Length; i++)
@@ -442,7 +441,7 @@ namespace Dotpia
                 bolMouseDClick = false;
                 CtrlZPush();
             }
-            if (bolBorder)
+            if (DataSaver.bolBorder)
             {
                 Pen pen = new Pen(Color.Green, 1);
                 for (int i = 0, j = 0; i < grpGrid.Length; i++)
@@ -598,7 +597,7 @@ namespace Dotpia
                             }
                         }
                     }
-                }
+                }               
                 bolDragOn = false;
                 ReDrawing();
                 pntDrag = new Point[2];
@@ -622,29 +621,25 @@ namespace Dotpia
                 else if (pntDrag[1].Y > Pnl.Height)
                 {
                     pntDrag[1].Y = Pnl.Height - 1;
-                }
-                if (bolDragOn)
-                {
-                    grpDrag.Clear(Pnl.BackColor);
-                    ReDrawing();
-                }
+                }          
+                ReDrawing();
                 int minX = Math.Min((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize));
                 int minY = Math.Min((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize));
                 int maxX = Math.Max((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize)) + 1;
                 int maxY = Math.Max((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize)) + 1;
-                Pen pen = new Pen(Color.White, 5);
+                Pen pen = new Pen(Color.SkyBlue, 5);
                 grpDrag = Pnl.CreateGraphics();
                 grpDrag.DrawLine(pen, minX * DataSaver.intSize, minY * DataSaver.intSize, maxX * DataSaver.intSize, minY * DataSaver.intSize);
                 grpDrag.DrawLine(pen, maxX * DataSaver.intSize, minY * DataSaver.intSize, maxX * DataSaver.intSize, maxY * DataSaver.intSize);
                 grpDrag.DrawLine(pen, maxX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, maxY * DataSaver.intSize);
                 grpDrag.DrawLine(pen, minX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, minY * DataSaver.intSize);
-                bolDragOn = true;
+                bolDragOn = true;             
             }
             if (!bolDragOn)
             {
                 CtrlZPush();
             }
-            if (bolBorder)
+            if (DataSaver.bolBorder && !bolDragOn)
             {
                 Pen pen = new Pen(Color.Green, 1);
                 for (int i = 0, j = 0; i < grpGrid.Length; i++)
@@ -773,7 +768,7 @@ namespace Dotpia
                             }
                         }
                     }
-                    if (bolBorder && !bolMouseDown && !bolMouseDClick)
+                    if (DataSaver.bolBorder && !bolMouseDown && !bolMouseDClick)
                     {
                         Pen pen = new Pen(Color.Green, 1);
                         for (int i = 0, j = 0; i < grpGrid.Length; i++)
@@ -913,7 +908,7 @@ namespace Dotpia
                     PartedReDrawing(x, y);   
                 }
             }
-            if (bolBorder)
+            if (DataSaver.bolBorder)
             {
                 Pen pen = new Pen(Color.Green, 1);
                 for (int i = 0, j = 0; i < grpGrid.Length; i++)
@@ -936,45 +931,12 @@ namespace Dotpia
                 int minY = Math.Min((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize));
                 int maxX = Math.Max((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize)) + 1;
                 int maxY = Math.Max((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize)) + 1;
-                Pen pen = new Pen(Color.White, 5);
+                Pen pen = new Pen(Color.SkyBlue, 5);
                 grpDrag = Pnl.CreateGraphics();
                 grpDrag.DrawLine(pen, minX * DataSaver.intSize, minY * DataSaver.intSize, maxX * DataSaver.intSize, minY * DataSaver.intSize);
                 grpDrag.DrawLine(pen, maxX * DataSaver.intSize, minY * DataSaver.intSize, maxX * DataSaver.intSize, maxY * DataSaver.intSize);
                 grpDrag.DrawLine(pen, maxX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, maxY * DataSaver.intSize);
                 grpDrag.DrawLine(pen, minX * DataSaver.intSize, maxY * DataSaver.intSize, minX * DataSaver.intSize, minY * DataSaver.intSize);
-            }
-        }
-
-        public void BorderMaking()
-        {
-            if (!bolBorder)
-            {
-                Pen pen = new Pen(Color.Green, 1);
-                for (int i = 0, j = 0; i < grpGrid.Length; i++)
-                {
-                    grpGrid[i] = Pnl.CreateGraphics();
-                    if (i <= DataSaver.intHeight + 1)
-                    {
-                        grpGrid[i].DrawLine(pen, new Point(0, i * DataSaver.intSize), new Point(DataSaver.intSize * grpBitMap.GetLength(1), i * DataSaver.intSize));
-                    }
-                    else
-                    {
-                        grpGrid[i].DrawLine(pen, new Point(j * DataSaver.intSize, 0), new Point(j * DataSaver.intSize, DataSaver.intSize * grpBitMap.GetLength(0)));
-                        j++;
-                    }
-                }
-                bolBorder = true;
-                DataSaver.pclNow.BtnBorder.BackColor = Color.Green;
-            }
-            else
-            {
-                for (int i = 0; i < grpGrid.Length; i++)
-                {
-                    grpGrid[i].Clear(Pnl.BackColor);
-                }
-                bolBorder = false;
-                ReDrawing();
-                DataSaver.pclNow.BtnBorder.BackColor = SystemColors.Control;
             }
         }
 

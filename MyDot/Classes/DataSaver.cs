@@ -33,6 +33,7 @@ namespace Dotpia
         public static int intSize;
         public static int[] intLayerTP;
 
+        public static bool bolBorder;
         public static bool bolExtraction;
         public static bool bolPaint;
         public static int intMirror;
