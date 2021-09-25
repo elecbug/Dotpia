@@ -18,15 +18,24 @@ namespace Dotpia
             InitializeComponent();
         }
 
+        private bool bolExpand = false;
         private string[] strLog = {"ver 1.0.0B",
+                                  "   News...", 
                                   "- Official Release!",
-                                  "- But there are some bugs...",
+                                  "   Fix...",
+                                  "- There are some bugs...",
                                   "- I'm always fixing...",
                                   "ver 1.0.1B",
+                                  "   Improve...",
                                   "- If there is a lot of empty, the bitmap loading is fast.",
                                   "ver 1.0.2B",
-                                  "- Fixed a bug that caused a delay when clicking a tool.",
+                                  "   News...",
                                   "- English Helper update. You can switch between Korean and English.",
+                                  "   Improve...",
+                                  "- Pressing the Cut Button when there is no cut area on the BitMap Screen no longer causes a delay.",
+                                  "- Removed the delay that occurred when the button of the tool was pressed.",
+                                  "   Fix...",
+                                  "- Fixed a bug where the cut area went out of the main panel.",
                                   "",
                                   "Scroll up to read the update history.",
                                   "Latest release is ver 1.0.2B." };
@@ -230,6 +239,24 @@ namespace Dotpia
                     this.Hide();
                 }
             }
+        }
+
+        private void BtnLog_Click(object sender, EventArgs e)
+        {
+            if (!bolExpand)
+            {
+                bolExpand = true;
+                RtbLog.Height *= 5;
+                BtnLog.Location = new Point(BtnLog.Location.X, RtbLog.Location.Y + RtbLog.Height);
+            }
+            else if (bolExpand)
+            {
+                bolExpand = false;
+                RtbLog.Height /= 5;
+                BtnLog.Location = new Point(BtnLog.Location.X, RtbLog.Location.Y + RtbLog.Height);
+            }
+            RtbLog.SelectionStart = RtbLog.TextLength;
+            RtbLog.ScrollToCaret();
         }
     }
 }

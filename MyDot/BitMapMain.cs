@@ -607,8 +607,27 @@ namespace Dotpia
             else if (DataSaver.bolCut)
             {
                 pntDrag[1] = new Point(pntMouseWithPnl.X, pntMouseWithPnl.Y);
-                grpDrag.Clear(Pnl.BackColor);
-                ReDrawing();
+                if (pntDrag[1].X < 0)
+                {
+                    pntDrag[1].X = 0;
+                }
+                else if (pntDrag[1].X > Pnl.Width)
+                {
+                    pntDrag[1].X = Pnl.Width - 1;
+                }
+                if (pntDrag[1].Y < 0)
+                {
+                    pntDrag[1].Y = 0;
+                }
+                else if (pntDrag[1].Y > Pnl.Height)
+                {
+                    pntDrag[1].Y = Pnl.Height - 1;
+                }
+                if (bolDragOn)
+                {
+                    grpDrag.Clear(Pnl.BackColor);
+                    ReDrawing();
+                }
                 int minX = Math.Min((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize));
                 int minY = Math.Min((int)(pntDrag[0].Y / DataSaver.intSize), (int)(pntDrag[1].Y / DataSaver.intSize));
                 int maxX = Math.Max((int)(pntDrag[0].X / DataSaver.intSize), (int)(pntDrag[1].X / DataSaver.intSize)) + 1;

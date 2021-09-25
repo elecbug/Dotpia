@@ -43,6 +43,7 @@ namespace Dotpia
             this.OfdNewOpen = new System.Windows.Forms.OpenFileDialog();
             this.LblVer = new System.Windows.Forms.Label();
             this.RtbLog = new System.Windows.Forms.RichTextBox();
+            this.BtnLog = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,11 +153,10 @@ namespace Dotpia
             // 
             // LblVer
             // 
-            this.LblVer.Location = new System.Drawing.Point(250, 58);
+            this.LblVer.Location = new System.Drawing.Point(8, 358);
             this.LblVer.Name = "LblVer";
             this.LblVer.Size = new System.Drawing.Size(122, 29);
             this.LblVer.TabIndex = 7;
-            this.LblVer.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // RtbLog
             // 
@@ -169,12 +169,23 @@ namespace Dotpia
             this.RtbLog.TabIndex = 8;
             this.RtbLog.Text = "";
             // 
+            // BtnLog
+            // 
+            this.BtnLog.Location = new System.Drawing.Point(254, 61);
+            this.BtnLog.Name = "BtnLog";
+            this.BtnLog.Size = new System.Drawing.Size(68, 26);
+            this.BtnLog.TabIndex = 9;
+            this.BtnLog.Text = "Expand";
+            this.BtnLog.UseVisualStyleBackColor = true;
+            this.BtnLog.Click += new System.EventHandler(this.BtnLog_Click);
+            // 
             // Start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(384, 561);
+            this.Controls.Add(this.BtnLog);
             this.Controls.Add(this.RtbLog);
             this.Controls.Add(this.LblVer);
             this.Controls.Add(this.BtnHelp);
@@ -210,6 +221,7 @@ namespace Dotpia
         private System.Windows.Forms.OpenFileDialog OfdNewOpen;
         private System.Windows.Forms.Label LblVer;
         private System.Windows.Forms.RichTextBox RtbLog;
+        private System.Windows.Forms.Button BtnLog;
     }
 }
 
