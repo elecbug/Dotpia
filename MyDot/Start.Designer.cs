@@ -42,6 +42,7 @@ namespace Dotpia
             this.BtnNewLoad = new System.Windows.Forms.Button();
             this.OfdNewOpen = new System.Windows.Forms.OpenFileDialog();
             this.LblVer = new System.Windows.Forms.Label();
+            this.RtbLog = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,7 +126,7 @@ namespace Dotpia
             // 
             // BtnHelp
             // 
-            this.BtnHelp.Location = new System.Drawing.Point(12, 12);
+            this.BtnHelp.Location = new System.Drawing.Point(328, 12);
             this.BtnHelp.Name = "BtnHelp";
             this.BtnHelp.Size = new System.Drawing.Size(44, 43);
             this.BtnHelp.TabIndex = 6;
@@ -151,12 +152,22 @@ namespace Dotpia
             // 
             // LblVer
             // 
-            this.LblVer.AutoSize = true;
-            this.LblVer.Location = new System.Drawing.Point(301, 9);
+            this.LblVer.Location = new System.Drawing.Point(250, 58);
             this.LblVer.Name = "LblVer";
-            this.LblVer.Size = new System.Drawing.Size(71, 19);
+            this.LblVer.Size = new System.Drawing.Size(122, 29);
             this.LblVer.TabIndex = 7;
-            this.LblVer.Text = "ver 1.0.1a";
+            this.LblVer.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // RtbLog
+            // 
+            this.RtbLog.Font = new System.Drawing.Font("휴먼편지체", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.RtbLog.Location = new System.Drawing.Point(12, 12);
+            this.RtbLog.Name = "RtbLog";
+            this.RtbLog.ReadOnly = true;
+            this.RtbLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.RtbLog.Size = new System.Drawing.Size(310, 43);
+            this.RtbLog.TabIndex = 8;
+            this.RtbLog.Text = "";
             // 
             // Start
             // 
@@ -164,6 +175,7 @@ namespace Dotpia
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(384, 561);
+            this.Controls.Add(this.RtbLog);
             this.Controls.Add(this.LblVer);
             this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.groupBox1);
@@ -180,7 +192,6 @@ namespace Dotpia
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -198,6 +209,7 @@ namespace Dotpia
         private System.Windows.Forms.Button BtnNewLoad;
         private System.Windows.Forms.OpenFileDialog OfdNewOpen;
         private System.Windows.Forms.Label LblVer;
+        private System.Windows.Forms.RichTextBox RtbLog;
     }
 }
 

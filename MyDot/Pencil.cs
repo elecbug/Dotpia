@@ -253,16 +253,19 @@ namespace Dotpia
         {
             if (!DataSaver.bolExtraction)
             {
+                if (DataSaver.bmmNow.bolDragOn)
+                {
+                    DataSaver.bmmNow.bolDragOn = false;
+                    DataSaver.bmmNow.ReDrawing();
+                }
                 DataSaver.bolExtraction = true;
                 DataSaver.bolPaint = false;
                 DataSaver.intMirror = 0;
                 DataSaver.bolCut = false;
-                DataSaver.bmmNow.bolDragOn = false;
                 BtnExtraction.BackColor = Color.Green;
                 BtnPaint.BackColor = SystemColors.Control;
                 BtnMIrror.BackColor = SystemColors.Control;
                 BtnCut.BackColor = SystemColors.Control;
-                DataSaver.bmmNow.ReDrawing();
                 if (DataSaver.grpMirror != null)
                 {
                     DataSaver.grpMirror.Clear(DataSaver.bmmNow.BackColor);
@@ -342,16 +345,19 @@ namespace Dotpia
             }
             if (!DataSaver.bolPaint)
             {
+                if (DataSaver.bmmNow.bolDragOn)
+                {
+                    DataSaver.bmmNow.bolDragOn = false;
+                    DataSaver.bmmNow.ReDrawing();
+                }
                 DataSaver.bolPaint = true;
                 DataSaver.bolExtraction = false;
                 DataSaver.intMirror = 0;
                 DataSaver.bolCut = false;
-                DataSaver.bmmNow.bolDragOn = false;
                 BtnPaint.BackColor = Color.Green;
                 BtnExtraction.BackColor = SystemColors.Control;
                 BtnMIrror.BackColor = SystemColors.Control;
                 BtnCut.BackColor = SystemColors.Control;
-                DataSaver.bmmNow.ReDrawing();
                 if (DataSaver.grpMirror != null)
                 {
                     DataSaver.grpMirror.Clear(DataSaver.bmmNow.BackColor);
@@ -368,17 +374,20 @@ namespace Dotpia
         {
             if (DataSaver.intMirror == 0)
             {
+                if (DataSaver.bmmNow.bolDragOn)
+                {
+                    DataSaver.bmmNow.bolDragOn = false;
+                    DataSaver.bmmNow.ReDrawing();
+                }
                 DataSaver.bolPaint = false;
                 DataSaver.bolExtraction = false;
                 DataSaver.intMirror = 1;
                 DataSaver.bolCut = false;
-                DataSaver.bmmNow.bolDragOn = false;
                 BtnPaint.BackColor = SystemColors.Control;
                 BtnExtraction.BackColor = SystemColors.Control;
                 BtnCut.BackColor = SystemColors.Control;
                 BtnMIrror.BackColor = Color.Blue;
                 RtbMirror_TextChanged(sender, e);
-                DataSaver.bmmNow.ReDrawing();
             }
             else if (DataSaver.intMirror == 1)
             {
@@ -584,14 +593,16 @@ namespace Dotpia
                 BtnExtraction.BackColor = SystemColors.Control;
                 BtnCut.BackColor = Color.Green;
                 BtnMIrror.BackColor = SystemColors.Control;
-                DataSaver.bmmNow.ReDrawing();
             }
             else
             {
+                if (DataSaver.bmmNow.bolDragOn)
+                {                 
+                    DataSaver.bmmNow.bolDragOn = false;
+                    DataSaver.bmmNow.ReDrawing();
+                }
                 DataSaver.bolCut = false;
-                DataSaver.bmmNow.bolDragOn = false;
                 BtnCut.BackColor = SystemColors.Control;
-                DataSaver.bmmNow.ReDrawing();
             }
         }
 

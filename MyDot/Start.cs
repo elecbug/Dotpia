@@ -18,9 +18,36 @@ namespace Dotpia
             InitializeComponent();
         }
 
+        private string[] strLog = {"ver 1.0.0B",
+                                  "- Official Release!",
+                                  "- But there are some bugs...",
+                                  "- I'm always fixing...",
+                                  "ver 1.0.1B",
+                                  "- If there is a lot of empty, the bitmap loading is fast.",
+                                  "ver 1.0.2B",
+                                  "- Fixed a bug that caused a delay when clicking a tool.",
+                                  "- English Helper update. You can switch between Korean and English.",
+                                  "",
+                                  "Scroll up to read the update history.",
+                                  "Latest release is ver 1.0.2B." };
+
         private void Main_Load(object sender, EventArgs e)
         {
             DataSaver.nowStart = this;
+            for (int i = 0; i < strLog.Length; i++)
+            {
+                RtbLog.Text += strLog[i];
+                if (i != strLog.Length - 1)
+                {
+                    RtbLog.Text += "\r\n";
+                }
+            }
+            for (int i = strLog[strLog.Length - 1].Length - 11; i < strLog[strLog.Length - 1].Length - 1; i++)
+            {
+                LblVer.Text += $"{strLog[strLog.Length - 1][i]}";
+            }
+            RtbLog.SelectionStart = RtbLog.TextLength;
+            RtbLog.ScrollToCaret();
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
