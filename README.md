@@ -1,2 +1,3 @@
 # Dotpia
-Dotpia is a bitmap editing program made in C#.
+- Dotpia is a visual bitmap editing program
+- but, it's my first then, code is very spagetting
